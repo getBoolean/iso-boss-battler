@@ -9,5 +9,6 @@ export_presets.cfg
 data_*/
 
 # OS-specific ignores
-.DS_Store
-**/.DS_Store
+*.DS_Store
+*.tres
+*.import
