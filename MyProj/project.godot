@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="MyProj"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [display]
