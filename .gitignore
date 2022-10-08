@@ -10,5 +10,4 @@ data_*/
 
 # OS-specific ignores
 *.DS_Store
-*.tres
 *.import
