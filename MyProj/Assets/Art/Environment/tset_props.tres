@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=2 format=2]
+[gd_resource type="TileSet" load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/TX Props.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 7.228, 8.64417, 12.4524, 2.21411, 20.8918, 3.41974, 28.1256, 13.8686, 27.7237, 21.1024, 16.4712, 28.738, 6.02234, 27.5324, 1.60168, 18.6911 )
 
 [resource]
 0/name = "TX Props.png 0"
@@ -573,9 +576,16 @@
 40/navigation_offset = Vector2( 0, 0 )
 40/shape_offset = Vector2( 0, 0 )
 40/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+40/shape = SubResource( 1 )
 40/shape_one_way = false
-40/shape_one_way_margin = 0.0
-40/shapes = [  ]
+40/shape_one_way_margin = 1.0
+40/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 40/z_index = 0
 41/name = "TX Props.png 41"
 41/texture = ExtResource( 1 )
