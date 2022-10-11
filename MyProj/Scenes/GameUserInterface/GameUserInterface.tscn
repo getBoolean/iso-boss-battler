@@ -20,14 +20,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Screen"]
+margin_left = 16.0
 margin_top = 16.0
-margin_right = 1280.0
+margin_right = 1264.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="TopBar" type="HBoxContainer" parent="Screen/MarginContainer"]
-margin_left = 16.0
-margin_right = 1264.0
+margin_right = 1248.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
