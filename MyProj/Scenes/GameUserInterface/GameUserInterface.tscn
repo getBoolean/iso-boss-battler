@@ -13,26 +13,26 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Screen" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Screen"]
+margin_top = 16.0
 margin_right = 1280.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="TopBar" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="TopBar" type="HBoxContainer" parent="Screen/MarginContainer"]
 margin_left = 16.0
-margin_top = 16.0
 margin_right = 1264.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BossBar" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TopBar"]
+[node name="BossBar" type="VBoxContainer" parent="Screen/MarginContainer/TopBar"]
 margin_left = 48.0
 margin_right = 1194.0
 margin_bottom = 32.0
@@ -40,7 +40,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/TopBar/BossBar"]
+[node name="Label" type="Label" parent="Screen/MarginContainer/TopBar/BossBar"]
 margin_right = 1146.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
@@ -50,7 +50,7 @@ text = "Boss HP"
 align = 1
 uppercase = true
 
-[node name="TextureProgress" type="ProgressBar" parent="VBoxContainer/MarginContainer/TopBar/BossBar"]
+[node name="TextureProgress" type="ProgressBar" parent="Screen/MarginContainer/TopBar/BossBar"]
 material = SubResource( 2 )
 margin_top = 18.0
 margin_right = 1146.0
@@ -58,14 +58,14 @@ margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/MarginContainer/TopBar"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Screen/MarginContainer/TopBar"]
 margin_left = 1214.0
 margin_right = 1248.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 stretch_mode = 0
 
-[node name="PauseButton" type="Button" parent="VBoxContainer/MarginContainer/TopBar/AspectRatioContainer"]
+[node name="PauseButton" type="Button" parent="Screen/MarginContainer/TopBar/AspectRatioContainer"]
 margin_top = -1.0
 margin_right = 34.0
 margin_bottom = 33.0
@@ -74,23 +74,23 @@ size_flags_vertical = 3
 text = "ESC"
 expand_icon = true
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Screen"]
 margin_top = 36.0
 margin_right = 1280.0
 margin_bottom = 36.0
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HFlowContainer"]
+[node name="TextureButton" type="TextureButton" parent="Screen/HFlowContainer"]
 margin_right = 638.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HFlowContainer"]
+[node name="TextureButton2" type="TextureButton" parent="Screen/HFlowContainer"]
 margin_left = 642.0
 margin_right = 1280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="BottomBar" type="HBoxContainer" parent="Screen"]
 margin_top = 40.0
 margin_right = 1280.0
 margin_bottom = 40.0
