@@ -6,6 +6,9 @@ extends KinematicBody2D
 # var b = "text"
 var movespeed = 500
 
+# Offset to flip player sprite once the mouse passes halfway the player sprite on x-axis.
+#TODO: Write better logic to get the midpoint on horizontal axis for player sprite
+const playerSpriteOffset = 75
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,10 +16,10 @@ func _ready():
 
 func _physics_process(delta:float)->void:
     var motion = Vector2()
-    var currPos = get_global_position()
-    currPos.x+=75
+    var playerSpritePos = get_global_position()
+    playerSpritePos.x+=playerSpriteOffset
 
-    if((get_global_mouse_position().x > currPos.x)):
+    if((get_global_mouse_position().x > playerSpritePos.x)):
         $Sprite.flip_h = false
     else:
         $Sprite.flip_h = true
@@ -27,10 +30,8 @@ func _physics_process(delta:float)->void:
         motion.y+=1
     if Input.is_action_pressed("left"):
         motion.x-=1
-        # $Sprite.flip_h = true
     if Input.is_action_pressed("right"):
         motion.x+=1
-        # $Sprite.flip_h = false
         
     motion = motion.normalized()
     motion = move_and_slide(motion*movespeed)
