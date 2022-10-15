@@ -33,15 +33,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="BossBar" type="VBoxContainer" parent="Screen/MarginContainer/TopBar"]
-margin_left = 48.0
-margin_right = 1194.0
+margin_right = 1210.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Label" type="Label" parent="Screen/MarginContainer/TopBar/BossBar"]
-margin_right = 1146.0
+margin_right = 1210.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -53,7 +52,7 @@ uppercase = true
 [node name="TextureProgress" type="ProgressBar" parent="Screen/MarginContainer/TopBar/BossBar"]
 material = SubResource( 2 )
 margin_top = 18.0
-margin_right = 1146.0
+margin_right = 1210.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
