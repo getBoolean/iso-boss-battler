@@ -20,27 +20,27 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Screen"]
-margin_left = 16.0
+margin_left = 48.0
 margin_top = 16.0
 margin_right = 1264.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="TopBar" type="HBoxContainer" parent="Screen/MarginContainer"]
-margin_right = 1248.0
+margin_right = 1216.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="BossBar" type="VBoxContainer" parent="Screen/MarginContainer/TopBar"]
-margin_right = 1210.0
+margin_right = 1162.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Label" type="Label" parent="Screen/MarginContainer/TopBar/BossBar"]
-margin_right = 1210.0
+margin_right = 1162.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -52,14 +52,14 @@ uppercase = true
 [node name="TextureProgress" type="ProgressBar" parent="Screen/MarginContainer/TopBar/BossBar"]
 material = SubResource( 2 )
 margin_top = 18.0
-margin_right = 1210.0
+margin_right = 1162.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Screen/MarginContainer/TopBar"]
-margin_left = 1214.0
-margin_right = 1248.0
+margin_left = 1182.0
+margin_right = 1216.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 stretch_mode = 0
