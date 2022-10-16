@@ -21,8 +21,8 @@ func _physics_process(delta : float) -> void:
     # Handle player input
     # Movement code from https://www.davidepesce.com/2019/09/30/godot-tutorial-5-player-movement/
     var direction: Vector2
-    direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-    direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+    direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+    direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
 	# If input is digital, normalize it for diagonal movement
     if abs(direction.x) == 1 and abs(direction.y) == 1:
