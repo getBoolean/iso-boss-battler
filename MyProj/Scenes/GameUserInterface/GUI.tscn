@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasItemMaterial" id=2]
 
-[node name="GUIController" type="Control"]
+[node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
