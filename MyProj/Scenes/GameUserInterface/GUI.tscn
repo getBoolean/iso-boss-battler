@@ -29,20 +29,20 @@ margin_right = 1248.0
 margin_bottom = 32.0
 alignment = 2
 
-[node name="Boss" type="HBoxContainer" parent="VBoxContainer/TopBar"]
+[node name="BossInfo" type="HBoxContainer" parent="VBoxContainer/TopBar"]
 margin_right = 1210.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="BossBar" type="VBoxContainer" parent="VBoxContainer/TopBar/Boss"]
+[node name="BossBar" type="VBoxContainer" parent="VBoxContainer/TopBar/BossInfo"]
 margin_left = 155.0
 margin_right = 1055.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/TopBar/Boss/BossBar"]
+[node name="Label" type="Label" parent="VBoxContainer/TopBar/BossInfo/BossBar"]
 margin_right = 900.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
@@ -52,7 +52,7 @@ text = "Boss HP"
 align = 1
 uppercase = true
 
-[node name="TextureProgress" type="ProgressBar" parent="VBoxContainer/TopBar/Boss/BossBar"]
+[node name="TextureProgress" type="ProgressBar" parent="VBoxContainer/TopBar/BossInfo/BossBar"]
 material = SubResource( 2 )
 margin_top = 18.0
 margin_right = 900.0
@@ -60,16 +60,10 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_vertical = 1
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/TopBar"]
+[node name="bt_pause" type="Button" parent="VBoxContainer/TopBar"]
 margin_left = 1214.0
 margin_right = 1248.0
 margin_bottom = 32.0
-stretch_mode = 0
-
-[node name="bt_pause" type="Button" parent="VBoxContainer/TopBar/AspectRatioContainer"]
-margin_top = -1.0
-margin_right = 34.0
-margin_bottom = 33.0
 text = "ESC"
 expand_icon = true
 
