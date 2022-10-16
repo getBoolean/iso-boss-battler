@@ -18,10 +18,12 @@ func _physics_process(_delta : float) -> void:
     # _delta is unused, so it is prefixed with an `_` to avoid a warning.
     # Remove the `_` if you use the variable.
     var motion = Vector2()
-    var playerSpritePos = get_global_position()
-    playerSpritePos.x+=playerSpriteOffset
 
-    if((get_global_mouse_position().x > playerSpritePos.x)):
+    var screenSize = Vector2(0,0)
+    screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
+    screenSize.y = get_viewport().get_visible_rect().size.y # Get Height
+
+    if((get_global_mouse_position().x > screenSize.x/2)):
         $Sprite.flip_h = false
     else:
         $Sprite.flip_h = true

@@ -61,7 +61,6 @@ remote_path = NodePath("../../Camera2D")
 [node name="HUD" type="CanvasLayer" parent="Game/Player"]
 
 [node name="GUI" parent="Game/Player/HUD" instance=ExtResource( 8 )]
-script = null
 
 [node name="Camera2D" type="Camera2D" parent="Game"]
 position = Vector2( 0, -24 )
