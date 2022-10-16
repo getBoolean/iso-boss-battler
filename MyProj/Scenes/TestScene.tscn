@@ -54,17 +54,13 @@ tile_data = PoolIntArray( -262153, 536870914, 0, 1179647, 2, 0 )
 position = Vector2( -34, -58 )
 scale = Vector2( 0.4, 0.4 )
 
-[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Game/Player"]
-position = Vector2( 85, 85 )
-remote_path = NodePath("../../Camera2D")
-
 [node name="HUD" type="CanvasLayer" parent="Game/Player"]
 
 [node name="GUI" parent="Game/Player/HUD" instance=ExtResource( 8 )]
 
-[node name="Camera2D" type="Camera2D" parent="Game"]
-position = Vector2( 0, -24 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Camera2D" type="Camera2D" parent="Game/Player"]
+position = Vector2( 85, 85 )
+scale = Vector2( 1, 1 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
 
