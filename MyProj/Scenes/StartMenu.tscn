@@ -34,18 +34,20 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 3 )
 mainGameScene = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1280.0
-margin_bottom = 696.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.176471, 0.0666667, 0.45098, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 696.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 200
 custom_constants/margin_top = 75
 custom_constants/margin_left = 200
@@ -56,6 +58,8 @@ margin_left = 200.0
 margin_top = 75.0
 margin_right = 1080.0
 margin_bottom = 642.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 880.0
