@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var movespeed = 500
+var movespeed = 250
 
 # Offset to flip player sprite once the mouse passes halfway the player sprite on x-axis.
 #TODO: Write better logic to get the midpoint on horizontal axis for player sprite
@@ -14,7 +14,9 @@ const playerSpriteOffset = 75
 func _ready():
     pass # Replace with function body.
 
-func _physics_process(delta:float)->void:
+func _physics_process(_delta : float) -> void:
+    # _delta is unused, so it is prefixed with an `_` to avoid a warning.
+    # Remove the `_` if you use the variable.
     var motion = Vector2()
     var playerSpritePos = get_global_position()
     playerSpritePos.x+=playerSpriteOffset
