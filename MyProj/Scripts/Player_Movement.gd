@@ -1,20 +1,14 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var movespeed = 250
+# Player movement speed
+export var speed = 125
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
 
-func _physics_process(_delta : float) -> void:
-    # _delta is unused, so it is prefixed with an `_` to avoid a warning.
-    # Remove the `_` if you use the variable.
-    var motion = Vector2()
-
+func _physics_process(delta : float) -> void:
+    # Flip sprite if mouse passes middle of the screen
     var screenSize = Vector2(0,0)
     screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
     screenSize.y = get_viewport().get_visible_rect().size.y # Get Height
@@ -24,21 +18,19 @@ func _physics_process(_delta : float) -> void:
     else:
         $Sprite.flip_h = true
 
-    if Input.is_action_pressed("up"):
-        motion.y -=1
-    if Input.is_action_pressed("down"):
-        motion.y+=1
-    if Input.is_action_pressed("left"):
-        motion.x-=1
-    if Input.is_action_pressed("right"):
-        motion.x+=1
-        
-    motion = motion.normalized()
-    motion = move_and_slide(motion*movespeed)
-    
-    
-    
-    
+    # Handle player input
+    # Movement code from https://www.davidepesce.com/2019/09/30/godot-tutorial-5-player-movement/
+    var direction: Vector2
+    direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+    direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	
+	# If input is digital, normalize it for diagonal movement
+    if abs(direction.x) == 1 and abs(direction.y) == 1:
+        direction = direction.normalized()
+	
+	# Apply movement
+    var movement = speed * direction * delta
+    var _motion = move_and_collide(movement)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
