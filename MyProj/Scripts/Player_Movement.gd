@@ -1,46 +1,36 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var movespeed = 250
-
-# Offset to flip player sprite once the mouse passes halfway the player sprite on x-axis.
-#TODO: Write better logic to get the midpoint on horizontal axis for player sprite
-const playerSpriteOffset = 75
+# Player movement speed
+export var speed = 125
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
 
-func _physics_process(_delta : float) -> void:
-    # _delta is unused, so it is prefixed with an `_` to avoid a warning.
-    # Remove the `_` if you use the variable.
-    var motion = Vector2()
-    var playerSpritePos = get_global_position()
-    playerSpritePos.x+=playerSpriteOffset
+func _physics_process(delta : float) -> void:
+    # Flip sprite if mouse passes middle of the screen
+    var screenSize = Vector2(0,0)
+    screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
+    screenSize.y = get_viewport().get_visible_rect().size.y # Get Height
 
-    if((get_global_mouse_position().x > playerSpritePos.x)):
+    if((get_global_mouse_position().x > screenSize.x/2)):
         $Sprite.flip_h = false
     else:
         $Sprite.flip_h = true
 
-    if Input.is_action_pressed("up"):
-        motion.y -=1
-    if Input.is_action_pressed("down"):
-        motion.y+=1
-    if Input.is_action_pressed("left"):
-        motion.x-=1
-    if Input.is_action_pressed("right"):
-        motion.x+=1
-        
-    motion = motion.normalized()
-    motion = move_and_slide(motion*movespeed)
-    
-    
-    
-    
+    # Handle player input
+    # Movement code from https://www.davidepesce.com/2019/09/30/godot-tutorial-5-player-movement/
+    var direction: Vector2
+    direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+    direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	# If input is digital, normalize it for diagonal movement
+    if abs(direction.x) == 1 and abs(direction.y) == 1:
+        direction = direction.normalized()
+	
+	# Apply movement
+    var movement = speed * direction * delta
+    var _motion = move_and_collide(movement)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
