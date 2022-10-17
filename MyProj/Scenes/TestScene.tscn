@@ -60,7 +60,6 @@ scale = Vector2( 0.4, 0.4 )
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 position = Vector2( 85, 85 )
-scale = Vector2( 1, 1 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
 
@@ -68,4 +67,4 @@ zoom = Vector2( 0.6, 0.6 )
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -786423, 0, 0, -655353, 2, 0, -524276, 9, 0, -524275, 3, 0, -458742, 5, 0, -393210, 5, 0, -393207, 9, 0, -393205, 4, 0, -327674, 5, 0, -327670, 4, 0, -327668, 3, 0, -262133, 3, 0, -262132, 3, 0, -65538, 536870916, 0, 196616, 9, 0, 262157, 9, 0, 458761, 13, 0, 524292, 9, 0, 589835, 1, 0, 720882, 1, 0, 786439, 9, 0 )
+tile_data = PoolIntArray( -786423, 0, 0, -655353, 2, 0, 458761, 13, 0, 589835, 1, 0, 720882, 1, 0 )
