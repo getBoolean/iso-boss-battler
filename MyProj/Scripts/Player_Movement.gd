@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 # Player movement speed
-export var speed = 125
+export var MOVE_SPEED = 125
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,20 +19,13 @@ func _physics_process(_delta : float) -> void:
         $Sprite.flip_h = true
 
     # Handle player input
-    # Movement code from https://www.davidepesce.com/2019/09/30/godot-tutorial-5-player-movement/
-    var direction: Vector2
-    direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-    direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-    
-    # If input is digital, normalize it for diagonal movement
-    if abs(direction.x) == 1 and abs(direction.y) == 1:
-        direction = direction.normalized()
+    var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
     
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
     # Unlike in move_and_collide(), you should not multiply it by
     # delta — the physics engine handles applying the velocity.
-    var linear_velocity = speed * direction
+    var linear_velocity = MOVE_SPEED * direction
     var _movement = move_and_slide(linear_velocity)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
