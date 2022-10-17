@@ -1,9 +1,8 @@
 extends KinematicBody2D
 
+# Load the projectile scene/node
+const projectilePath = preload("res://Scenes/Projectile.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var movespeed = 500
 
 # Offset to flip player sprite once the mouse passes halfway the player sprite on x-axis.
@@ -32,14 +31,19 @@ func _physics_process(delta:float)->void:
         motion.x-=1
     if Input.is_action_pressed("right"):
         motion.x+=1
-        
+    if Input.is_action_just_pressed("ui_accept"):
+        shoot()
     motion = motion.normalized()
     motion = move_and_slide(motion*movespeed)
+    $Node2D.look_at(get_global_mouse_position())
     
     
-    
-    
+func shoot():
+    var projectile = projectilePath.instance()
 
+    get_parent().add_child(projectile)
+    projectile.position = $Node2D/Position2D.global_position
+    projectile.velocity = get_global_mouse_position() - projectile.position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
