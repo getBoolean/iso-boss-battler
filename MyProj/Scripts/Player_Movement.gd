@@ -7,7 +7,7 @@ export var speed = 125
 func _ready():
     pass # Replace with function body.
 
-func _physics_process(delta : float) -> void:
+func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
     var screenSize = Vector2(0,0)
     screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
@@ -23,14 +23,17 @@ func _physics_process(delta : float) -> void:
     var direction: Vector2
     direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
     direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	
-	# If input is digital, normalize it for diagonal movement
+    
+    # If input is digital, normalize it for diagonal movement
     if abs(direction.x) == 1 and abs(direction.y) == 1:
         direction = direction.normalized()
-	
-	# Apply movement
-    var movement = speed * direction * delta
-    var _motion = move_and_collide(movement)
+    
+    # Apply movement
+    # linear_velocity is the velocity vector in pixels per second.
+    # Unlike in move_and_collide(), you should not multiply it by
+    # delta — the physics engine handles applying the velocity.
+    var linear_velocity = speed * direction
+    var _movement = move_and_slide(linear_velocity)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
