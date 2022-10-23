@@ -23,6 +23,9 @@ func _physics_process(_delta : float) -> void:
 
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+    if Input.is_action_just_pressed("primary_fire"):
+        shoot()
     
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
@@ -33,12 +36,14 @@ func _physics_process(_delta : float) -> void:
     $Node2D.look_at(get_global_mouse_position())
     
     
+    
 func shoot():
     var projectile = projectilePath.instance()
 
     get_parent().add_child(projectile)
     projectile.position = $Node2D/Position2D.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    print($Node2D/Position2D.global_position)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
