@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
@@ -7,11 +7,15 @@
 [ext_resource path="res://Assets/Art/Environment/tset_plants.tres" type="TileSet" id=5]
 [ext_resource path="res://Assets/Art/Environment/tset_grass.tres" type="TileSet" id=6]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=8]
 
 [node name="TestScene" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource( 7 )]
+show_behind_parent = true
+scale = Vector2( 0.5, 0.5 )
+
 [node name="Game" type="CanvasLayer" parent="."]
+layer = -1
 follow_viewport_enable = true
 
 [node name="grass_tiles" type="TileMap" parent="Game"]
@@ -50,21 +54,10 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( -262153, 536870914, 0, 1179647, 2, 0 )
 
-[node name="Player" parent="Game" instance=ExtResource( 7 )]
-position = Vector2( -34, -58 )
-scale = Vector2( 0.4, 0.4 )
-
-[node name="HUD" type="CanvasLayer" parent="Game/Player"]
-
-[node name="GUI" parent="Game/Player/HUD" instance=ExtResource( 8 )]
-
-[node name="Camera2D" type="Camera2D" parent="Game/Player"]
-position = Vector2( 85, 85 )
-current = true
-zoom = Vector2( 0.6, 0.6 )
-
 [node name="treetops" type="TileMap" parent="Game"]
+z_index = 2
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
+occluder_light_mask = 4
 format = 1
-tile_data = PoolIntArray( -786423, 0, 0, -655353, 2, 0, 458761, 13, 0, 589835, 1, 0, 720882, 1, 0 )
+tile_data = PoolIntArray( -786423, 0, 0, -655353, 2, 0, 458761, 13, 0, 589835, 1, 0, 720882, 1, 0, 1048574, 3, 0 )

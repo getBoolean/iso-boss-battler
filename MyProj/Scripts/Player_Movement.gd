@@ -43,7 +43,6 @@ func shoot():
     get_parent().add_child(projectile)
     projectile.position = $Node2D/Position2D.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
-    print($Node2D/Position2D.global_position)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
