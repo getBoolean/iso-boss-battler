@@ -8,7 +8,7 @@ var movespeed = 250
 
 # Offset to flip player sprite once the mouse passes halfway the player sprite on x-axis.
 #TODO: Write better logic to get the midpoint on horizontal axis for player sprite
-const playerSpriteOffset = 75
+#const playerSpriteOffset = 75
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +19,7 @@ func _physics_process(_delta : float) -> void:
     # Remove the `_` if you use the variable.
     var motion = Vector2()
     var playerSpritePos = get_global_position()
-    playerSpritePos.x+=playerSpriteOffset
+    #playerSpritePos.x+=playerSpriteOffset
 
     if((get_global_mouse_position().x > playerSpritePos.x)):
         $Sprite.flip_h = false
