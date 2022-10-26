@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/StartMenu.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/TestScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -34,18 +35,21 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 3 )
 mainGameScene = ExtResource( 4 )
+creditsScene = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1280.0
-margin_bottom = 696.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.176471, 0.0666667, 0.45098, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 696.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 200
 custom_constants/margin_top = 75
 custom_constants/margin_left = 200
@@ -56,6 +60,8 @@ margin_left = 200.0
 margin_top = 75.0
 margin_right = 1080.0
 margin_bottom = 642.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 880.0
@@ -163,4 +169,5 @@ custom_styles/normal = SubResource( 5 )
 text = "Quit"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_button_up"]
