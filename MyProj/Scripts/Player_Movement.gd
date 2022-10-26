@@ -12,11 +12,18 @@ func _ready():
 
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
-    var screenSize = Vector2(0,0)
-    screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
-    screenSize.y = get_viewport().get_visible_rect().size.y # Get Height
+    #var screenSize = Vector2(0,0)
+    #screenSize.x = get_viewport().get_visible_rect().size.x # Get Width
+    #screenSize.y = get_viewport().get_visible_rect().size.y # Get Height
 
-    if((get_global_mouse_position().x > screenSize.x/2)):
+    #if((get_global_mouse_position().x > screenSize.x/2)):
+    #    $Sprite.flip_h = false
+    #else:
+    #    $Sprite.flip_h = true
+
+    var currPos = get_global_position()
+    
+    if((get_global_mouse_position().x > currPos.x)):
         $Sprite.flip_h = false
     else:
         $Sprite.flip_h = true
@@ -41,7 +48,7 @@ func shoot():
     var projectile = projectilePath.instance()
 
     get_parent().add_child(projectile)
-    projectile.position = $Node2D/Position2D.global_position
+    projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
