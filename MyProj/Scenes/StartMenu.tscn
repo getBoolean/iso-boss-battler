@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/StartMenu.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -39,6 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
 mainGameScene = ExtResource( 4 )
+creditsScene = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -167,4 +169,5 @@ custom_styles/normal = SubResource( 5 )
 text = "Quit"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_button_up"]
