@@ -9,6 +9,11 @@ export var MAX_SPEED = 200
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
 onready var enemy_sprite = $enemy_Sprite
+export var MAX_HEALTH = 10
+
+# For Debugging purpose only
+onready var healthLabel = $Label
+
 enum {
     IDLE,
     CHASE,
@@ -21,6 +26,7 @@ var direction = 1
 
 func _physics_process(delta):
     $AnimationPlayer.play("Walk_Idle")
+    healthLabel.text = str(MAX_HEALTH)
     match state:
         IDLE:
             #enemy_sprite.play("Idle")
@@ -59,4 +65,10 @@ func can_attack_player():
     else: 
         state = IDLE
 
+func _on_Area2D_area_entered(area:Area2D):
+    if area.name == "bullet_area":
+        area.get_parent().queue_free()
+        MAX_HEALTH -=2
+        if MAX_HEALTH <= 0:
+            queue_free()
 
