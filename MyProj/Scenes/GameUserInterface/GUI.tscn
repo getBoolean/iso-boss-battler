@@ -1,4 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/UIcontroller.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/GameUserInterface/UIstyles/playermpbar/playermp-theme.tres" type="Theme" id=2]
+[ext_resource path="res://Scenes/GameUserInterface/UIstyles/playerhpbar/playerhpbar-theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/GameUserInterface/UIstyles/hp_theme.tres" type="Theme" id=4]
 
 [sub_resource type="Theme" id=1]
 
@@ -9,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -49,13 +55,15 @@ text = "Boss HP"
 align = 1
 uppercase = true
 
-[node name="TextureProgress" type="ProgressBar" parent="VBoxContainer/TopBar/BossInfo/BossBar"]
+[node name="Boss_HPbar" type="ProgressBar" parent="VBoxContainer/TopBar/BossInfo/BossBar"]
 material = SubResource( 2 )
 margin_top = 18.0
 margin_right = 900.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_vertical = 1
+theme = ExtResource( 4 )
+value = 100.0
 
 [node name="bt_pause" type="Button" parent="VBoxContainer/TopBar"]
 margin_left = 1214.0
@@ -77,16 +85,17 @@ margin_right = 300.0
 margin_bottom = 652.0
 alignment = 2
 
-[node name="HP" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
-material = SubResource( 2 )
-margin_top = 620.0
+[node name="Player_HPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
+margin_top = 616.0
 margin_right = 300.0
-margin_bottom = 634.0
+margin_bottom = 630.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 3 )
+value = 100.0
 
-[node name="MP" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
+[node name="Player_MPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
 material = SubResource( 2 )
 margin_top = 638.0
 margin_right = 300.0
@@ -94,3 +103,5 @@ margin_bottom = 652.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
+value = 100.0

@@ -6,6 +6,9 @@ const projectilePath = preload("res://Scenes/Projectile.tscn")
 # Player movement speed
 export var MOVE_SPEED = 125
 
+export var PLAYER_MAX_HP = 100
+export var PLAYER_CUR_HP = 100
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
