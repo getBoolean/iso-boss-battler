@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 # Load the projectile scene/node
-const projectilePath = preload("res://Scenes/Projectile.tscn")
+const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 # Player movement speed
 export var MOVE_SPEED = 125
@@ -35,7 +35,7 @@ func _physics_process(_delta : float) -> void:
     
     
 func shoot():
-    var projectile = projectilePath.instance()
+    var projectile = PROJECTILE_SCENE.instance()
 
     get_parent().add_child(projectile)
     projectile.position = $Node2D/ProjectileShootLoc.global_position
