@@ -8,7 +8,6 @@ const BASE_SPEED := 100
 const SPEED_UP_MULTIPLIER := 10.0
 const TITLE_COLOR := Color.blueviolet
 
-var scroll_speed := BASE_SPEED
 var speed_up := false
 
 onready var line := $CreditsContainer/Line
@@ -42,7 +41,7 @@ func load_file(file):
     return
 
 func _process(delta):
-    var scroll_speed = BASE_SPEED * delta
+    var adjusted_scroll_speed = BASE_SPEED * delta
     
     if section_next:
         section_timer += delta * SPEED_UP_MULTIPLIER if speed_up else delta
@@ -62,11 +61,11 @@ func _process(delta):
             add_line()
     
     if speed_up:
-        scroll_speed *= SPEED_UP_MULTIPLIER
+        adjusted_scroll_speed *= SPEED_UP_MULTIPLIER
     
     if lines.size() > 0:
         for l in lines:
-            l.rect_position.y -= scroll_speed
+            l.rect_position.y -= adjusted_scroll_speed
             if l.rect_position.y < -l.get_line_height():
                 lines.erase(l)
                 l.queue_free()
@@ -77,7 +76,9 @@ func _process(delta):
 func finish():
     if not finished:
         finished = true
-        get_tree().change_scene("res://Scenes/StartMenu.tscn")
+        var error_code = get_tree().change_scene("res://Scenes/StartMenu.tscn")
+        if error_code != Global.SUCCESS_CODE:
+            print("[ERROR] Could not switch scene to start menu: ", error_code)
         # NOTE: This is called when the credits finish
         # - Hook up your code to return to the relevant scene here, eg...
         #get_tree().change_scene("res://scenes/MainMenu.tscn")
