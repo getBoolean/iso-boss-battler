@@ -6,8 +6,11 @@ const projectilePath = preload("res://Scenes/Projectile.tscn")
 # Player movement speed
 export var MOVE_SPEED = 125
 
-export var PLAYER_MAX_HP = 100
-export var PLAYER_CUR_HP = 100
+export var  PLAYER_MAX_HP = 100
+export onready  var  PLAYER_CUR_HP = 100
+
+export var PLAYER_MAX_MP = 100
+export onready var PLAYER_CUR_MP = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +39,9 @@ func _physics_process(_delta : float) -> void:
 
     if Input.is_action_just_pressed("primary_fire"):
         shoot()
+        
+    if Input.is_action_just_released("testing_dmg_player"):
+        PLAYER_CUR_HP = PLAYER_CUR_HP - 5
     
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.

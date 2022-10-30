@@ -3,6 +3,10 @@ extends KinematicBody2D
 
 # Declare member variables here. Examples:
 # var a = 2
+
+export var BOSS_MAX_HP = 100
+export var BOSS_CUR_HP = 100
+
 export var ACCELERATION = 300
 export var FRICTION = 400
 export var MAX_SPEED = 200

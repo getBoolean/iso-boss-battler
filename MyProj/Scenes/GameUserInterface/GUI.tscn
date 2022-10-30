@@ -86,13 +86,14 @@ margin_bottom = 652.0
 alignment = 2
 
 [node name="Player_HPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
-margin_top = 616.0
+margin_top = 620.0
 margin_right = 300.0
-margin_bottom = 630.0
+margin_bottom = 634.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource( 3 )
+step = 1.0
 value = 100.0
 
 [node name="Player_MPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
