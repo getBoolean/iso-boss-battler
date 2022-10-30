@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/Art/Environment/tset_walls.tres" type="TileSet" id=3]
 [ext_resource path="res://Assets/Art/Environment/tset_stone.tres" type="TileSet" id=4]
-[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Art/Environment/tset_grass.tres" type="TileSet" id=6]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/grasstuft1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree3.tscn" type="PackedScene" id=12]
 
 [node name="TestScene" type="Node2D"]
 
@@ -54,6 +55,12 @@ tile_data = PoolIntArray( -1048593, 64, 0, -1048592, 65, 0, -1048591, 65, 0, -10
 
 [node name="Tree1-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
 position = Vector2( 368, 348 )
+
+[node name="Tree2" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
+position = Vector2( 470, 296 )
+
+[node name="Tree3" parent="Player Layer/Foliage/Trees" instance=ExtResource( 12 )]
+position = Vector2( 425, 363 )
 
 [node name="Bushes" type="YSort" parent="Player Layer/Foliage"]
 
