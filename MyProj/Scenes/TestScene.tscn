@@ -170,8 +170,8 @@ scale = Vector2( 0.4, 0.4 )
 remote_path = NodePath("../../../Player Camera")
 
 [node name="Enemy_entity" parent="Player Layer" instance=ExtResource( 23 )]
-position = Vector2( 416, 0 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 432, 32 )
+scale = Vector2( 0.4, 0.4 )
 
 [node name="Foreground Layer" type="Node2D" parent="."]
 
