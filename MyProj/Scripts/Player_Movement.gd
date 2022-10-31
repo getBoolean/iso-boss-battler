@@ -40,8 +40,10 @@ func _physics_process(_delta : float) -> void:
     if Input.is_action_just_pressed("primary_fire"):
         shoot()
         
+    # Damage Player, currently just a keybind.
+    # Can change into player collides with boss projectile
     if Input.is_action_just_released("testing_dmg_player"):
-        PLAYER_CUR_HP = PLAYER_CUR_HP - 5
+        damage_player(5)
     
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
@@ -59,6 +61,24 @@ func shoot():
     get_parent().add_child(projectile)
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    
+# damage_player(): applies damage to the player's 
+# HP based on the given amount of damage, kills 
+# the player if too much damage has been taken
+func damage_player(damage):
+    if PLAYER_CUR_HP < damage:
+        var difference = damage - PLAYER_CUR_HP
+        PLAYER_CUR_HP = 0
+        kill_player(difference)
+    else:
+        # play damage animation
+        PLAYER_CUR_HP = PLAYER_CUR_HP - damage
+        
+# kill_player():
+# animates the player's death, calls the end screen
+# difference not used, but potentially useful in future
+func kill_player(difference):
+    pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
