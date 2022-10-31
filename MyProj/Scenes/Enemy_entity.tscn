@@ -88,6 +88,7 @@ visible = false
 shape = SubResource( 8 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -48.0
 margin_top = -176.0
 margin_right = 40.0

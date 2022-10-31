@@ -63,7 +63,8 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_vertical = 1
 theme = ExtResource( 4 )
-value = 100.0
+max_value = 200.0
+value = 200.0
 
 [node name="bt_pause" type="Button" parent="VBoxContainer/TopBar"]
 margin_left = 1214.0
