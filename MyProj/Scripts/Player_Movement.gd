@@ -11,8 +11,8 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 # Player movement speed
 export var MOVE_SPEED = 125
 
-export var  PLAYER_MAX_HP = 100
-export onready  var  PLAYER_CUR_HP = 100
+export var PLAYER_MAX_HP = 100
+export onready var PLAYER_CUR_HP = 100
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100

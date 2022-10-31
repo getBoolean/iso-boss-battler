@@ -6,7 +6,7 @@ signal boss_health_updated(new_value, old_value)
 # var a = 2
 
 export var BOSS_MAX_HP = 200
-export var BOSS_CUR_HP = 200
+export onready var BOSS_CUR_HP = 200
 
 export var ACCELERATION = 300
 export var FRICTION = 400
