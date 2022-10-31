@@ -1,17 +1,27 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/Art/Environment/tset_walls.tres" type="TileSet" id=3]
 [ext_resource path="res://Assets/Art/Environment/tset_stone.tres" type="TileSet" id=4]
-[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Art/Environment/tset_grass.tres" type="TileSet" id=6]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/bush3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Art/Environment/FoliageActors/grasstuft1.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Enemy_entity.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Art/Environment/FoliageActors/Tree3.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock4.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock5.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Art/Environment/PropActors/Rock6.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Art/Environment/PropActors/RockAlt2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Art/Environment/PropActors/RockAlt3.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Art/Environment/PropActors/RockAlt1.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Art/Environment/PropActors/RockExtraLarge.tscn" type="PackedScene" id=22]
 
 [node name="TestScene" type="Node2D"]
 
@@ -39,7 +49,7 @@ tile_data = PoolIntArray( -262153, 536870914, 0, 1179647, 2, 0 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -589832, 41, 0, -524297, 22, 0, -393225, 20, 0, -393224, 19, 0, 458747, 40, 0, 589814, 40, 0, 720892, 40, 0 )
+tile_data = PoolIntArray( -524297, 22, 0, -393225, 20, 0, -393224, 19, 0 )
 
 [node name="wall_tiles" type="TileMap" parent="Background Layer"]
 tile_set = ExtResource( 3 )
@@ -55,6 +65,53 @@ tile_data = PoolIntArray( -1048593, 64, 0, -1048592, 65, 0, -1048591, 65, 0, -10
 
 [node name="Tree1-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
 position = Vector2( 368, 348 )
+
+[node name="Tree2-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
+position = Vector2( 470, 296 )
+
+[node name="Tree3-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 12 )]
+position = Vector2( 425, 363 )
+
+[node name="Rocks" type="YSort" parent="Player Layer/Foliage"]
+
+[node name="Rock1-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 13 )]
+position = Vector2( -61, 256 )
+
+[node name="Rock2-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 14 )]
+position = Vector2( -240, 246 )
+
+[node name="Rock3-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 15 )]
+position = Vector2( -214, 303 )
+
+[node name="Rock4-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 16 )]
+position = Vector2( -337, 296 )
+
+[node name="Rock5-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 17 )]
+position = Vector2( -156, 262 )
+
+[node name="Rock6-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+position = Vector2( -148, 211 )
+
+[node name="Rock6-2" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+position = Vector2( -115, 339 )
+
+[node name="Rock6-3" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+position = Vector2( -308, 275 )
+
+[node name="RockAlt1-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 21 )]
+position = Vector2( -291, 193 )
+
+[node name="RockAlt1-2" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 21 )]
+position = Vector2( -241, -300 )
+
+[node name="RockAlt2-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 19 )]
+position = Vector2( -172, 180 )
+
+[node name="RockAlt3-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 20 )]
+position = Vector2( -253, 205 )
+
+[node name="RockExtraLarge-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 22 )]
+position = Vector2( -260, 110 )
 
 [node name="Bushes" type="YSort" parent="Player Layer/Foliage"]
 
@@ -111,15 +168,9 @@ scale = Vector2( 0.4, 0.4 )
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player Layer/Player"]
 remote_path = NodePath("../../../Player Camera")
 
-[node name="Enemy_entity" parent="Player Layer" instance=ExtResource( 12 )]
-position = Vector2( 400, 0 )
-scale = Vector2( 0.5, 0.5 )
-
 [node name="Foreground Layer" type="Node2D" parent="."]
 
 [node name="Player Camera" type="Camera2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
-
-[connection signal="boss_health_updated" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_health_updated"]

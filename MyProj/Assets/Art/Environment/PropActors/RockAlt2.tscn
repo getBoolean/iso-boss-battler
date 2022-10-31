@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Art/Environment/TX Props.png" type="Texture" id=1]
+
+[node name="RockAlt2-1" type="StaticBody2D"]
+position = Vector2( 0, -3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -9.6, -12 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 262.316, 486.739, 20.0479, 17.2206 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.6, -26 )
+polygon = PoolVector2Array( 5, 31, 10, 26, -3, 19, -8, 24 )
