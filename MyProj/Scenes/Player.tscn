@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Elf_01__IDLE_000.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 19.5, 6.5 )
@@ -16,6 +18,12 @@ script = ExtResource( 1 )
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="HUD" instance=ExtResource( 3 )]
+
+[node name="DeathOverlay" parent="HUD" instance=ExtResource( 4 )]
+visible = false
+
+[node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
+visible = false
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -57 )
