@@ -1,6 +1,6 @@
 extends Control
 
-export var mainMenuScene : PackedScene
+var mainMenuScene = load("res://Scenes/StartMenu.tscn")
 
 func _ready():
     pass
@@ -8,11 +8,13 @@ func _ready():
 
 func _on_bt_respawn_button_up():
     # TODO: Reset player and level, and hide this overlay
-    pass
+    hide()
+    get_tree().reload_current_scene()
 
 
 func _on_bt_leave_game_button_up():
-    var error_code = get_tree().change_scene(mainMenuScene.resource_path)
+    hide()
+    var error_code = get_tree().change_scene_to(mainMenuScene)
     if error_code != Global.SUCCESS_CODE:
         print("[ERROR] Could not change scene to main menu: ", error_code)
 
@@ -20,3 +22,13 @@ func _on_bt_leave_game_button_up():
 func _on_bt_exit_to_desktop_button_up():
     print("Quitting game...")
     get_tree().quit()
+
+
+func _on_Player_player_died(_difference):
+    show()
+    pass # Replace with function body.
+
+
+func _on_Player_you_won(_difference):
+    show()
+    pass # Replace with function body.

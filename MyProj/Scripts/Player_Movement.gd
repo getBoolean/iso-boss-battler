@@ -2,8 +2,11 @@ extends KinematicBody2D
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
+signal player_died(difference)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
+signal you_won(difference)
+
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -64,7 +67,7 @@ func shoot():
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
 func damage_player(damage):
-    if PLAYER_CUR_HP < damage:
+    if PLAYER_CUR_HP <= damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)
         PLAYER_CUR_HP = 0
@@ -92,6 +95,7 @@ func use_player_mp(amount):
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
 func kill_player(difference):
+    emit_signal("player_died", difference)
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -100,3 +104,7 @@ func kill_player(difference):
 # passes signal through player to the UI
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):
     emit_signal("hit_boss", new_value, old_value)
+
+func _on_Enemy_entity_boss_killed(difference):
+    emit_signal("you_won", difference)
+    pass # Replace with function body.

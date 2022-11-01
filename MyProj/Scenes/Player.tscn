@@ -56,5 +56,7 @@ current = true
 
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
+[connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
+[connection signal="you_won" from="." to="HUD/WinOverlay" method="_on_Player_you_won"]

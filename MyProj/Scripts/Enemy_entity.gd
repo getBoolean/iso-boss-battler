@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
+signal boss_killed(difference)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +14,7 @@ export var FRICTION = 400
 export var MAX_SPEED = 200
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
-onready var enemy_sprite = $enemy_Sprite
+#onready var enemy_sprite = $enemy_Sprite
 export var MAX_HEALTH = 10
 
 # For Debugging purpose only
@@ -40,7 +41,7 @@ func _physics_process(delta):
         CHASE:
             var player = playerDetectionZone.player
             if player != null:
-                var direction =  (player.global_position - global_position).normalized()
+                direction =  (player.global_position - global_position).normalized()
                 velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
                 
             if velocity.x > 0:
@@ -58,7 +59,7 @@ func _physics_process(delta):
     velocity = move_and_slide(velocity)
 
 func damage_boss(damage):
-    if BOSS_CUR_HP < damage:
+    if BOSS_CUR_HP <= damage:
         var difference = damage - BOSS_CUR_HP
         emit_signal("boss_health_updated", 0, BOSS_CUR_HP)
         BOSS_CUR_HP = 0
@@ -74,6 +75,7 @@ func damage_boss(damage):
 # difference not used, but potentially useful in future
 func kill_boss(difference):
     queue_free()
+    emit_signal("boss_killed", difference)
     pass
 
 
