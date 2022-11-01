@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/Art/Environment/PropActors/RockAlt3.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/Art/Environment/PropActors/RockAlt1.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Assets/Art/Environment/PropActors/RockExtraLarge.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Enemy_entity.tscn" type="PackedScene" id=23]
 
 [node name="TestScene" type="Node2D"]
 
@@ -168,9 +169,15 @@ scale = Vector2( 0.4, 0.4 )
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player Layer/Player"]
 remote_path = NodePath("../../../Player Camera")
 
+[node name="Enemy_entity" parent="Player Layer" instance=ExtResource( 23 )]
+position = Vector2( 432, 32 )
+scale = Vector2( 0.4, 0.4 )
+
 [node name="Foreground Layer" type="Node2D" parent="."]
 
 [node name="Player Camera" type="Camera2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
+
+[connection signal="boss_health_updated" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_health_updated"]
