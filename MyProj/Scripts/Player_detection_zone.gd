@@ -13,5 +13,4 @@ func _on_Player_detection_zone_body_entered(body):
 
 
 func _on_Player_detection_zone_body_exited(body):
-    if(body.name =="Player"):
-        player = null
+	player = null

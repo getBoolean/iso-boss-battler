@@ -1,8 +1,13 @@
 extends KinematicBody2D
 
+signal boss_health_updated(new_value, old_value)
 
 # Declare member variables here. Examples:
 # var a = 2
+
+export var BOSS_MAX_HP = 200
+export onready var BOSS_CUR_HP = 200
+
 export var ACCELERATION = 300
 export var FRICTION = 400
 export var MAX_SPEED = 200
@@ -52,6 +57,25 @@ func _physics_process(delta):
     
     velocity = move_and_slide(velocity)
 
+func damage_boss(damage):
+    if BOSS_CUR_HP < damage:
+        var difference = damage - BOSS_CUR_HP
+        emit_signal("boss_health_updated", 0, BOSS_CUR_HP)
+        BOSS_CUR_HP = 0
+        kill_boss(difference)
+    else:
+        var new_hp = BOSS_CUR_HP - damage
+        emit_signal("boss_health_updated", new_hp, BOSS_CUR_HP)
+        # play damage animation        
+        BOSS_CUR_HP = new_hp
+        
+# kill_boss():
+# animates the boss's death, calls the win screen
+# difference not used, but potentially useful in future
+func kill_boss(difference):
+    queue_free()
+    pass
+
 
 func see_player():
     if playerDetectionZone.can_see_player():
@@ -65,10 +89,10 @@ func can_attack_player():
     else: 
         state = IDLE
 
+# Player Projectile collides with boss
 func _on_Area2D_area_entered(area:Area2D):
     if area.name == "bullet_area":
         area.get_parent().queue_free()
-        MAX_HEALTH -=2
-        if MAX_HEALTH <= 0:
-            queue_free()
+        damage_boss(5)
+        
 
