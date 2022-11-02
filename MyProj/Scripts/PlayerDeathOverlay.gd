@@ -25,10 +25,16 @@ func _on_bt_exit_to_desktop_button_up():
 
 
 func _on_Player_player_died(_difference):
+    var root = get_tree().current_scene
+    var fg_layer = root.get_node("Foreground Layer")
+    fg_layer.get_node("Crosshair").queue_free()
     show()
     pass # Replace with function body.
 
 
 func _on_Player_you_won(_difference):
+    var root = get_tree().current_scene
+    var fg_layer = root.get_node("Foreground Layer")
+    fg_layer.get_node("Crosshair").queue_free()
     show()
     pass # Replace with function body.
