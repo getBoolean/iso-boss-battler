@@ -91,7 +91,7 @@ func use_player_mp(amount):
 # kill_player():
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
-func kill_player(difference):
+func kill_player(_difference):
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
