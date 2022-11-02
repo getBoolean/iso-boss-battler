@@ -5,6 +5,10 @@ signal boss_health_updated(new_value, old_value)
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
+#time for projectile delay
+onready var timer_node = $fire_delay_timer
+export var fire_delay_rate = 0.5
+
 #Boss Health Values
 export var BOSS_MAX_HP = 200
 export onready var BOSS_CUR_HP = 200
@@ -49,7 +53,8 @@ func _physics_process(delta):
             if player != null:
                 var linear_direction =  (player.global_position - global_position).normalized()
                 velocity = velocity.move_toward(linear_direction * MAX_SPEED, ACCELERATION * delta)
-                fire()
+                if timer_node.is_stopped():
+                    fire()
                 
             if velocity.x > 0:
                 enemy_sprite.flip_h = false
@@ -103,6 +108,7 @@ func _on_Area2D_area_entered(area:Area2D):
         damage_boss(5)
         
 func fire():
+    timer_node.start(fire_delay_rate)
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
