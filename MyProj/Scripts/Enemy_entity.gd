@@ -13,7 +13,7 @@ export var FRICTION = 400
 export var MAX_SPEED = 200
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
-onready var enemy_sprite = $enemy_Sprite
+onready var enemy_sprite = $EnemySprite
 export var MAX_HEALTH = 10
 
 # For Debugging purpose only
@@ -40,13 +40,13 @@ func _physics_process(delta):
         CHASE:
             var player = playerDetectionZone.player
             if player != null:
-                var direction =  (player.global_position - global_position).normalized()
-                velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+                var lienar_direction =  (player.global_position - global_position).normalized()
+                velocity = velocity.move_toward(lienar_direction * MAX_SPEED, ACCELERATION * delta)
                 
             if velocity.x > 0:
-                $Sprite.flip_h = false
+                enemy_sprite.flip_h = false
             if velocity.x < 0:
-                $Sprite.flip_h = true
+                enemy_sprite.flip_h = true
             see_player()
             #can_attack_player()
         ATTACK:
@@ -72,7 +72,7 @@ func damage_boss(damage):
 # kill_boss():
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
-func kill_boss(difference):
+func kill_boss(_difference):
     queue_free()
     pass
 
