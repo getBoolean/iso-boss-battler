@@ -58,3 +58,4 @@ current = true
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
