@@ -63,6 +63,7 @@ func shoot():
     var projectile = PROJECTILE_SCENE.instance()
     timer_node.start(fire_delay_rate)
     get_parent().add_child(projectile)
+    projectile.projectile_owner = "Player"
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
     
@@ -97,7 +98,7 @@ func use_player_mp(amount):
 # kill_player():
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
-func kill_player(difference):
+func kill_player(_difference):
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -106,3 +107,9 @@ func kill_player(difference):
 # passes signal through player to the UI
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):
     emit_signal("hit_boss", new_value, old_value)
+
+
+func _on_Area2D_area_entered(area):
+     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity":
+        area.get_parent().queue_free()
+        damage_player(5)

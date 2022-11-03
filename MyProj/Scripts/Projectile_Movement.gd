@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2()
 var speed = 300
+var projectile_owner = null
 
 
 

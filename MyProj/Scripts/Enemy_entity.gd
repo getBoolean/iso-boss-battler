@@ -2,23 +2,33 @@ extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
 
-# Declare member variables here. Examples:
-# var a = 2
+# Load the projectile scene/node
+const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
+#time for projectile delay
+onready var timer_node = $fire_delay_timer
+export var fire_delay_rate = 0.5
+
+#Boss Health Values
 export var BOSS_MAX_HP = 200
 export onready var BOSS_CUR_HP = 200
 
+var player = null
+
+#values for speed of boss
 export var ACCELERATION = 300
 export var FRICTION = 400
-export var MAX_SPEED = 200
+export var MAX_SPEED = 50
+#Object references to boss attributes
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
-onready var enemy_sprite = $enemy_Sprite
+onready var enemy_sprite = $EnemySprite
 export var MAX_HEALTH = 10
 
 # For Debugging purpose only
 onready var healthLabel = $Label
 
+#states for boss
 enum {
     IDLE,
     CHASE,
@@ -38,17 +48,19 @@ func _physics_process(delta):
             velocity = velocity.move_toward(Vector2.ZERO, FRICTION*delta)
             see_player()
         CHASE:
-            var player = playerDetectionZone.player
+            player = playerDetectionZone.player
+            
             if player != null:
-                var direction =  (player.global_position - global_position).normalized()
-                velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+                var linear_direction =  (player.global_position - global_position).normalized()
+                velocity = velocity.move_toward(linear_direction * MAX_SPEED, ACCELERATION * delta)
+                if timer_node.is_stopped():
+                    fire()
                 
             if velocity.x > 0:
-                $Sprite.flip_h = false
+                enemy_sprite.flip_h = false
             if velocity.x < 0:
-                $Sprite.flip_h = true
+                enemy_sprite.flip_h = true
             see_player()
-            #can_attack_player()
         ATTACK:
             velocity = velocity.move_toward(Vector2.ZERO, FRICTION*delta)
             print("attacked player")
@@ -74,7 +86,7 @@ func damage_boss(damage):
 # kill_boss():
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
-func kill_boss(difference):
+func kill_boss(_difference):
     queue_free()
     pass
 
@@ -93,8 +105,14 @@ func can_attack_player():
 
 # Player Projectile collides with boss
 func _on_Area2D_area_entered(area:Area2D):
-    if area.name == "bullet_area":
+    if area.name == "bullet_area" and area.get_parent().projectile_owner == "Player":
         area.get_parent().queue_free()
         damage_boss(5)
         
-
+func fire():
+    timer_node.start(fire_delay_rate)
+    var projectile = PROJECTILE_SCENE.instance()
+    get_parent().add_child(projectile)
+    projectile.projectile_owner = "Enemy_entity"
+    projectile.position = global_position
+    projectile.velocity = player.global_position - projectile.position
