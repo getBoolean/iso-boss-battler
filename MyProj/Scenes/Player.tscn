@@ -53,7 +53,6 @@ position = Vector2( 40, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 80, 101 )
-current = true
 
 [node name="fire_delay_timer" type="Timer" parent="."]
 one_shot = true
