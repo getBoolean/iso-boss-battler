@@ -6,6 +6,8 @@ signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
+signal player_died(_difference)
+signal you_won(_difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -19,7 +21,7 @@ export onready var PLAYER_CUR_HP = 100
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
 
-
+var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.3
 
@@ -72,7 +74,7 @@ func shoot():
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
 func damage_player(damage):
-    if PLAYER_CUR_HP < damage:
+    if PLAYER_CUR_HP <= damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)
         PLAYER_CUR_HP = 0
@@ -87,7 +89,7 @@ func damage_player(damage):
 # amount of mana from the player, if they have it.
 # if not, sends a signal that they don't
 func use_player_mp(amount):
-    if PLAYER_CUR_MP < amount:
+    if PLAYER_CUR_MP <= amount:
         # can't do anything, cause not enough mp
         emit_signal("not_enough_mp")
         pass
@@ -100,6 +102,9 @@ func use_player_mp(amount):
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
 func kill_player(_difference):
+    if is_Alive:
+        emit_signal("player_died", _difference)
+        is_Alive = false
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -114,3 +119,8 @@ func _on_Area2D_area_entered(area):
      if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity":
         area.get_parent().queue_free()
         damage_player(5)
+
+
+func _on_Enemy_entity_boss_died(_difference):
+    emit_signal("you_won", _difference)
+    pass # Replace with function body.
