@@ -48,6 +48,7 @@ extents = Vector2( 56, 112 )
 [sub_resource type="RectangleShape2D" id=8]
 
 [node name="Enemy_entity" type="KinematicBody2D"]
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
