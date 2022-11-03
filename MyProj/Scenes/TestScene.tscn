@@ -182,5 +182,5 @@ scale = Vector2( 0.4, 0.4 )
 scale = Vector2( 0.4, 0.4 )
 zoom = Vector2( 0.6, 0.6 )
 
+[connection signal="boss_died" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_died"]
 [connection signal="boss_health_updated" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_health_updated"]
-[connection signal="boss_killed" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_killed"]
