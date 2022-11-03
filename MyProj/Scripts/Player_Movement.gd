@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
+onready var timer_node = $fire_delay_timer
+
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
-signal player_died(difference)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
-signal you_won(difference)
-
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -19,6 +18,10 @@ export onready var PLAYER_CUR_HP = 100
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
+
+
+# Timer duration
+export var fire_delay_rate = 0.3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +38,7 @@ func _physics_process(_delta : float) -> void:
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-    if Input.is_action_just_pressed("primary_fire"):
+    if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped():
         shoot()
         
     # FOR TESTING Damage to Player, currently just a keybind.
@@ -58,8 +61,9 @@ func _physics_process(_delta : float) -> void:
     
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
-
+    timer_node.start(fire_delay_rate)
     get_parent().add_child(projectile)
+    projectile.projectile_owner = "Player"
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
     
@@ -67,7 +71,7 @@ func shoot():
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
 func damage_player(damage):
-    if PLAYER_CUR_HP <= damage:
+    if PLAYER_CUR_HP < damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)
         PLAYER_CUR_HP = 0
@@ -94,8 +98,7 @@ func use_player_mp(amount):
 # kill_player():
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
-func kill_player(difference):
-    emit_signal("player_died", difference)
+func kill_player(_difference):
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -105,6 +108,8 @@ func kill_player(difference):
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):
     emit_signal("hit_boss", new_value, old_value)
 
-func _on_Enemy_entity_boss_killed(difference):
-    emit_signal("you_won", difference)
-    pass # Replace with function body.
+
+func _on_Area2D_area_entered(area):
+     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity":
+        area.get_parent().queue_free()
+        damage_player(5)

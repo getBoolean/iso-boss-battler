@@ -22,8 +22,8 @@ func _on_Player_hit_boss(new_hp, _old_hp):
     boss_hpbar.set_value(new_hp)    
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func _process(_delta):
+    pass
     # Update HP/MP Values every frame
     #set boss_hpbarnode.Value = (bossnode.BOSS_CUR_HP) / bossnode.BOSS_MAX_HP)
     
