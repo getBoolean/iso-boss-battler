@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
+signal boss_died(difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -72,7 +73,7 @@ func _physics_process(delta):
     
 
 func damage_boss(damage):
-    if BOSS_CUR_HP < damage:
+    if BOSS_CUR_HP <= damage:
         var difference = damage - BOSS_CUR_HP
         emit_signal("boss_health_updated", 0, BOSS_CUR_HP)
         BOSS_CUR_HP = 0
@@ -87,6 +88,7 @@ func damage_boss(damage):
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
 func kill_boss(_difference):
+    emit_signal("boss_died", _difference)
     queue_free()
     pass
 
