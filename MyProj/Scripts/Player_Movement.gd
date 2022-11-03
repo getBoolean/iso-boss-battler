@@ -58,8 +58,7 @@ func _physics_process(_delta : float) -> void:
     var linear_velocity = MOVE_SPEED * direction
     var _movement = move_and_slide(linear_velocity)
     $Node2D.look_at(get_global_mouse_position())
-    
-    
+
     
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
@@ -68,6 +67,7 @@ func shoot():
     projectile.projectile_owner = "Player"
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
+    print($Node2D/ProjectileShootLoc.global_position)
     projectile.velocity = get_global_mouse_position() - projectile.position
     
 # damage_player(damage): applies damage to the player's 
