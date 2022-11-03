@@ -180,6 +180,7 @@ scale = Vector2( 0.4, 0.4 )
 
 [node name="Player Camera" type="Camera2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
+current = true
 zoom = Vector2( 0.6, 0.6 )
 
 [connection signal="boss_died" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_died"]
