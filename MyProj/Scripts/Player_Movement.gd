@@ -67,7 +67,6 @@ func shoot():
     projectile.projectile_owner = "Player"
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
-    print($Node2D/ProjectileShootLoc.global_position)
     projectile.velocity = get_global_mouse_position() - projectile.position
     
 # damage_player(damage): applies damage to the player's 
