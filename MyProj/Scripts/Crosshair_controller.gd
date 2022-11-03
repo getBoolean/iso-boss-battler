@@ -13,7 +13,7 @@ func _exit_tree():
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
     var mouse_loc = get_global_mouse_position()
     self.position = mouse_loc
 
