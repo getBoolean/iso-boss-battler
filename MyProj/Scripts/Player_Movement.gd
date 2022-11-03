@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var timer_node = $fire_delay_timer
+
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
@@ -17,6 +19,10 @@ export onready var PLAYER_CUR_HP = 100
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
 
+
+# Timer duration
+export var fire_delay_rate = 0.3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
@@ -32,7 +38,7 @@ func _physics_process(_delta : float) -> void:
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-    if Input.is_action_just_pressed("primary_fire"):
+    if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped():
         shoot()
         
     # FOR TESTING Damage to Player, currently just a keybind.
@@ -55,7 +61,7 @@ func _physics_process(_delta : float) -> void:
     
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
-
+    timer_node.start(fire_delay_rate)
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Player"
     projectile.position = $Node2D/ProjectileShootLoc.global_position

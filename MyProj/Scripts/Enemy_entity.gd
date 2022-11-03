@@ -69,6 +69,8 @@ func _physics_process(delta):
     
     velocity = move_and_slide(velocity)
 
+    
+
 func damage_boss(damage):
     if BOSS_CUR_HP < damage:
         var difference = damage - BOSS_CUR_HP

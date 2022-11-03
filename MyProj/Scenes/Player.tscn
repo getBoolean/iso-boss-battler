@@ -14,6 +14,7 @@ extents = Vector2( 23, 49.75 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+fire_delay_rate = 0.5
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -53,6 +54,9 @@ position = Vector2( 40, 0 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 80, 101 )
 current = true
+
+[node name="fire_delay_timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
