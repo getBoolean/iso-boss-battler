@@ -64,6 +64,7 @@ func shoot():
     timer_node.start(fire_delay_rate)
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Player"
+    
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
     
