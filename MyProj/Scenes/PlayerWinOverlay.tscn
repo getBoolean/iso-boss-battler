@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/PlayerDeathOverlay.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/bt_exit_to_desktop.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -112,6 +113,7 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 text = "EXIT TO DESKTOP"
+script = ExtResource( 4 )
 
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_new_game" to="." method="_on_bt_respawn_button_up"]
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_main_menu" to="." method="_on_bt_leave_game_button_up"]
