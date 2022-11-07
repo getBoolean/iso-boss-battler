@@ -1,2 +1,2 @@
 subfolders
-- [#47-BetterProjectileCollisions](/defect/%2347-BetterProjectileCollisions/)
+- [#47-BetterProjectileCollisions](./%2347-BetterProjectileCollisions/)
