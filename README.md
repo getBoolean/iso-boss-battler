@@ -1,6 +1,7 @@
 # iso-boss-battler
 
-subfolders:
+## subfolders
+
 - [main](main/)
 - [defect](defect/)
 - [feature](feature/)
