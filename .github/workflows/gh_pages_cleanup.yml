@@ -3,7 +3,7 @@ on: delete
 
 jobs:
   cleanup:
-    name: cleanup
+    name: Cleanup gh-pages
     runs-on: ubuntu-20.04
     if: github.ref_type == "branch"
     steps:
