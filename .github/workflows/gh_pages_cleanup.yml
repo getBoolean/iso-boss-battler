@@ -5,7 +5,7 @@ jobs:
   cleanup:
     name: Cleanup gh-pages
     runs-on: ubuntu-20.04
-    if: github.ref_type == 'branch'
+    if: github.event.ref_type == 'branch'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -22,7 +22,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          echo "Deleting folder: ${{ steps.branch-name.outputs.ref_branch }}"
-          git rm -rf ${{ steps.branch-name.outputs.ref_branch }}
+
+          BASE_REF=$(printf "%q" "${{ github.event.ref }}")
+          BASE_REF=${BASE_REF/refs\/heads\/}
+
+          echo "Deleting folder: $BASE_REF"
+          git rm -rf $BASE_REF
           git commit -m "Remove deleted branch"
           git push
