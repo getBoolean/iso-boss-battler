@@ -1,5 +1,7 @@
 name: "godot-ci export"
-on: push
+on:
+  - push
+  - workflow_dispatch
 
 env:
   GODOT_VERSION: 3.5.1
@@ -61,6 +63,7 @@ jobs:
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:3.5.1
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -80,6 +83,9 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
@@ -88,6 +94,7 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
+          target-folder: "${{ steps.branch-name.outputs.current_branch }}"
 
   export-mac:
     name: Mac Export

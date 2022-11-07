@@ -4,6 +4,7 @@
 
 [node name="RockAlt3-1" type="StaticBody2D"]
 position = Vector2( 0, -3 )
+collision_layer = 4
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -14.3, -16 )
