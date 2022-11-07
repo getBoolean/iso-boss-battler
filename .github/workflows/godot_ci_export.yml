@@ -3,7 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 3.3.4
-  EXPORT_NAME: iso-boss-battler
+  EXPORT_NAME: MyProj
 
 jobs:
   export-windows:
