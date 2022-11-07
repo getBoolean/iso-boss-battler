@@ -25,6 +25,10 @@ window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg" )
+
 [global]
 
 "pixel snap"=false
