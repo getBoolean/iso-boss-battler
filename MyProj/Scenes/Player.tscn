@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Art/Player/Elf_01__IDLE_000.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
@@ -29,12 +30,7 @@ visible = false
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -57 )
 scale = Vector2( 0.2, 0.2 )
-__meta__ = {
-"_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpwbGF5ZXJ8PUFuaW1hdGlvblBsYXllcgpzb3VyY2V8PQpsYXllcnw9Cm9wX2V4cHw9RmFsc2UKb19mb2xkZXJ8PQpvX25hbWV8PQpvbmx5X3Zpc2libGV8PUZhbHNlCm9fZXhfcHw9Cg=="
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite")
+texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2.5 )
