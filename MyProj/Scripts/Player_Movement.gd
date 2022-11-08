@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
 
+
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
@@ -11,6 +12,7 @@ signal you_won(_difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
+const LIGHTNING_ATTACK = preload("res://Scenes/LightningAttack.tscn")
 
 # Player movement speed
 export var MOVE_SPEED = 125
@@ -42,6 +44,9 @@ func _physics_process(_delta : float) -> void:
 
     if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped():
         shoot()
+
+    if Input.is_action_just_pressed("secondary_fire"):
+        secondaryAttack()
         
     # FOR TESTING Damage to Player, currently just a keybind.
     # Can change into player collides with boss projectile
@@ -68,7 +73,17 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+
+
+func secondaryAttack():
+    var lightning = LIGHTNING_ATTACK.instance()
+    get_parent().add_child(lightning)
+    # lightning.lightning_owner = "Player"
+
+    lightning.position = get_global_mouse_position()
     
+    
+
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
