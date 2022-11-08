@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
+onready var _animation_player = $AnimationPlayer
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -28,14 +29,31 @@ export var fire_delay_rate = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
+    
+func _process(_delta: float):
+    if Input.is_action_pressed("ui_left") \
+        or Input.is_action_pressed("ui_right") \
+        or Input.is_action_pressed("ui_up") \
+        or Input.is_action_pressed("ui_down"):
+        _animation_player.play(Global.PLAYER_RUN)
+        $RunSprite.show()
+        $IdleSprite.hide()
+        $DeathSprite.hide()
+    elif is_Alive:
+        _animation_player.play(Global.PLAYER_IDLE)
+        $RunSprite.hide()
+        $IdleSprite.show()
+        $DeathSprite.hide()
 
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
     var currPos = get_global_position()
     if((get_global_mouse_position().x > currPos.x)):
-        $Sprite.flip_h = false
+        $RunSprite.flip_h = false
+        $IdleSprite.flip_h = false
     else:
-        $Sprite.flip_h = true
+        $RunSprite.flip_h = true
+        $IdleSprite.flip_h = true
 
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -102,8 +120,12 @@ func use_player_mp(amount):
 # difference not used, but potentially useful in future
 func kill_player(_difference):
     if is_Alive:
+        _animation_player.play(Global.PLAYER_DEATH)
         emit_signal("player_died", _difference)
         is_Alive = false
+        $RunSprite.hide()
+        $IdleSprite.hide()
+        $DeathSprite.show()
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
