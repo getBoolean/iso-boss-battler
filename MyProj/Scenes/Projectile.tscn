@@ -10,11 +10,13 @@ extents = Vector2( 22.5, 42.5 )
 extents = Vector2( 6, 10.5 )
 
 [node name="Node2D" type="KinematicBody2D"]
+position = Vector2( 0, -6 )
 collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="bullet_area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_area"]
 position = Vector2( 0, -4.375 )
