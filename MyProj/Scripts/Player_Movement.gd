@@ -8,6 +8,7 @@ signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
 signal you_won(_difference)
+signal paused()
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -49,6 +50,11 @@ func _physics_process(_delta : float) -> void:
         damage_player(5)
     if Input.is_action_just_released("testing_mp_drain"):
         use_player_mp(5)
+
+    if Input.is_action_just_released("pause_game"):
+        # Don't let player pause the game if Death or Win Overlays are in effect. 
+        if(!get_node("HUD/DeathOverlay").is_visible() && !get_node("HUD/WinOverlay").is_visible()):
+            emit_signal("paused")
         
     
     # Apply movement
