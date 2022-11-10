@@ -186,8 +186,10 @@ position = Vector2( 432, 32 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="Foreground Layer" type="Node2D" parent="."]
+modulate = Color( 0.0313726, 0, 0, 1 )
 
 [node name="Crosshair" parent="Foreground Layer" instance=ExtResource( 24 )]
+pause_mode = 2
 
 [node name="Player Camera" type="Camera2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
