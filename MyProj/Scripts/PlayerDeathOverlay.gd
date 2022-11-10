@@ -12,7 +12,9 @@ func _ready():
 func _on_bt_respawn_button_up():
     # TODO: Reset player and level, and hide this overlay
     hide()
-    get_tree().reload_current_scene()
+    var error_code = get_tree().reload_current_scene()
+    if error_code != Global.SUCCESS_CODE:
+        print("[ERROR] Could not reload scene: ", error_code)
 
 
 func _on_bt_leave_game_button_up():

@@ -10,8 +10,8 @@ var can_dash = true
 var ghost_scene = preload("res://Scenes/Dash_Ghost.tscn")
 var sprite
 
-func start_dash(sprite, dash_duration, direction):
-    self.sprite = sprite
+func start_dash(a_sprite, dash_duration, direction):
+    self.sprite = a_sprite
     sprite.material.set_shader_param("mix_weight", 0.7)
     sprite.material.set_shader_param("whiten", true)
     duration_timer.wait_time = dash_duration
