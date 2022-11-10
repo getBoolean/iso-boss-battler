@@ -1,7 +1,6 @@
 
 # Godot-specific ignores
 .import/
-export.cfg
 
 # Mono-specific ignores
 .mono/
@@ -9,4 +8,3 @@ data_*/
 
 # OS-specific ignores
 *.DS_Store
-*.import
