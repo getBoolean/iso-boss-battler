@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -6,15 +6,16 @@
 [ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Art/Player/Idle/IdleAnimation.tres" type="Animation" id=6]
-[ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=7]
+[ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=7]
 [ext_resource path="res://Assets/Art/Player/Death/DeathSheet.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/Player/Idle/IdleSheet.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/Player/Run/RunSheet.png" type="Texture" id=10]
-[ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=11]
+[ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=11]
 [ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 11 )
+shader = ExtResource( 7 )
 shader_param/whiten = false
 shader_param/mix_weight = 1.0
 
@@ -40,6 +41,10 @@ fire_delay_rate = 0.5
 visible = false
 
 [node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
+visible = false
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 13 )]
+pause_mode = 2
 visible = false
 
 [node name="RunSprite" type="Sprite" parent="."]
@@ -96,7 +101,7 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area2D/CollisionShape2D")
-anims/Death = ExtResource( 7 )
+anims/Death = ExtResource( 11 )
 anims/Idle = ExtResource( 6 )
 anims/RESET = SubResource( 5 )
 anims/Run = ExtResource( 2 )

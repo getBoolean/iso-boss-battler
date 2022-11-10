@@ -9,6 +9,7 @@ signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
 signal you_won(_difference)
+signal paused()
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -32,6 +33,8 @@ export onready var PLAYER_CUR_MP = 100
 var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.3
+
+var is_paused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,8 +89,12 @@ func _physics_process(_delta : float) -> void:
         damage_player(5)
     if Input.is_action_just_released("testing_mp_drain"):
         use_player_mp(5)
+
+    if Input.is_action_just_released("pause_game"):
+        # Don't let player pause the game if Death or Win Overlays are in effect. 
+        if(!get_node("HUD/DeathOverlay").is_visible() && !get_node("HUD/WinOverlay").is_visible()):
+            emit_signal("paused")
         
-    
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
     # Unlike in move_and_collide(), you should not multiply it by
