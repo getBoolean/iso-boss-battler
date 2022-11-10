@@ -1,14 +1,21 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Elf_01__IDLE_000.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=7]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=8]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 7 )
+shader_param/whiten = false
+shader_param/mix_weight = 1.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 23, 6.5 )
+extents = Vector2( 19.5, 6.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 23, 49.75 )
@@ -28,11 +35,12 @@ visible = false
 [node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
 visible = false
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 6 )]
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
 pause_mode = 2
 visible = false
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 4 )
 position = Vector2( 0, -57 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
@@ -63,6 +71,11 @@ position = Vector2( 80, 101 )
 [node name="fire_delay_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Dash" parent="." instance=ExtResource( 6 )]
+
+[node name="dust_trail" parent="Dash" index="2"]
+position = Vector2( 0, -1 )
+
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
 [connection signal="paused" from="." to="HUD/PauseMenu" method="_on_Player_paused"]
@@ -71,3 +84,5 @@ one_shot = true
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
 [connection signal="you_won" from="." to="HUD/WinOverlay" method="_on_Player_you_won"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+
+[editable path="Dash"]
