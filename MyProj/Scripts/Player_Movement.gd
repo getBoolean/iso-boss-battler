@@ -41,14 +41,16 @@ func _ready():
     pass # Replace with function body.
     
 func _process(_delta: float):
+    if not is_Alive:
+        return
     if Input.is_action_pressed("ui_left") \
         or Input.is_action_pressed("ui_right") \
         or Input.is_action_pressed("ui_up") \
         or Input.is_action_pressed("ui_down"):
-        _animation_player.play(Global.PLAYER_RUN)
         $RunSprite.show()
         $IdleSprite.hide()
         $DeathSprite.hide()
+        _animation_player.play(Global.PLAYER_RUN)
     elif is_Alive:
         _animation_player.play(Global.PLAYER_IDLE)
         $RunSprite.hide()
@@ -146,12 +148,12 @@ func use_player_mp(amount):
 # difference not used, but potentially useful in future
 func kill_player(_difference):
     if is_Alive:
+        is_Alive = false
         $RunSprite.hide()
         $IdleSprite.hide()
         $DeathSprite.show()
         _animation_player.play(Global.PLAYER_DEATH)
         emit_signal("player_died", _difference)
-        is_Alive = false
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
