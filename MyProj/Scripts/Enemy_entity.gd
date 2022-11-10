@@ -8,7 +8,7 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
-export var fire_delay_rate = 0.3
+export var fire_delay_rate = 0.13
 
 #Boss Health Values
 export var BOSS_MAX_HP = 200
