@@ -1,6 +1,6 @@
 extends Node2D
 
-const dash_delay = 0.4
+const dash_delay = 0.7
 onready var duration_timer = $dash_duration
 onready var ghost_timer = $ghost_timer
 onready var dust_trail = $dust_trail
