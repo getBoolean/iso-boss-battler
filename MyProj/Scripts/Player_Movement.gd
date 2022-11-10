@@ -16,10 +16,10 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 
 # Player movement speed
-export var MOVE_SPEED = 125
+export var MOVE_SPEED = 175
 
 #player dash variables
-export var DASH_SPEED = 650
+export var DASH_SPEED = 675
 export var DASH_DURATION = .15
 onready var dash = $Dash
 

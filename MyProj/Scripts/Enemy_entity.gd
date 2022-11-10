@@ -8,7 +8,7 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
-export var fire_delay_rate = 0.5
+export var fire_delay_rate = 0.3
 
 #Boss Health Values
 export var BOSS_MAX_HP = 200
@@ -19,7 +19,7 @@ var player = null
 #values for speed of boss
 export var ACCELERATION = 300
 export var FRICTION = 400
-export var MAX_SPEED = 50
+export var MAX_SPEED = 150
 #Object references to boss attributes
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
