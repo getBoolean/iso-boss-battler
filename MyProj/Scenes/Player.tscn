@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Player/Elf_01__IDLE_000.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
 [ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Art/Player/Idle/IdleAnimation.tres" type="Animation" id=6]
 [ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=7]
+[ext_resource path="res://Assets/Art/Player/Death/DeathSheet.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/Player/Idle/IdleSheet.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/Player/Run/RunSheet.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=11]
+[ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -14,10 +20,13 @@ shader_param/whiten = false
 shader_param/mix_weight = 1.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 19.5, 6.5 )
+extents = Vector2( 24, 4.25 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23, 49.75 )
+extents = Vector2( 24, 44.875 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 7
@@ -34,20 +43,44 @@ visible = false
 [node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 13 )]
+pause_mode = 2
+visible = false
+
+[node name="RunSprite" type="Sprite" parent="."]
 material = SubResource( 4 )
-position = Vector2( 0, -57 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
+position = Vector2( 0, -96 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 10 )
+hframes = 6
+frame = 1
+__meta__ = {
+"_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpwbGF5ZXJ8PUFuaW1hdGlvblBsYXllcjIKc291cmNlfD1yZXM6Ly9Bc3NldHMvQXJ0L1BsYXllci9SdW4vUnVuLmFzZXByaXRlCmxheWVyfD0Kb3BfZXhwfD1GYWxzZQpvX2ZvbGRlcnw9Cm9fbmFtZXw9Cm9ubHlfdmlzaWJsZXw9RmFsc2UKb19leF9wfD0K"
+}
+
+[node name="DeathSprite" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 33, -48 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+hframes = 6
+frame = 1
+
+[node name="IdleSprite" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 0, -48 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 9 )
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2.5 )
+position = Vector2( 0, -4.75 )
 shape = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, -50 )
+position = Vector2( 0, -45.125 )
 shape = SubResource( 2 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
@@ -66,7 +99,14 @@ position = Vector2( 80, 101 )
 [node name="fire_delay_timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Dash" parent="." instance=ExtResource( 6 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area2D/CollisionShape2D")
+anims/Death = ExtResource( 11 )
+anims/Idle = ExtResource( 6 )
+anims/RESET = SubResource( 5 )
+anims/Run = ExtResource( 2 )
+
+[node name="Dash" parent="." instance=ExtResource( 12 )]
 
 [node name="dust_trail" parent="Dash" index="2"]
 position = Vector2( 0, -1 )

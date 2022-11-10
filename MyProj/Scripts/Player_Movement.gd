@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
+onready var _animation_player = $AnimationPlayer
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -8,6 +9,7 @@ signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
 signal you_won(_difference)
+signal paused()
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -28,29 +30,57 @@ export onready var PLAYER_CUR_HP = 100
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
 
-onready var sprite = $Sprite
-
 var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.3
 
+var is_paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
+    
+func _process(_delta: float):
+    if not is_Alive:
+        return
+    if Input.is_action_pressed("ui_left") \
+        or Input.is_action_pressed("ui_right") \
+        or Input.is_action_pressed("ui_up") \
+        or Input.is_action_pressed("ui_down"):
+        $RunSprite.show()
+        $IdleSprite.hide()
+        $DeathSprite.hide()
+        _animation_player.play(Global.PLAYER_RUN)
+    elif is_Alive:
+        _animation_player.play(Global.PLAYER_IDLE)
+        $RunSprite.hide()
+        $IdleSprite.show()
+        $DeathSprite.hide()
 
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
+    if not is_Alive:
+        return
+        
     var currPos = get_global_position()
     if((get_global_mouse_position().x > currPos.x)):
-        $Sprite.flip_h = false
+        $RunSprite.flip_h = false
+        $IdleSprite.flip_h = false
     else:
-        $Sprite.flip_h = true
+        $RunSprite.flip_h = true
+        $IdleSprite.flip_h = true
 
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
     
     if Input.is_action_just_pressed("dash") and dash.can_dash and !dash.is_dashing():
-        dash.start_dash(sprite, DASH_DURATION, direction)
+        $RunSprite.show()
+        $IdleSprite.hide()
+        $DeathSprite.hide()
+        dash.start_dash($RunSprite, DASH_DURATION, direction)
+        $RunSprite.hide()
+        $IdleSprite.show()
+        $DeathSprite.hide()
 
     if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped() && !dash.is_dashing():
         shoot()
@@ -61,8 +91,12 @@ func _physics_process(_delta : float) -> void:
         damage_player(5)
     if Input.is_action_just_released("testing_mp_drain"):
         use_player_mp(5)
+
+    if Input.is_action_just_released("pause_game"):
+        # Don't let player pause the game if Death or Win Overlays are in effect. 
+        if(!get_node("HUD/DeathOverlay").is_visible() && !get_node("HUD/WinOverlay").is_visible()):
+            emit_signal("paused")
         
-    
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
     # Unlike in move_and_collide(), you should not multiply it by
@@ -114,8 +148,12 @@ func use_player_mp(amount):
 # difference not used, but potentially useful in future
 func kill_player(_difference):
     if is_Alive:
-        emit_signal("player_died", _difference)
         is_Alive = false
+        $RunSprite.hide()
+        $IdleSprite.hide()
+        $DeathSprite.show()
+        _animation_player.play(Global.PLAYER_DEATH)
+        emit_signal("player_died", _difference)
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
