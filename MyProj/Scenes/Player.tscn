@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Art/Player/Idle/IdleAnimation.tres" type="Animation" id=6]
 [ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=7]
-[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Art/Player/Death/DeathSheet.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/Player/Idle/IdleSheet.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/Player/Run/RunSheet.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=11]
 [ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -42,7 +43,7 @@ visible = false
 [node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
 visible = false
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource( 8 )]
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 13 )]
 pause_mode = 2
 visible = false
 
@@ -61,6 +62,7 @@ __meta__ = {
 material = SubResource( 4 )
 position = Vector2( 33, -48 )
 scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
 hframes = 6
 frame = 1
 
