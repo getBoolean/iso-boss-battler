@@ -139,12 +139,12 @@ func use_player_mp(amount):
 # difference not used, but potentially useful in future
 func kill_player(_difference):
     if is_Alive:
-        _animation_player.play(Global.PLAYER_DEATH)
-        emit_signal("player_died", _difference)
-        is_Alive = false
         $RunSprite.hide()
         $IdleSprite.hide()
         $DeathSprite.show()
+        _animation_player.play(Global.PLAYER_DEATH)
+        emit_signal("player_died", _difference)
+        is_Alive = false
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
