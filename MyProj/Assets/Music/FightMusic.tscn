@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Music/FastMix-2022-03-22_-_Age_Of_Mythology_-_www.FesliyanStudios.com_.mp3" type="AudioStream" id=1]
+
+[node name="FightMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -10.0
+bus = "Music"
