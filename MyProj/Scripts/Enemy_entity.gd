@@ -118,3 +118,5 @@ func fire():
     projectile.projectile_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.velocity = player.global_position - projectile.position
+    projectile.scale.x = 1.5
+    projectile.scale.y = 1.5
