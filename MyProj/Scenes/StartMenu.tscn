@@ -171,5 +171,6 @@ text = "Quit"
 script = ExtResource( 6 )
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/bt_options" to="." method="_on_bt_options_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_button_up"]
