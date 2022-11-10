@@ -35,6 +35,7 @@ var is_Alive = true
 export var fire_delay_rate = 0.3
 
 var is_paused = false
+var has_won = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -147,17 +148,13 @@ func use_player_mp(amount):
 # animates the player's death, calls the end screen
 # difference not used, but potentially useful in future
 func kill_player(_difference):
-    if is_Alive:
+    if is_Alive && not has_won:
         is_Alive = false
         $RunSprite.hide()
         $IdleSprite.hide()
         $DeathSprite.show()
         _animation_player.play(Global.PLAYER_DEATH)
         emit_signal("player_died", _difference)
-    pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
 
 # passes signal through player to the UI
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):
@@ -171,5 +168,6 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_Enemy_entity_boss_died(_difference):
+    has_won = true
     emit_signal("you_won", _difference)
     pass # Replace with function body.
