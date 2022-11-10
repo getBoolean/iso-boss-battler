@@ -2,8 +2,11 @@ extends Control
 
 var mainMenuScene = load("res://Scenes/StartMenu.tscn")
 
+
 func _ready():
-    pass
+    var os = OS.get_name()
+    if (os == "Android" or os == "iOS" or os == "HTML5"):
+        hide()
 
 
 func _on_bt_respawn_button_up():

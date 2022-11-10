@@ -56,9 +56,38 @@ collision_layer = 4
 format = 1
 tile_data = PoolIntArray( -393225, 20, 0, -393224, 19, 0 )
 
-[node name="props2" type="YSort" parent="Background Layer"]
+[node name="NonProjectileBlockingProps" type="YSort" parent="Background Layer"]
 
-[node name="Well-1" parent="Background Layer/props2" instance=ExtResource( 25 )]
+[node name="Rock1-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 13 )]
+position = Vector2( -61, 256 )
+
+[node name="Rock2-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 14 )]
+position = Vector2( -240, 246 )
+
+[node name="Rock3-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 15 )]
+position = Vector2( -214, 303 )
+
+[node name="Rock4-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 16 )]
+position = Vector2( -337, 296 )
+
+[node name="Rock5-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 17 )]
+position = Vector2( -156, 262 )
+
+[node name="RockAlt1-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 21 )]
+position = Vector2( -291, 193 )
+
+[node name="RockAlt1-2" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 21 )]
+position = Vector2( -241, -300 )
+
+[node name="RockAlt2-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 19 )]
+position = Vector2( -172, 180 )
+
+[node name="RockAlt3-1" parent="Background Layer/NonProjectileBlockingProps" instance=ExtResource( 20 )]
+position = Vector2( -253, 205 )
+
+[node name="NonProjectileBlockingObstacles" type="YSort" parent="Background Layer"]
+
+[node name="Well-1" parent="Background Layer/NonProjectileBlockingObstacles" instance=ExtResource( 25 )]
 position = Vector2( -257, -255 )
 
 [node name="wall_tiles" type="TileMap" parent="Background Layer"]
@@ -83,45 +112,18 @@ position = Vector2( 470, 296 )
 [node name="Tree3-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 12 )]
 position = Vector2( 425, 363 )
 
-[node name="Rocks" type="YSort" parent="Player Layer/Foliage"]
+[node name="ProjectileBlockingObstacles" type="YSort" parent="Player Layer/Foliage"]
 
-[node name="Rock1-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 13 )]
-position = Vector2( -61, 256 )
-
-[node name="Rock2-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 14 )]
-position = Vector2( -240, 246 )
-
-[node name="Rock3-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 15 )]
-position = Vector2( -214, 303 )
-
-[node name="Rock4-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 16 )]
-position = Vector2( -337, 296 )
-
-[node name="Rock5-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 17 )]
-position = Vector2( -156, 262 )
-
-[node name="Rock6-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+[node name="Rock6-1" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -148, 211 )
 
-[node name="Rock6-2" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+[node name="Rock6-2" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -115, 339 )
 
-[node name="Rock6-3" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 18 )]
+[node name="Rock6-3" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -308, 275 )
 
-[node name="RockAlt1-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 21 )]
-position = Vector2( -291, 193 )
-
-[node name="RockAlt1-2" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 21 )]
-position = Vector2( -241, -300 )
-
-[node name="RockAlt2-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 19 )]
-position = Vector2( -172, 180 )
-
-[node name="RockAlt3-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 20 )]
-position = Vector2( -253, 205 )
-
-[node name="RockExtraLarge-1" parent="Player Layer/Foliage/Rocks" instance=ExtResource( 22 )]
+[node name="RockExtraLarge-1" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 22 )]
 position = Vector2( -260, 110 )
 
 [node name="Bushes" type="YSort" parent="Player Layer/Foliage"]
