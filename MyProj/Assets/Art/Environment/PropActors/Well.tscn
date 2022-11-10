@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/TX Props.png" type="Texture" id=1]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 5, -31, 21, -31, 29, -23, 29, -4, 25, 4, 16, 10, 2, 13, -16, 8, -24, 0, -25, -19, -8, -34, -21, -28, -15, -33 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ), PoolIntArray( 10, 0, 9, 11, 12 ) ]
+outlines = [ PoolVector2Array( 21, -31, 5, -31, -8, -34, -15, -33, -21, -28, -25, -19, -24, 0, -16, 8, 2, 13, 16, 10, 25, 4, 29, -4, 29, -23 ) ]
 
 [node name="Well-1" type="StaticBody2D"]
 collision_layer = 4
@@ -15,3 +20,8 @@ region_rect = Rect2( 413.621, 351.956, 68.0927, 62.6762 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -19, -28 )
 polygon = PoolVector2Array( 21, 41, 35, 38, 44, 32, 48, 24, 48, 13, 48, 5, 40, -3, 24, -3, 11, -6, 4, -5, -2, 0, -6, 9, -6, 18, -5, 28, 3, 36 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+enter_cost = 9.22337e+18
+travel_cost = 9.22337e+18

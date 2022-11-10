@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/TX Props.png" type="Texture" id=1]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 4, 6, -2, 6, -7, 5, -11, 0, -9, -2, -2, -6, 7, -6, 15, -1 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ) ]
+outlines = [ PoolVector2Array( 15, -1, 7, -6, -2, -6, -9, -2, -11, 0, -7, 5, -2, 6, 4, 6 ) ]
 
 [node name="Rock6-1" type="StaticBody2D"]
 position = Vector2( 0, -3 )
@@ -17,3 +22,8 @@ region_rect = Rect2( 160.914, 481.01, 29.6378, 29.2505 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.5, -26 )
 polygon = PoolVector2Array( -1, 32, 5, 32, 15, 25, 8, 20, -1, 20, -8, 24, -10, 26, -7, 31 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+enter_cost = 9.22337e+18
+travel_cost = 9.22337e+18
