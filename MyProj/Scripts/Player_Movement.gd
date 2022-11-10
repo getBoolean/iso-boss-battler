@@ -35,6 +35,8 @@ var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.3
 
+var is_paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
@@ -68,7 +70,6 @@ func _physics_process(_delta : float) -> void:
         if(!get_node("HUD/DeathOverlay").is_visible() && !get_node("HUD/WinOverlay").is_visible()):
             emit_signal("paused")
         
-    
     # Apply movement
     # linear_velocity is the velocity vector in pixels per second.
     # Unlike in move_and_collide(), you should not multiply it by
