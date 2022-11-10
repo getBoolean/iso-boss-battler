@@ -33,14 +33,14 @@ margin_bottom = 32.0
 alignment = 2
 
 [node name="BossInfo" type="HBoxContainer" parent="VBoxContainer/TopBar"]
-margin_right = 1210.0
+margin_right = 1248.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="BossBar" type="VBoxContainer" parent="VBoxContainer/TopBar/BossInfo"]
-margin_left = 155.0
-margin_right = 1055.0
+margin_left = 174.0
+margin_right = 1074.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 alignment = 1
@@ -67,6 +67,7 @@ max_value = 200.0
 value = 200.0
 
 [node name="bt_pause" type="Button" parent="VBoxContainer/TopBar"]
+visible = false
 margin_left = 1214.0
 margin_right = 1248.0
 margin_bottom = 32.0

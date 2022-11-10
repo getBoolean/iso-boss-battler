@@ -48,11 +48,11 @@ extents = Vector2( 56, 112 )
 [sub_resource type="RectangleShape2D" id=8]
 
 [node name="Enemy_entity" type="KinematicBody2D"]
-collision_mask = 2
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
-position = Vector2( 0, -107 )
+position = Vector2( 0, -108 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 1 )
 hframes = 10
@@ -88,7 +88,7 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, -107 )
+position = Vector2( 0, 4.5 )
 shape = SubResource( 8 )
 
 [node name="Label" type="Label" parent="."]

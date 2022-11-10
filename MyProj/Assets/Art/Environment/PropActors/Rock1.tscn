@@ -3,6 +3,8 @@
 [ext_resource path="res://Assets/Art/Environment/TX Props.png" type="Texture" id=1]
 
 [node name="Rock1-1" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -6, -8 )
