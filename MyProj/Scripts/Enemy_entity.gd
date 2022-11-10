@@ -8,7 +8,7 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
-export var fire_delay_rate = 0.5
+export var fire_delay_rate = 0.4
 
 #Boss Health Values
 export var BOSS_MAX_HP = 200
@@ -19,7 +19,7 @@ var player = null
 #values for speed of boss
 export var ACCELERATION = 300
 export var FRICTION = 400
-export var MAX_SPEED = 50
+export var MAX_SPEED = 125
 #Object references to boss attributes
 onready var playerDetectionZone = $Player_detection_zone
 onready var attack_range = $attack_range
@@ -118,3 +118,5 @@ func fire():
     projectile.projectile_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.velocity = player.global_position - projectile.position
+    projectile.scale.x = 1.5
+    projectile.scale.y = 1.5
