@@ -46,7 +46,6 @@ radius = 1419.96
 extents = Vector2( 56, 112 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 56, 8.5 )
 
 [node name="Enemy_entity" type="KinematicBody2D"]
 collision_mask = 7
