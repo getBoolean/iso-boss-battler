@@ -19,7 +19,7 @@ var player = null
 #values for speed of boss
 export var ACCELERATION = 300
 export var FRICTION = 400
-export var MAX_SPEED = 50
+export var MAX_SPEED = 100
 export var MAX_HEALTH = 10
 
 #Object references to boss attributes
@@ -90,7 +90,6 @@ func _physics_process(delta):
                 navigate()
                 if timer_node.is_stopped():
                     fire()
-            velocity = move_and_slide(velocity)
             #if player != null:
             #    var linear_direction =  (player.global_position - global_position).normalized()
             #    velocity = velocity.move_toward(linear_direction * MAX_SPEED, ACCELERATION * delta)
@@ -107,8 +106,6 @@ func _physics_process(delta):
             print("attacked player")
             see_player()
             #enemy_sprite.play("Attack")
-    
-    velocity = move_and_slide(velocity)
 
 
 func navigate() -> void:
