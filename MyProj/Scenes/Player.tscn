@@ -1,18 +1,20 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
 [ext_resource path="res://Scenes/GameUserInterface/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/PlayerDeathOverlay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerWinOverlay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=7]
+[ext_resource path="res://Assets/Art/Player/Idle/IdleAnimation.tres" type="Animation" id=6]
+[ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=7]
 [ext_resource path="res://Assets/Art/Player/Death/DeathSheet.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/Player/Idle/IdleSheet.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/Player/Run/RunSheet.png" type="Texture" id=10]
+[ext_resource path="res://Assets/whiten.gdshader" type="Shader" id=11]
+[ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 7 )
+shader = ExtResource( 11 )
 shader_param/whiten = false
 shader_param/mix_weight = 1.0
 
@@ -65,7 +67,6 @@ position = Vector2( 0, -48 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
 hframes = 4
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -4.75 )
@@ -95,10 +96,12 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area2D/CollisionShape2D")
+anims/Death = ExtResource( 7 )
+anims/Idle = ExtResource( 6 )
 anims/RESET = SubResource( 5 )
 anims/Run = ExtResource( 2 )
 
-[node name="Dash" parent="." instance=ExtResource( 6 )]
+[node name="Dash" parent="." instance=ExtResource( 12 )]
 
 [node name="dust_trail" parent="Dash" index="2"]
 position = Vector2( 0, -1 )

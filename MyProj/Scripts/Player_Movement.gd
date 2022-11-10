@@ -29,8 +29,6 @@ export onready var PLAYER_CUR_HP = 100
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
 
-onready var sprite = $Sprite
-
 var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.3
@@ -56,6 +54,9 @@ func _process(_delta: float):
 
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
+    if not is_Alive:
+        return
+        
     var currPos = get_global_position()
     if((get_global_mouse_position().x > currPos.x)):
         $RunSprite.flip_h = false
@@ -68,7 +69,13 @@ func _physics_process(_delta : float) -> void:
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
     
     if Input.is_action_just_pressed("dash") and dash.can_dash and !dash.is_dashing():
-        dash.start_dash(sprite, DASH_DURATION, direction)
+        $RunSprite.show()
+        $IdleSprite.hide()
+        $DeathSprite.hide()
+        dash.start_dash($RunSprite, DASH_DURATION, direction)
+        $RunSprite.hide()
+        $IdleSprite.show()
+        $DeathSprite.hide()
 
     if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped() && !dash.is_dashing():
         shoot()
