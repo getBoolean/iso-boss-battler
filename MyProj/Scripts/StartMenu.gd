@@ -9,6 +9,8 @@ var options_menu = preload("res://Scenes/OptionsMenu.tscn")
 func _ready():
     if not Mainmenumusic.is_playing():
         Mainmenumusic.play()
+    if FightMusic.is_playing():
+        FightMusic.stop()
     pass
 
 func _on_bt_new_game_button_up():
