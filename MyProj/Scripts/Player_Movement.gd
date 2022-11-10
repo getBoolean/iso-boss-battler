@@ -12,14 +12,23 @@ signal you_won(_difference)
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
+
+
 # Player movement speed
 export var MOVE_SPEED = 125
+
+#player dash variables
+export var DASH_SPEED = 650
+export var DASH_DURATION = .15
+onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
 export onready var PLAYER_CUR_HP = 100
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
+
+onready var sprite = $Sprite
 
 var is_Alive = true
 # Timer duration
@@ -39,8 +48,11 @@ func _physics_process(_delta : float) -> void:
 
     # Handle player input
     var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+    
+    if Input.is_action_just_pressed("dash") and dash.can_dash and !dash.is_dashing():
+        dash.start_dash(sprite, DASH_DURATION, direction)
 
-    if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped():
+    if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped() && !dash.is_dashing():
         shoot()
         
     # FOR TESTING Damage to Player, currently just a keybind.
@@ -55,7 +67,7 @@ func _physics_process(_delta : float) -> void:
     # linear_velocity is the velocity vector in pixels per second.
     # Unlike in move_and_collide(), you should not multiply it by
     # delta — the physics engine handles applying the velocity.
-    var linear_velocity = MOVE_SPEED * direction
+    var linear_velocity = DASH_SPEED * direction if dash.is_dashing() else MOVE_SPEED * direction
     var _movement = move_and_slide(linear_velocity)
     $Node2D.look_at(get_global_mouse_position())
 
@@ -115,7 +127,7 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 
 func _on_Area2D_area_entered(area):
-     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity":
+     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
         area.get_parent().queue_free()
         damage_player(5)
 
