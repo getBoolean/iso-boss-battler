@@ -16,3 +16,4 @@ Daniel
 
 Resources
 Wizard Sprite by Anokolisa
+Navigation2D Reference by sjharb https://github.com/sjharb/Navigation2DServerTest
