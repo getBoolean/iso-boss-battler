@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
@@ -25,8 +25,11 @@
 [ext_resource path="res://Scenes/Enemy_entity.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Crosshair.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Assets/Art/Environment/PropActors/Well.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scripts/TestScene.gd" type="Script" id=26]
+[ext_resource path="res://Assets/Music/FastMix-2022-03-22_-_Age_Of_Mythology_-_www.FesliyanStudios.com_.mp3" type="AudioStream" id=27]
 
 [node name="TestScene" type="Node2D"]
+script = ExtResource( 26 )
 
 [node name="Background Layer" type="Node2D" parent="."]
 
@@ -195,6 +198,11 @@ pause_mode = 2
 scale = Vector2( 0.4, 0.4 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
+
+[node name="FightMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+volume_db = -10.0
+bus = "Music"
 
 [connection signal="boss_died" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_died"]
 [connection signal="boss_health_updated" from="Player Layer/Enemy_entity" to="Player Layer/Player" method="_on_Enemy_entity_boss_health_updated"]

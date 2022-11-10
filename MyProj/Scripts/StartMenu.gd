@@ -6,6 +6,11 @@ export var creditsScene : PackedScene
 
 var options_menu = preload("res://Scenes/OptionsMenu.tscn")
 
+func _ready():
+    if not Mainmenumusic.is_playing():
+        Mainmenumusic.play()
+    pass
+
 func _on_bt_new_game_button_up():
     var error_code = get_tree().change_scene(mainGameScene.resource_path)
     if error_code != Global.SUCCESS_CODE:

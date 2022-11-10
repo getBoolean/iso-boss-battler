@@ -91,7 +91,6 @@ size_flags_vertical = 3
 min_value = -49.0
 max_value = 0.0
 step = 0.5
-value = -25.0
 ticks_on_borders = true
 
 [node name="MusicVolContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -115,7 +114,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = -49.0
 max_value = 0.0
-value = -25.0
 ticks_on_borders = true
 
 [node name="SFXVolContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -141,7 +139,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 min_value = -49.0
 max_value = 0.0
-value = -25.0
 ticks_on_borders = true
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_button_up"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MasterVolContainer/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolContainer/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
