@@ -11,8 +11,8 @@ onready var timer_node = $fire_delay_timer
 export var fire_delay_rate = 0.4
 
 #Boss Health Values
-export var BOSS_MAX_HP = 10
-export onready var BOSS_CUR_HP = 10
+export var BOSS_MAX_HP = 200
+export onready var BOSS_CUR_HP = 200
 
 var player = null
 
