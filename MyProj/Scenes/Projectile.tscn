@@ -4,13 +4,13 @@
 [ext_resource path="res://Scripts/Projectile_Movement.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 94.4038, 71.5102 )
+extents = Vector2( 57.668, 28.5522 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.6009, 17.7489 )
+extents = Vector2( 14.3527, 7.02007 )
 
 [node name="Node2D" type="KinematicBody2D"]
-position = Vector2( 0, -6 )
+position = Vector2( -1.14905, -5.64645 )
 collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
@@ -18,22 +18,23 @@ script = ExtResource( 2 )
 [node name="bullet_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_area"]
-position = Vector2( 6.65359, 3.6183 )
+position = Vector2( -2.53036, 5.07497 )
 scale = Vector2( 0.25, 0.25 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 5.91631 )
+scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 1 )
-frame = 1
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -0.385849, 5.53201 )
+position = Vector2( -10.8157, 8.44883 )
 scale = Vector2( 0.6, 1.05 )
+rect = Rect2( -10, -10, 47.802, 13.746 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 6.7822, 3.48969 )
+position = Vector2( -2.46606, 5.16336 )
 shape = SubResource( 2 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
