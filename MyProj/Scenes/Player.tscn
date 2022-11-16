@@ -111,6 +111,12 @@ anims/Run = ExtResource( 2 )
 [node name="dust_trail" parent="Dash" index="2"]
 position = Vector2( 0, -1 )
 
+[node name="charged_attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="mana_regeneration_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
 [connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]

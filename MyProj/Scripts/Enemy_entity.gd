@@ -136,6 +136,9 @@ func _on_Area2D_area_entered(area:Area2D):
     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Player":
         area.get_parent().queue_free()
         damage_boss(5)
+    if area.name == "magic_area" and area.get_parent().projectile_owner == "Player":
+        area.get_parent().queue_free()
+        damage_boss(area.get_parent().damageMultiplier)
         
 func fire():
     timer_node.start(fire_delay_rate)
