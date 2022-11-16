@@ -1,67 +1,439 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Assets/Art/TestAssets/Character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_entity.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player_detection_zone.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/attack_range.gd" type="Script" id=4]
-
-[sub_resource type="Animation" id=6]
-resource_name = "Walk_Idle"
-length = 1.5
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Walk_Idle_left"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
+[ext_resource path="res://Assets/Art/TestAssets/boss_sprites_phase_2/golem_boss_phase2.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1419.96
-
-[sub_resource type="CircleShape2D" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 56, 112 )
 
 [sub_resource type="RectangleShape2D" id=8]
 
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 100, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 200, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 300, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 400, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 500, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 600, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 700, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 800, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 900, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 5 )
+region = Rect2( 100, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 5 )
+region = Rect2( 200, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 5 )
+region = Rect2( 300, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 5 )
+region = Rect2( 100, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 5 )
+region = Rect2( 200, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 5 )
+region = Rect2( 300, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 1 )
+region = Rect2( 500, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 1 )
+region = Rect2( 600, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 1 )
+region = Rect2( 700, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 5 )
+region = Rect2( 700, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 5 )
+region = Rect2( 600, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 5 )
+region = Rect2( 500, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 5 )
+region = Rect2( 400, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 5 )
+region = Rect2( 300, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 5 )
+region = Rect2( 100, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 5 )
+region = Rect2( 100, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 300, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 800, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 1 )
+region = Rect2( 900, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 1 )
+region = Rect2( 800, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 1 )
+region = Rect2( 700, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 1 )
+region = Rect2( 600, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 1 )
+region = Rect2( 500, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 700, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 700, 100, 100 )
+
+[sub_resource type="SpriteFrames" id=45]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": false,
+"name": "Death",
+"speed": 7.5
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": true,
+"name": "Idle_Phase_2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"loop": true,
+"name": "Phase_Change",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": false,
+"name": "Spawn",
+"speed": 7.5
+} ]
+
+[sub_resource type="Animation" id=46]
+resource_name = "Death"
+length = 2.0
+step = 0.14
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Death" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98, 1.12, 1.26, 1.4, 1.54 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "Idle"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 3 ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "Idle_Phase_2"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle_Phase_2" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 3 ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "Phase_Change"
+length = 2.0
+step = 0.14
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Phase_Change" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98, 1.68, 1.82, 1.96, 2.1, 2.24, 2.38, 2.52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=49]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "Spawn"
+length = 2.0
+step = 0.14
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Spawn" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98, 1.12, 1.26, 1.4, 1.54, 1.68 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
+}
+
 [node name="Enemy_entity" type="KinematicBody2D"]
 collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -108 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 11
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../EnemySprite")
-anims/Walk_Idle = SubResource( 6 )
-anims/Walk_Idle_left = SubResource( 7 )
 
 [node name="Player_detection_zone" type="Area2D" parent="."]
 visible = false
@@ -70,13 +442,6 @@ script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
 shape = SubResource( 2 )
-
-[node name="attack_range" type="Area2D" parent="."]
-visible = false
-script = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
-shape = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -103,8 +468,21 @@ uppercase = true
 [node name="fire_delay_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -84 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 45 )
+animation = "Idle"
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/Death = SubResource( 46 )
+anims/Idle = SubResource( 47 )
+anims/Idle_Phase_2 = SubResource( 48 )
+anims/Phase_Change = SubResource( 67 )
+anims/RESET = SubResource( 49 )
+anims/Spawn = SubResource( 50 )
+
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
 [connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
-[connection signal="area_entered" from="attack_range" to="attack_range" method="_on_attack_range_area_entered"]
-[connection signal="area_exited" from="attack_range" to="attack_range" method="_on_attack_range_area_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

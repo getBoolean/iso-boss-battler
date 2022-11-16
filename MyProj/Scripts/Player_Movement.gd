@@ -154,6 +154,7 @@ func kill_player(_difference):
         $IdleSprite.hide()
         $DeathSprite.show()
         _animation_player.play(Global.PLAYER_DEATH)
+        yield(_animation_player,"animation_finished")
         emit_signal("player_died", _difference)
 
 # passes signal through player to the UI
