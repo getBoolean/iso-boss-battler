@@ -38,6 +38,7 @@ export var MAX_CHARGE = 4
 export var BASE_MAGIC_DAMAGE = 5
 export var MANA_REGEN_RATE = 0.1
 export var MANA_REGEN_HIT_COOLDOWN = 2
+export var MAGIC_DAMAGE_NORMALIZER = 15
 
 var is_Alive = true
 # Timer duration
@@ -147,6 +148,7 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    projectile.look_at(get_global_mouse_position())
 
 func magic_attack(amount):
     # Check if player has atleast 1% mana left
@@ -155,11 +157,9 @@ func magic_attack(amount):
         var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
         get_parent().add_child(magic_attack_projectile)
         magic_attack_projectile.projectile_owner = "Player"
-        magic_attack_projectile.damageMultiplier = (BASE_MAGIC_DAMAGE * amount)/15
+        magic_attack_projectile.damageMultiplier = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
-    
-
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
@@ -175,6 +175,7 @@ func damage_player(damage):
         emit_signal("player_health_updated", new_hp, PLAYER_CUR_HP)
         # play damage animation        
         PLAYER_CUR_HP = new_hp
+    # If Player gets hit start the mana regen cooldown timer
     mana_regen_timer.start(MANA_REGEN_HIT_COOLDOWN)
         
 
