@@ -79,6 +79,7 @@ func _physics_process(_delta : float) -> void:
         $IdleSprite.hide()
         $DeathSprite.hide()
         dash.start_dash($RunSprite, DASH_DURATION, direction)
+        $dash_sfx.play()
         $RunSprite.hide()
         $IdleSprite.show()
         $DeathSprite.hide()
@@ -115,6 +116,7 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
     
 # damage_player(damage): applies damage to the player's 
