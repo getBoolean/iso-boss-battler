@@ -46,16 +46,29 @@ export var fire_delay_rate = 0.3
 var is_paused = false
 var has_won = false
 
+var charge = 0
+var mana_cost = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
     
 func _process(_delta: float):
+    if(charged_timer.get_time_left() > 0):
+            charge = MAX_CHARGE - round(charged_timer.get_time_left())
+            mana_cost  = ATTACK_MANA_COST * round(charge)
+            if(mana_cost <1):
+                # If player holds the RMB for less than a second
+                # The elapsed time is 0.xxx and manacost becomes 0
+                # To solve this set mana_cost to 25 if elapsed timer time < 1sec
+                mana_cost = ATTACK_MANA_COST
+            emit_signal("player_mp_updated", PLAYER_CUR_MP-mana_cost, PLAYER_CUR_MP)
+
     if not is_Alive:
         return
     # Check if the regen timer is stopped
     # If stopped and player mana < 100 then regenrate mana
-    if(mana_regen_timer.get_time_left()<=0 && PLAYER_CUR_MP < PLAYER_MAX_MP):
+    if(mana_regen_timer.get_time_left()<=0 && float(PLAYER_CUR_MP) < float(PLAYER_MAX_MP) && charged_timer.get_time_left()<=0):
         var old_mp = PLAYER_CUR_MP
         PLAYER_CUR_MP +=MANA_REGEN_RATE
         emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
@@ -108,15 +121,19 @@ func _physics_process(_delta : float) -> void:
     
     # Calculate elapsed time of timer
     # Max charge can be 25(mana cost per second) * 4(elapsed time) = 100
+    # if(charged_timer.get_time_left() > 0):
+    #     charge = MAX_CHARGE - round(charged_timer.get_time_left())
+    #     mana_cost  = ATTACK_MANA_COST * round(charge)
+    #     if(mana_cost <1):
+    #         # If player holds the RMB for less than a second
+    #         # The elapsed time is 0.xxx and manacost becomes 0
+    #         # To solve this set mana_cost to 25 if elapsed timer time < 1sec
+    #         mana_cost = ATTACK_MANA_COST
+    #     emit_signal("player_mp_updated", PLAYER_CUR_MP-mana_cost, PLAYER_CUR_MP)
+    
     if Input.is_action_just_released("secondary_fire"):
-        var charge = MAX_CHARGE - round(charged_timer.get_time_left())
+        use_player_mp(mana_cost)
         charged_timer.stop()
-        var mana_cost  = ATTACK_MANA_COST * round(charge)
-        if(mana_cost <1):
-            # If player holds the RMB for less than a second
-            # The elapsed time is 0.xxx and manacost becomes 0
-            # To solve this set mana_cost to 25 if elapsed timer time < 1sec
-            mana_cost = ATTACK_MANA_COST
         magic_attack(mana_cost)
     # FOR TESTING Damage to Player, currently just a keybind.
     # Can change into player collides with boss projectile
@@ -151,13 +168,24 @@ func shoot():
 func magic_attack(amount):
     # Check if player has atleast 1% mana left
     # If mana is already 0 don't fire
-    if(use_player_mp(amount) > 0):
+    if(PLAYER_CUR_MP - amount < 0):
+        amount = PLAYER_CUR_MP
+    if (PLAYER_CUR_MP == 0):
+        amount = 0
+    print("CURR MP:",PLAYER_CUR_MP) 
+    print("MANA COST:",mana_cost)
+    print("AMOUNT:",amount)
+    if(amount > 0):
         var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
         get_parent().add_child(magic_attack_projectile)
         magic_attack_projectile.projectile_owner = "Player"
         magic_attack_projectile.damageMultiplier = (BASE_MAGIC_DAMAGE * amount)/15
+        print("DAMAGE:",(BASE_MAGIC_DAMAGE * amount)/15)
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
+        PLAYER_CUR_MP = PLAYER_CUR_MP - amount
+
+    print("CURR MP2:",PLAYER_CUR_MP)
     
 
     
@@ -194,7 +222,7 @@ func use_player_mp(amount):
     else:
         var new_mp = PLAYER_CUR_MP - amount
         emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
-        PLAYER_CUR_MP = new_mp
+        # PLAYER_CUR_MP = new_mp
         return amount
 
 # kill_player():
