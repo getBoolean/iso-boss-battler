@@ -30,11 +30,11 @@ jobs:
           mkdir -v -p build/windows
           cd $EXPORT_NAME
           godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: windows
-          path: build/windows
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1
+      #  with:
+      #    name: windows
+      #    path: build/windows
 
   export-linux:
     name: Linux Export
@@ -55,11 +55,11 @@ jobs:
           mkdir -v -p build/linux
           cd $EXPORT_NAME
           godot -v --export "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: linux
-          path: build/linux
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1
+      #  with:
+      #    name: linux
+      #    path: build/linux
 
   export-web:
     name: Web Export
@@ -118,8 +118,8 @@ jobs:
           mkdir -v -p build/mac
           cd $EXPORT_NAME
           godot -v --export "Mac OSX" ../build/mac/$EXPORT_NAME.zip
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: mac
-          path: build/mac
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1
+      #  with:
+      #    name: mac
+      #    path: build/mac
