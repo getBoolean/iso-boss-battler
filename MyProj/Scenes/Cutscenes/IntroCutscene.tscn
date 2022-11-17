@@ -58,7 +58,7 @@ margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -16.0
 custom_fonts/normal_font = SubResource( 1 )
-text = "King: Hero! Our planet is being by monsters from another dimension. Every day they get closer, and closer to our kingdom. Please lend us your aid!
+text = "King: Hero! Our planet is being invaded by monsters from another dimension. Every day they get closer, and closer to our kingdom. Please lend us your aid!
 "
 scroll_active = false
 
