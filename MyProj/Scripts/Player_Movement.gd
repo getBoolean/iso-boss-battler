@@ -115,6 +115,7 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    projectile.look_at(get_global_mouse_position())
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
