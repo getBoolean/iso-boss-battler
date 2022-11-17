@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Art/Projectiles/energyBallImpact.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/projectile1_explosion.gd" type="Script" id=2]
+[ext_resource path="res://Assets/SFX/projectile1/15_Impact_flesh_02.wav" type="AudioStream" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -55,5 +56,10 @@ frames = SubResource( 9 )
 [node name="despawn_timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="explosion_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+bus = "SFX"
 
 [connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]
