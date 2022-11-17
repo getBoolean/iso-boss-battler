@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://Assets/Art/Player/Death/DeathAnimation.tres" type="Animation" id=11]
 [ext_resource path="res://Scenes/Dash.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/SFX/player/35_Miss_Evade_02.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -110,6 +113,20 @@ anims/Run = ExtResource( 2 )
 
 [node name="dust_trail" parent="Dash" index="2"]
 position = Vector2( 0, -1 )
+
+[node name="dash_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="attack1_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -6.0
+bus = "SFX"
+
+[node name="foosteps_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "SFX"
 
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
