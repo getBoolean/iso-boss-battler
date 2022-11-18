@@ -59,7 +59,7 @@ one_shot = true
 
 [node name="explosion_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -14.0
+volume_db = -15.0
 bus = "SFX"
 
 [connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]
