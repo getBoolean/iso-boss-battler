@@ -116,7 +116,7 @@ position = Vector2( 0, -1 )
 
 [node name="dash_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = -6.0
+volume_db = -4.0
 bus = "SFX"
 
 [node name="attack1_sfx" type="AudioStreamPlayer" parent="."]

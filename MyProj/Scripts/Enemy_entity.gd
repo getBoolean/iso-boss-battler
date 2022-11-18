@@ -116,13 +116,12 @@ func damage_boss(damage):
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
 func kill_boss(_difference):
-    state = DEAD
-    anim_player.play("Death")
-    yield(anim_player,"animation_finished")
-    emit_signal("boss_died", _difference)
-    #queue_free()
-    pass
-
+    if state != DEAD:
+        state = DEAD
+        anim_player.play("Death")
+        yield(anim_player,"animation_finished")
+        emit_signal("boss_died", _difference)
+        
 
 func see_player():
     if playerDetectionZone.can_see_player():
