@@ -13,7 +13,7 @@ var state = STATE.ONE
 
 
 func _input(event):
-    if event is InputEventKey:
+    if event is InputEventKey or event is InputEventMouseButton:
         if event.pressed:
             _continue()
             
