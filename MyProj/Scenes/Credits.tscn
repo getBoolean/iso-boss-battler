@@ -35,3 +35,4 @@ custom_constants/line_spacing = 20
 custom_fonts/font = SubResource( 1 )
 text = "Credits line"
 align = 1
+autowrap = true
