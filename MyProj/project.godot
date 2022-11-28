@@ -8,6 +8,82 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "EnemyState",
+"class": "ActivateState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/ActivateState.gd"
+}, {
+"base": "EnemyState",
+"class": "AttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/AttackState.gd"
+}, {
+"base": "AttackState",
+"class": "ChaseAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/ChaseAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "DeadState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/DeadState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyEntity",
+"language": "GDScript",
+"path": "res://Scripts/Enemy_entity.gd"
+}, {
+"base": "State",
+"class": "EnemyState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/EnemyState.gd"
+}, {
+"base": "AttackState",
+"class": "KeepDistanceAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/KeepDistanceAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "NuetralState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/NuetralState.gd"
+}, {
+"base": "AttackState",
+"class": "RetreatAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/RetreatAttackState.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/StateMachine.gd"
+}, {
+"base": "EnemyState",
+"class": "TransformState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/EnemyStates/TransformState.gd"
+} ]
+_global_script_class_icons={
+"ActivateState": "",
+"AttackState": "",
+"ChaseAttackState": "",
+"DeadState": "",
+"EnemyEntity": "",
+"EnemyState": "",
+"KeepDistanceAttackState": "",
+"NuetralState": "",
+"RetreatAttackState": "",
+"State": "",
+"StateMachine": "",
+"TransformState": ""
+}
+
 [application]
 
 config/name="MyProj"
