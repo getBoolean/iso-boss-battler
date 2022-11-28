@@ -1,9 +1,18 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Assets/Art/TestAssets/Character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_entity.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player_detection_zone.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Art/TestAssets/boss_sprites_phase_2/golem_boss_phase2.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/DeadState.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/AttackState.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1419.96
@@ -509,6 +518,29 @@ anims/Phase_Change = SubResource( 67 )
 anims/RESET = SubResource( 49 )
 anims/Spawn = SubResource( 50 )
 
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="DeadState" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="NuetralState" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="ActivateState" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="TransformState" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="AttackState" parent="StateMachine" instance=ExtResource( 11 )]
+
+[node name="ChaseAttackState" parent="StateMachine" instance=ExtResource( 8 )]
+
+[node name="KeepDistanceAttackState" parent="StateMachine" instance=ExtResource( 10 )]
+
+[node name="RetreatAttackState" parent="StateMachine" instance=ExtResource( 13 )]
+
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
 [connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Area2D" to="StateMachine" method="_on_Area2D_area_entered"]

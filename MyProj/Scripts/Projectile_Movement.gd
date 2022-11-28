@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
-var speed = 700
+var speed = 550
 var projectile_owner = null
 var is_despawn = false
+var damage: float = 5
 
 const PROJECTILE_EXPLOSION = preload("res://Scenes/projectile1_explosion.tscn")
 
