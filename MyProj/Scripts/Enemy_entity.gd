@@ -43,7 +43,7 @@ var direction = 1
 
 func _physics_process(_delta):
     healthLabel.text = str(MAX_HEALTH)
-        
+
 
 func see_player():
     if playerDetectionZone.can_see_player():
@@ -51,8 +51,8 @@ func see_player():
         if player:
             return true
         return false
-       
-        
+
+
 # Player Projectile collides with boss
 func _on_Area2D_area_entered(area: Area2D):
     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Player":
@@ -64,7 +64,8 @@ func _on_Area2D_area_entered(area: Area2D):
         # transition logic
         if state_machine.state.has_method('damage_boss'):
             state_machine.state.damage_boss(5)
-        
+
+
 func fire():
     timer_node.start(fire_delay_rate)
     var projectile = PROJECTILE_SCENE.instance()
@@ -75,6 +76,7 @@ func fire():
     projectile.scale.x = 1.5
     projectile.scale.y = 1.5
     projectile.look_at(player.global_position)
+
 
 func update_hp(new_health: int):
     emit_signal("boss_health_updated", new_health, BOSS_CUR_HP)
