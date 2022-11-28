@@ -16,4 +16,8 @@ texture = ExtResource( 1 )
 scale = Vector2( 0.276042, 0.270833 )
 z_index = 1
 
+[node name="lifetime" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]
