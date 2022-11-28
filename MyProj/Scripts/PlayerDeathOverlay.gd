@@ -40,6 +40,7 @@ func _on_Player_player_died(_difference):
 func _on_Player_you_won(_difference):
     var root = get_tree().current_scene
     var fg_layer = root.get_node("Foreground Layer")
-    fg_layer.get_node("Crosshair").queue_free()
+    var crosshair = fg_layer.get_node("Crosshair")
+    if crosshair:
+        crosshair.queue_free()
     show()
-    pass # Replace with function body.

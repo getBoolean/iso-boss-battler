@@ -36,7 +36,7 @@ func update(delta: float) -> void:
 func physics_update(delta: float) -> void:
     .physics_update(delta)
     if state_timer.is_stopped():
-        state_machine.transition_to("ChaseAttackState")
+        transition_to("ChaseAttackState")
     else:
         enemy.update_hp(enemy.BOSS_CUR_HP + 3 * delta)
     

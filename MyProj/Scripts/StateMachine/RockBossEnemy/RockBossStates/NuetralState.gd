@@ -11,7 +11,7 @@ func handle_input(_event: InputEvent) -> void:
 # Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
     if enemy.see_player():
-        state_machine.transition_to("ActivateState")
+        transition_to("ActivateState")
 
 
 # Corresponds to the `_physics_process()` callback.
