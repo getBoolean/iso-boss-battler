@@ -49,6 +49,13 @@ var state = NUETRAL
 var direction = 1
 #var distance_to_player = global_position.direction_to(playerDetectionZone.player.global_position)
 
+
+func _on_Enemy_entity_tree_entered():
+    var player_node = get_parent().get_node("Player")
+    self.connect("boss_health_updated", player_node, "_on_Enemy_entity_boss_health_updated")
+    self.connect("boss_died", player_node, "_on_Enemy_entity_boss_died")
+
+
 func _physics_process(delta):
     healthLabel.text = str(MAX_HEALTH)
     match state:
@@ -146,3 +153,4 @@ func fire():
     projectile.scale.x = 1.5
     projectile.scale.y = 1.5
     projectile.look_at(player.global_position)
+
