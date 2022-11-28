@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Cutscenes/IntroCutscene.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TestScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Art/Cutscenes/intro1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Cutscenes/intro2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Cutscenes/intro2_ancient_warrior.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
@@ -17,14 +20,29 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 mainGameScene = ExtResource( 3 )
 
-[node name="Background1" type="ColorRect" parent="."]
+[node name="Background1" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
 
-[node name="Background2" type="ColorRect" parent="."]
+[node name="Background2" type="TextureRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 7
+
+[node name="TextureRect" type="TextureRect" parent="Background2"]
+margin_left = 728.0
+margin_top = -45.0
+margin_right = 1135.0
+margin_bottom = 1105.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
 
 [node name="TextBoxBackground" type="ColorRect" parent="."]
 anchor_top = 1.0
@@ -58,7 +76,7 @@ margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -16.0
 custom_fonts/normal_font = SubResource( 1 )
-text = "King: Hero! Our planet is being by monsters from another dimension. Every day they get closer, and closer to our kingdom. Please lend us your aid!
+text = "King Dalio: Hero! Our planet is being invaded by monsters from another dimension. Every day they get closer to our kingdom. Please lend us your aid!
 "
 scroll_active = false
 
@@ -83,7 +101,7 @@ margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -16.0
 custom_fonts/normal_font = SubResource( 1 )
-text = "Army General: We will handle their army. You go ahead behind enemy lines and take down their leader. Once the leader is taken down, their army will be thrown into disarray."
+text = "Army General: We will handle their army. You go behind enemy lines and take down their leader. Once the leader is taken down, their army will be thrown into disarray."
 scroll_active = false
 
 [node name="Dialog4" type="RichTextLabel" parent="TextBoxBackground"]
