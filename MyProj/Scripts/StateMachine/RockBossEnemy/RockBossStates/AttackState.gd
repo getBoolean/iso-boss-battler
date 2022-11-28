@@ -23,8 +23,7 @@ func physics_update(delta: float) -> void:
     
     # Move towards player and shoot
     if enemy.player != null:
-        var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
-        enemy.velocity = enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+        move(delta)
         if enemy.timer_node.is_stopped():
             enemy.fire()
 
@@ -55,7 +54,7 @@ func exit() -> void:
     pass
 
 
-func damage_boss(damage):
+func damage_boss(damage) -> void:
     if enemy.BOSS_CUR_HP <= damage:
         var difference = damage - enemy.BOSS_CUR_HP
         enemy.update_hp(0)
@@ -68,5 +67,11 @@ func damage_boss(damage):
 
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
-func kill_boss(difference):
+func kill_boss(difference) -> void:
     state_machine.transition_to('DeadState', {'difference': difference})
+
+
+# Virtual function. Determines the movement of the enemy
+func move(delta: float) -> void:
+    var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
+    enemy.velocity = enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)

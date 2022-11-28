@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
 }, {
-"base": "Reference",
+"base": "EnemyState",
 "class": "AttackState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/AttackState.gd"
