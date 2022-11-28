@@ -6,7 +6,10 @@ extends Node
 # Reference to the state machine, to call its `transition_to()` method directly.
 # That's one unorthodox detail of our state implementation, as it adds a dependency between the
 # state and the state machine objects, but we found it to be most efficient for our needs.
-# The state machine node will set it.
+# 
+# The state machine node will set it when it is active, it is null otherwise.
+# Do not use this after yielding an animation in `physics_update` or `update`,
+# it may not be available anymore.
 var state_machine = null
 
 

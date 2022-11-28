@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
+"base": "EnemyState",
 "class": "ActivateState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
@@ -19,12 +19,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/AttackState.gd"
 }, {
-"base": "Reference",
+"base": "AttackState",
 "class": "ChaseAttackState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.gd"
 }, {
-"base": "Reference",
+"base": "EnemyState",
 "class": "DeadState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/DeadState.gd"
@@ -34,22 +34,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemy_entity.gd"
 }, {
-"base": "Reference",
+"base": "State",
 "class": "EnemyState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/EnemyState.gd"
 }, {
-"base": "Reference",
+"base": "AttackState",
 "class": "KeepDistanceAttackState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.gd"
 }, {
-"base": "Reference",
+"base": "EnemyState",
 "class": "NuetralState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd"
 }, {
-"base": "Reference",
+"base": "AttackState",
 "class": "RetreatAttackState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/StateMachine.gd"
 }, {
-"base": "Reference",
+"base": "EnemyState",
 "class": "TransformState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd"

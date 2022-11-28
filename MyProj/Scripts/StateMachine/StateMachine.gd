@@ -17,9 +17,19 @@ onready var state: State = get_node(initial_state)
 func _ready() -> void:
     yield(owner, "ready")
     # The state machine assigns itself to the State objects' state_machine property.
-    for child in get_children():
-        child.state_machine = self
-    state.enter()
+    # for child in get_children():
+    #     child.state_machine = self
+    _enter_state(state)
+    
+
+func _enter_state(new_state: State, msg: Dictionary = {}) -> void:
+    new_state.state_machine = self
+    new_state.enter(msg)
+
+
+func _exit_state(old_state: State) -> void:
+    old_state.exit()
+    old_state.state_machine = null
 
 
 # The state machine subscribes to node callbacks and delegates them to the state objects.
@@ -45,7 +55,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
     if not has_node(target_state_name):
         return
 
-    state.exit()
-    state = get_node(target_state_name)
-    state.enter(msg)
+    _exit_state(state)
+    state = get_node(target_state_name) as State
+    _enter_state(state, msg)
     emit_signal("transitioned", state.name)
