@@ -53,7 +53,7 @@ func see_player():
         return false
 
 
-func fire(scale_x: float = 1.5, scale_y: float = 1.5):
+func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
@@ -61,16 +61,19 @@ func fire(scale_x: float = 1.5, scale_y: float = 1.5):
     projectile.velocity = player.global_position - projectile.position
     projectile.scale.x = scale_x
     projectile.scale.y = scale_y
-    projectile.damage = 5
+    if (PHASE == 2):
+        damage = damage * 1.2
+    projectile.damage = damage
+    projectile.speed = speed
     projectile.look_at(player.global_position)
 
 
-func update_hp(new_health: int):
+func update_hp(new_health: float):
     emit_signal("boss_health_updated", new_health, BOSS_CUR_HP)
     BOSS_CUR_HP = new_health
 
 
-func kill(difference):
+func kill(difference: float):
     MAX_SPEED = 0
     anim_player.play("Death")
     yield(anim_player,"animation_finished")

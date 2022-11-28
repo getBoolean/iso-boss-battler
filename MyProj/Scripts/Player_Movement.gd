@@ -32,7 +32,7 @@ export onready var PLAYER_CUR_MP = 100
 
 var is_Alive = true
 # Timer duration
-export var fire_delay_rate = 0.3
+export var fire_delay_rate = 0.05
 
 var is_paused = false
 var has_won = false
@@ -116,7 +116,7 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
-    projectile.damage = 5
+    projectile.damage = 3
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
     
