@@ -23,9 +23,8 @@ func physics_update(delta: float) -> void:
     
     # Move towards player and shoot
     if enemy.player != null:
-        move(delta)
-        if enemy.timer_node.is_stopped():
-            enemy.fire()
+        enemy.velocity = get_velocity(delta)
+        attack(delta)
 
     # Flip sprite
     if enemy.velocity.x > 0:
@@ -72,6 +71,11 @@ func kill_boss(difference) -> void:
 
 
 # Virtual function. Determines the movement of the enemy
-func move(delta: float) -> void:
+func get_velocity(delta: float) -> Vector2:
     var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
-    enemy.velocity = enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+    return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+
+
+func attack(_delta: float) -> void:
+    if enemy.timer_node.is_stopped():
+        enemy.fire()
