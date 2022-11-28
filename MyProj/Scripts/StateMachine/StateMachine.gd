@@ -62,5 +62,5 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 
 
 func queue_free():
-    state.state_machine = null
+    _exit_state(state)
     .queue_free()
