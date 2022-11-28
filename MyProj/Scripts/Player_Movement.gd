@@ -161,7 +161,7 @@ func magic_attack(amount):
         var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
         get_parent().add_child(magic_attack_projectile)
         magic_attack_projectile.projectile_owner = "Player"
-        magic_attack_projectile.damageMultiplier = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
+        magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
     

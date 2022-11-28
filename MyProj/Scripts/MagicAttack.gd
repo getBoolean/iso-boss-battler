@@ -4,7 +4,7 @@ var velocity = Vector2()
 var speed = 700
 var projectile_owner = null
 var projectile_type = "MAGIC"
-var damageMultiplier = 5
+var damage = 5
 
 
 # Called when the node enters the scene tree for the first time.
