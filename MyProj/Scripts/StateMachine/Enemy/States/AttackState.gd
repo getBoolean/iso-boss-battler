@@ -20,21 +20,25 @@ func physics_update(delta: float) -> void:
         enemy.anim_player.play("Idle_Phase_2")
     
     enemy.player = enemy.playerDetectionZone.player
-            
+    
+    # Move towards player and shoot
     if enemy.player != null:
         var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
         enemy.velocity = enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
         if enemy.timer_node.is_stopped():
             enemy.fire()
 
+    # Flip sprite
     if enemy.velocity.x > 0:
         enemy.enemy_sprite.flip_h = false
     if enemy.velocity.x < 0:
         enemy.enemy_sprite.flip_h = true
     
+    # Phase transition
     if enemy.BOSS_CUR_HP <= .5 * enemy.BOSS_MAX_HP and enemy.phase_changed == 0:
         enemy.phase_changed = 1
         state_machine.transition_to("TransformState")
+        
     enemy.velocity = enemy.move_and_slide(enemy.velocity)
 
 
