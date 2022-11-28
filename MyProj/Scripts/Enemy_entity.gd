@@ -28,7 +28,6 @@ onready var PHASE = 1
 onready var phase_changed = 0
 
 onready var anim_player = $AnimatedSprite/AnimationPlayer
-onready var state_machine = $StateMachine
 
 var velocity = Vector2.ZERO
 

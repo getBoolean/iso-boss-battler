@@ -59,3 +59,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
     state = get_node(target_state_name) as State
     _enter_state(state, msg)
     emit_signal("transitioned", state.name)
+
+
+func queue_free():
+    state.state_machine = null
+    .queue_free()
