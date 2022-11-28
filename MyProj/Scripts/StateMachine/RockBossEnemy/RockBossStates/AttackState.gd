@@ -40,7 +40,7 @@ func physics_update(delta: float) -> void:
     # Phase transition
     if enemy.BOSS_CUR_HP <= .5 * enemy.BOSS_MAX_HP and enemy.phase_changed == 0:
         enemy.phase_changed = 1
-        state_machine.transition_to("TransformState")
+        transition_to("TransformState")
         
     enemy.velocity = enemy.move_and_slide(enemy.velocity)
 
@@ -70,13 +70,13 @@ func damage_boss(damage) -> void:
         damage_taken_recent = damage_taken_recent + damage
         enemy.update_hp(new_hp)
         if damage_taken_recent > 15:
-            state_machine.transition_to('RetreatAttackState')
+            transition_to('RetreatAttackState')
 
 
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
 func _kill_boss(difference) -> void:
-    state_machine.transition_to('DeadState', {'difference': difference})
+    transition_to_with_msg('DeadState', {'difference': difference}, false)
 
 
 # Virtual function. Determines the movement of the enemy
