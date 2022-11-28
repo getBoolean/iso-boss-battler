@@ -11,16 +11,13 @@ var rng = RandomNumberGenerator.new()
 
 # Virtual function. Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
-    var linear_direction: Vector2 =  (enemy.player.global_position - enemy.global_position).normalized()
-    
     var distance: Vector2 =  enemy.player.global_position - enemy.global_position
-    print(distance.length())
-    
+    var linear_direction: Vector2 =  distance.normalized()
     if distance.length() > 175:
         return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
 
-    linear_direction = linear_direction * -1
-    return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+    return enemy.velocity.move_toward(linear_direction * -1 * enemy.MAX_SPEED,
+        enemy.ACCELERATION * delta)
 
 func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
