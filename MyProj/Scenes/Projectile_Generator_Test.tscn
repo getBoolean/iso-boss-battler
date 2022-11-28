@@ -5,4 +5,4 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Spawner" parent="." instance=ExtResource( 1 )]
-position = Vector2( 425, 337 )
+position = Vector2( 480, 291 )
