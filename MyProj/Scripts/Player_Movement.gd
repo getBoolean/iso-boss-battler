@@ -228,6 +228,6 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_Enemy_entity_boss_died(_difference):
-    has_won = true
-    emit_signal("you_won", _difference)
-    pass # Replace with function body.
+    if is_Alive && not has_won:
+        has_won = true
+        emit_signal("you_won", _difference)
