@@ -53,19 +53,6 @@ func see_player():
         return false
 
 
-# Player Projectile collides with boss
-func _on_Area2D_area_entered(area: Area2D):
-    if area.name == "bullet_area" and area.get_parent().projectile_owner == "Player":
-        area.get_parent().queue_free()
-        # The boss should only take damage if they have this function.
-        # Only `AttackState` has this method, so the boss is invulnerable in
-        # other states.
-        # We need to use methods on the current state to encapsulate state
-        # transition logic
-        if state_machine.state.has_method('damage_boss'):
-            state_machine.state.damage_boss(5)
-
-
 func fire():
     timer_node.start(fire_delay_rate)
     var projectile = PROJECTILE_SCENE.instance()
