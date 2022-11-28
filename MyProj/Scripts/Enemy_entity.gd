@@ -41,7 +41,7 @@ func see_player():
             return true
         return false
 
-
+        
 func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
