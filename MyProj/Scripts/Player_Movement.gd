@@ -117,6 +117,7 @@ func shoot():
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
     projectile.damage = 3
+    projectile.speed = 400
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
     

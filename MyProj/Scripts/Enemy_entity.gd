@@ -26,23 +26,13 @@ onready var playerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
 onready var PHASE = 1
 onready var phase_changed = 0
-export var MAX_HEALTH = 10
 
 onready var anim_player = $AnimatedSprite/AnimationPlayer
 onready var state_machine = $StateMachine
 
-
-# For Debugging purpose only
-onready var healthLabel = $Label
-
 var velocity = Vector2.ZERO
 
 var direction = 1
-
-#var distance_to_player = global_position.direction_to(playerDetectionZone.player.global_position)
-
-func _physics_process(_delta):
-    healthLabel.text = str(MAX_HEALTH)
 
 
 func see_player():
@@ -69,6 +59,8 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
 
 
 func update_hp(new_health: float):
+    if new_health > BOSS_MAX_HP:
+        new_health = BOSS_MAX_HP
     emit_signal("boss_health_updated", new_health, BOSS_CUR_HP)
     BOSS_CUR_HP = new_health
 

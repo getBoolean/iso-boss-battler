@@ -7,3 +7,8 @@ script = ExtResource( 1 )
 
 [node name="StateTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="DamageTakenTimer" type="Timer" parent="."]
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true

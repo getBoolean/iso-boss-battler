@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/AttackState.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/AttackState.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.tscn" type="PackedScene" id=13]
 
@@ -507,8 +507,7 @@ script = ExtResource( 9 )
 [node name="TransformState" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
-[node name="AttackState" type="Node" parent="StateMachine"]
-script = ExtResource( 11 )
+[node name="AttackState" parent="StateMachine" instance=ExtResource( 11 )]
 
 [node name="ChaseAttackState" parent="StateMachine" instance=ExtResource( 8 )]
 

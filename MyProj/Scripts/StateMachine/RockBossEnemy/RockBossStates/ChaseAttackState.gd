@@ -7,9 +7,7 @@ onready var attack_cooldown_timer = $AttackCooldownTimer
 
 export var CHASE_ATTACK_DELAY = 0.3
 
-var rng = RandomNumberGenerator.new()
-
-# Virtual function. Determines the movement of the enemy
+# Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
     var distance =  enemy.player.global_position - enemy.global_position
     var linear_direction =  distance.normalized()
@@ -22,6 +20,7 @@ func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(CHASE_ATTACK_DELAY)
         enemy.fire(600, 5, 1.2, 1.2)
+
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(event: InputEvent) -> void:
