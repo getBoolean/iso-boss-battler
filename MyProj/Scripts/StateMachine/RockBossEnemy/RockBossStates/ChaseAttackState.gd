@@ -2,30 +2,18 @@
 class_name ChaseAttackState
 extends AttackState
 
+onready var state_timer = $StateTimer
+onready var attack_cooldown_timer = $AttackCooldownTimer
 
-# Receives events from the `_unhandled_input()` callback.
-func handle_input(_event: InputEvent) -> void:
-    pass
+export var CHASE_ATTACK_DELAY = 0.4
 
-
-# Corresponds to the `_process()` callback.
-func update(_delta: float) -> void:
-    pass
-
-
-# Corresponds to the `_physics_process()` callback.
-func physics_update(_delta: float) -> void:
-    pass
+# Virtual function. Determines the movement of the enemy
+func get_velocity(delta: float) -> Vector2:
+    var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
+    return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
 
 
-# Called by the state machine upon changing the active state. The `msg` parameter
-# is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_msg := {}) -> void:
-    # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
-    pass
-
-
-# Called by the state machine before changing the active state. Use this function
-# to clean up the state.
-func exit() -> void:
-    pass
+func attack(_delta: float) -> void:
+    if attack_cooldown_timer.is_stopped():
+        attack_cooldown_timer.start(CHASE_ATTACK_DELAY)
+        enemy.fire()

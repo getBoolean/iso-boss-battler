@@ -53,15 +53,15 @@ func see_player():
         return false
 
 
-func fire():
-    timer_node.start(fire_delay_rate)
+func fire(scale_x: float = 1.5, scale_y: float = 1.5):
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.velocity = player.global_position - projectile.position
-    projectile.scale.x = 1.5
-    projectile.scale.y = 1.5
+    projectile.scale.x = scale_x
+    projectile.scale.y = scale_y
+    projectile.damage = 5
     projectile.look_at(player.global_position)
 
 

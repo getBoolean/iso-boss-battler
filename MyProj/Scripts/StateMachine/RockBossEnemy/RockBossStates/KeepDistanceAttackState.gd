@@ -2,6 +2,7 @@
 class_name KeepDistanceAttackState
 extends AttackState
 
+onready var state_timer = $StateTimer
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:

@@ -27,7 +27,7 @@ func enter(_msg := {}) -> void:
     yield(enemy.anim_player,"animation_finished")
     enemy.MAX_SPEED = 125
     enemy.PHASE = 2
-    state_machine.transition_to("AttackState")
+    state_machine.transition_to("ChaseAttackState")
 
 
 # Called by the state machine before changing the active state. Use this function

@@ -116,6 +116,7 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    projectile.damage = 5
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
     
@@ -167,8 +168,9 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 func _on_Area2D_area_entered(area):
      if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
+        var damage = area.get_parent().damage
         area.get_parent().queue_free()
-        damage_player(5)
+        damage_player(damage)
 
 
 func _on_Enemy_entity_boss_died(_difference):

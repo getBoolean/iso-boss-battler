@@ -43,7 +43,6 @@ func physics_update(delta: float) -> void:
 # Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_msg := {}) -> void:
-    # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     pass
 
 
@@ -57,7 +56,7 @@ func damage_boss(damage) -> void:
     if enemy.BOSS_CUR_HP <= damage:
         var difference = damage - enemy.BOSS_CUR_HP
         enemy.update_hp(0)
-        kill_boss(difference)
+        _kill_boss(difference)
     else:
         var new_hp = enemy.BOSS_CUR_HP - damage
         # TODO: play damage animation and sound 
@@ -66,16 +65,14 @@ func damage_boss(damage) -> void:
 
 # animates the boss's death, calls the win screen
 # difference not used, but potentially useful in future
-func kill_boss(difference) -> void:
+func _kill_boss(difference) -> void:
     state_machine.transition_to('DeadState', {'difference': difference})
 
 
 # Virtual function. Determines the movement of the enemy
-func get_velocity(delta: float) -> Vector2:
-    var linear_direction =  (enemy.player.global_position - enemy.global_position).normalized()
-    return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+func get_velocity(_delta: float) -> Vector2:
+    return Vector2.ZERO
 
 
 func attack(_delta: float) -> void:
-    if enemy.timer_node.is_stopped():
-        enemy.fire()
+    pass
