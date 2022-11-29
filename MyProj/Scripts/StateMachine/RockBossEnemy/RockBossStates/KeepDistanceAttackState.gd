@@ -38,7 +38,7 @@ func update(delta: float) -> void:
 func physics_update(delta: float) -> void:
     .physics_update(delta)
     if state_timer.is_stopped():
-        state_machine.transition_to("ChaseAttackState")
+        transition_to("ChaseAttackState")
 
 
 # Called by the state machine upon changing the active state. The `msg` parameter

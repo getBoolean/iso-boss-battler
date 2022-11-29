@@ -23,9 +23,8 @@ func physics_update(_delta: float) -> void:
 func enter(_msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     enemy.anim_player.play("Spawn")
-    var machine = state_machine
     yield(enemy.anim_player, "animation_finished")
-    machine.transition_to("KeepDistanceAttackState")
+    transition_to("KeepDistanceAttackState")
 
 
 # Called by the state machine before changing the active state. Use this function

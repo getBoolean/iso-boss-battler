@@ -119,6 +119,7 @@ one_shot = true
 
 [node name="mana_regeneration_timer" type="Timer" parent="."]
 one_shot = true
+
 [node name="dash_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -4.0

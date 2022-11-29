@@ -1,16 +1,17 @@
 # Credit: https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
-# Virtual base class for all states.
+# Virtual base class for all states. The parent MUST be a `StateMachine` for
+# state transitions to work
 class_name State
 extends Node
 
-# Reference to the state machine, to call its `transition_to()` method directly.
-# That's one unorthodox detail of our state implementation, as it adds a dependency between the
-# state and the state machine objects, but we found it to be most efficient for our needs.
-# 
-# The state machine node will set it when it is active, it is null otherwise.
-# Do not use this after yielding an animation in `physics_update` or `update`,
-# it may not be available anymore.
-var state_machine = null
+func transition_to(target_state_name: String, only_if_current: bool = false):
+    transition_to_with_msg(target_state_name, {}, only_if_current)
+
+func transition_to_with_msg(target_state_name: String, msg: Dictionary = {}, only_if_current: bool = false):
+    var state_machine = get_parent()
+    if state_machine && state_machine.has_method('transition_to') \
+        && (not only_if_current || (self == state_machine.state)):
+        state_machine.transition_to(target_state_name, msg)
 
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.
