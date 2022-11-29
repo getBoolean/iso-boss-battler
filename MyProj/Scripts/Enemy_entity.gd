@@ -7,6 +7,9 @@ signal boss_died(difference)
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
+# Load Projectile generator scene
+const generator_scene = preload("res://Scenes/projectile_spawner.tscn")
+
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
 export var fire_delay_rate = 0.4
@@ -69,3 +72,4 @@ func kill(difference: float):
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
     emit_signal("boss_died", difference)
+    
