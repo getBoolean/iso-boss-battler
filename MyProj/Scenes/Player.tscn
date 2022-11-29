@@ -133,6 +133,7 @@ bus = "SFX"
 [connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
+[connection signal="set_boss_hp_visibility" from="." to="HUD/GUI" method="_on_Player_set_boss_hp_visibility"]
 [connection signal="you_won" from="." to="HUD/WinOverlay" method="_on_Player_you_won"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

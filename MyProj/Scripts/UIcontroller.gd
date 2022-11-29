@@ -21,12 +21,19 @@ func _on_Player_not_enough_mp():
 func _on_Player_hit_boss(new_hp, _old_hp):
     boss_hpbar.set_value(new_hp)    
     
+func _on_Player_set_boss_hp_visibility(visibility):
+    boss_hpbar.visible = visibility
+    pass # Replace with function body.
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
     pass
     # Update HP/MP Values every frame
     #set boss_hpbarnode.Value = (bossnode.BOSS_CUR_HP) / bossnode.BOSS_MAX_HP)
     
+
+
+
 
 
 
