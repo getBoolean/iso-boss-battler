@@ -26,7 +26,7 @@ func attack(_delta: float) -> void:
 func generate_pattern(_delta: float) -> void:
     if pattern_cooldown_timer.is_stopped():
         pattern_cooldown_timer.start(CHASE_PATTERN_DELAY)
-        var pattern = enemy.spawn_projectile_generator(100,1,32,200,1)
+        var _pattern = enemy.spawn_projectile_generator(100,1,32,200,1)
         
     
 
