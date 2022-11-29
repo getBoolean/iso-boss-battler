@@ -4,8 +4,10 @@ extends AttackState
 
 onready var state_timer = $StateTimer
 onready var attack_cooldown_timer = $AttackCooldownTimer
+onready var pattern_cooldown_timer = $PatternCooldownTimer
 
 export var CHASE_ATTACK_DELAY = 0.3
+export var CHASE_PATTERN_DELAY = 4
 
 # Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
@@ -20,6 +22,13 @@ func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(CHASE_ATTACK_DELAY)
         enemy.fire(600, 5, 1.2, 1.2)
+        
+func generate_pattern(_delta: float) -> void:
+    if pattern_cooldown_timer.is_stopped():
+        pattern_cooldown_timer.start(CHASE_PATTERN_DELAY)
+        var _pattern = enemy.spawn_projectile_generator(100,1,32,200,1)
+        
+    
 
 
 # Receives events from the `_unhandled_input()` callback.

@@ -1,7 +1,7 @@
 extends Node2D
 
 #loads the projectile scene
-const projectile_scene = preload("res://Scenes/Enemy_Projectile.tscn")
+const projectile_scene = preload("res://Scenes/ProjectileGenerator/Enemy_Projectile.tscn")
 #references to child nodes of timer and rotator
 onready var timer = $Timer
 onready var rotator = $Rotator

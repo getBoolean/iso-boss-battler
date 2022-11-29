@@ -1,6 +1,6 @@
 extends Node2D
 
-const generator_scene = preload("res://Scenes/projectile_spawner.tscn")
+const generator_scene = preload("res://Scenes/ProjectileGenerator/projectile_spawner.tscn")
 #loads projectile spawner
 func _ready():
     var gen1 = spawn_projectile_generator(100,1,32,200,1)

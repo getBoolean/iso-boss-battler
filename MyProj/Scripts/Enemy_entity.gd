@@ -8,7 +8,7 @@ signal boss_died(difference)
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 
 # Load Projectile generator scene
-const generator_scene = preload("res://Scenes/projectile_spawner.tscn")
+const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spawner.tscn")
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
@@ -72,4 +72,12 @@ func kill(difference: float):
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
     emit_signal("boss_died", difference)
+    
+func spawn_projectile_generator(rot,timer,spawn_num,radius,life): 
+    var generator = GENERATOR_SCENE.instance()
+    generator.init(rot,timer,spawn_num,radius,life)
+    add_child(generator)
+    generator.global_position = global_position
+    return generator
+ 
     
