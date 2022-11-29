@@ -445,19 +445,19 @@ hframes = 10
 vframes = 11
 
 [node name="Player_detection_zone" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -107 )
 script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
+visible = false
+position = Vector2( -8, 136 )
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -107 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 8 )
+position = Vector2( -2, 155 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -478,7 +478,7 @@ uppercase = true
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -84 )
+position = Vector2( 2.00003, 64 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 45 )
 animation = "Idle"

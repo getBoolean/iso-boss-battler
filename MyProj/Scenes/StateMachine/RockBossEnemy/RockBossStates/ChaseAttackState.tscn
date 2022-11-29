@@ -12,3 +12,6 @@ one_shot = true
 one_shot = true
 
 [node name="DamageTakenTimer" type="Timer" parent="."]
+
+[node name="PatternCooldownTimer" type="Timer" parent="."]
+one_shot = true

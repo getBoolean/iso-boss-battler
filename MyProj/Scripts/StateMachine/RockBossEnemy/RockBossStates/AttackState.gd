@@ -5,6 +5,9 @@ extends EnemyState
 var rng = RandomNumberGenerator.new()
 
 onready var damage_taken_timer = $DamageTakenTimer
+
+
+
 var damage_taken_recent = 0
 
 # Receives events from the `_unhandled_input()` callback.
@@ -30,6 +33,7 @@ func physics_update(delta: float) -> void:
     if enemy.player != null:
         enemy.velocity = get_velocity(delta)
         attack(delta)
+        generate_pattern(delta)
 
     # Flip sprite
     if enemy.velocity.x > 0:
@@ -85,4 +89,8 @@ func get_velocity(_delta: float) -> Vector2:
 
 
 func attack(_delta: float) -> void:
+    pass
+    
+
+func generate_pattern(_delat:float) -> void:
     pass
