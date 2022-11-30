@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Crosshair.tscn" type="PackedScene" id=2]
@@ -7,15 +7,19 @@
 [ext_resource path="res://Assets/Art/Environment/level2tiles/level2props.tres" type="TileSet" id=5]
 [ext_resource path="res://Assets/Art/Environment/level2tiles/level2walls.tres" type="TileSet" id=6]
 [ext_resource path="res://Assets/Art/Environment/level2tiles/level2plants.tres" type="TileSet" id=7]
+[ext_resource path="res://Scenes/Level2/PlayerCamera.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Level2/Level2.gd" type="Script" id=9]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="BackgroundLayer" type="Node2D" parent="."]
 
 [node name="grass" type="TileMap" parent="BackgroundLayer"]
-modulate = Color( 0.764706, 0.47451, 0.909804, 1 )
 tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
 format = 1
+tile_data = PoolIntArray( -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -131076, 0, 0, -196605, 0, 0, -65540, 0, 0, -131069, 0, 0, -4, 0, 0, -65533, 0, 0, 65532, 0, 0, 3, 0, 0, 131068, 0, 0, 65539, 0, 0, 196604, 0, 0, 131075, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
 
 [node name="struct" type="TileMap" parent="BackgroundLayer"]
 tile_set = ExtResource( 3 )
@@ -38,9 +42,17 @@ format = 1
 [node name="Foliage" type="YSort" parent="PlayerLayer"]
 
 [node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
+scale = Vector2( 0.4, 0.4 )
 
 [node name="ForegroundLayer" type="Node2D" parent="."]
 
 [node name="Crosshair" parent="ForegroundLayer" instance=ExtResource( 2 )]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+smoothing_enabled = true
+smoothing_speed = 10.0
+script = ExtResource( 8 )
+
+[connection signal="tree_entered" from="PlayerCamera" to="PlayerCamera" method="_on_PlayerCamera_tree_entered"]
