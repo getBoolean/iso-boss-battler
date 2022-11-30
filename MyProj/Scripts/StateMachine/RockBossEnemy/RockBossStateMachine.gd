@@ -1,5 +1,6 @@
 extends StateMachine
 
+onready var ouch_sfx = get_parent().get_node("ouch")
 
 # Player Projectile collides with boss
 func _on_Area2D_area_entered(area: Area2D):
@@ -13,7 +14,9 @@ func _on_Area2D_area_entered(area: Area2D):
         # transition logic
         if state.has_method('damage_boss'):
             state.damage_boss(damage)
+            ouch_sfx.play()
     if area.name == "magic_area" and area.get_parent().projectile_owner == "Player":
         area.get_parent().queue_free()
         if state.has_method('damage_boss'):
             state.damage_boss(area.get_parent().damage)
+            ouch_sfx.play()

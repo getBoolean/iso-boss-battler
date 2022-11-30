@@ -254,7 +254,7 @@ position = Vector2( 0, -2556 )
 [node name="PlayerCamera" type="Camera2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
 current = true
-zoom = Vector2( 0.6, 0.6 )
+zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 5 )
 
 [connection signal="timeout" from="PlayerLayer/Foliage/EntranceBlock/fall_timer" to="." method="_on_fall_timer_timeout"]

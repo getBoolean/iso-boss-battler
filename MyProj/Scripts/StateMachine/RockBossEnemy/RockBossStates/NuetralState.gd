@@ -22,8 +22,13 @@ func handle_input(_event: InputEvent) -> void:
 func update(_delta: float) -> void:
     if enemy.see_player() && boss_is_visible_by_player:
         transition_to("ActivateState")
+        
+# shows boss hp bar after activation animation finishes        
+func _on_AnimationPlayer_animation_finished(anim_name):
+    if anim_name == "Spawn":
         emit_signal("show_boss_hp")
 
+# only lets boss transisition to active when playe can see boss
 func _on_BossVisibilityNotif_screen_entered():
     boss_is_visible_by_player = true
 
@@ -47,6 +52,9 @@ func enter(_msg := {}) -> void:
 # to clean up the state.
 func exit() -> void:
     pass
+
+
+
 
 
 
