@@ -29,16 +29,15 @@ size_flags_vertical = 3
 
 [node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1248.0
-margin_bottom = 32.0
 alignment = 2
 
 [node name="BossInfo" type="HBoxContainer" parent="VBoxContainer/TopBar"]
 margin_right = 1248.0
-margin_bottom = 32.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="BossBar" type="VBoxContainer" parent="VBoxContainer/TopBar/BossInfo"]
+visible = false
 margin_left = 174.0
 margin_right = 1074.0
 margin_bottom = 32.0
@@ -75,7 +74,7 @@ text = "ESC"
 expand_icon = true
 
 [node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 36.0
+margin_top = 4.0
 margin_right = 1248.0
 margin_bottom = 688.0
 rect_pivot_offset = Vector2( -1116, -623 )
@@ -84,13 +83,13 @@ size_flags_vertical = 3
 
 [node name="PlayerBars" type="VBoxContainer" parent="VBoxContainer/BottomBar"]
 margin_right = 300.0
-margin_bottom = 652.0
+margin_bottom = 684.0
 alignment = 2
 
 [node name="Player_HPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
-margin_top = 620.0
+margin_top = 652.0
 margin_right = 300.0
-margin_bottom = 634.0
+margin_bottom = 666.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -100,9 +99,9 @@ value = 100.0
 
 [node name="Player_MPbar" type="ProgressBar" parent="VBoxContainer/BottomBar/PlayerBars"]
 material = SubResource( 2 )
-margin_top = 638.0
+margin_top = 670.0
 margin_right = 300.0
-margin_bottom = 652.0
+margin_bottom = 684.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
