@@ -23,4 +23,5 @@ func _on_Area2D_area_entered(area: Area2D):
 
 # only lets boss transisition to activate when player can see boss
 func _on_BossVisibilityNotif_screen_entered():
-    transition_to("ActivateState")
+    if state.name == "NuetralState":
+        transition_to("ActivateState")
