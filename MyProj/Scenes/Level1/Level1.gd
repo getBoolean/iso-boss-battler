@@ -3,6 +3,8 @@ extends Node2D
 onready var blocker = $PlayerLayer/Foliage/EntranceBlock/invisblocker
 onready var pillar1 = $PlayerLayer/Foliage/EntranceBlock/Pillar1
 onready var pillar2 = $PlayerLayer/Foliage/EntranceBlock/Pillar2
+onready var fall_sfx = $PlayerLayer/Foliage/EntranceBlock/fall_sound
+onready var fall_timer = $PlayerLayer/Foliage/EntranceBlock/fall_timer
 
 onready var player = $PlayerLayer/Player
 
@@ -23,7 +25,14 @@ func _process(delta):
 func trigger_bossroom_trap():
     has_entered_bossroom = true
     pillar1.position = Vector2(-33, -1872)
-    pillar2.position = Vector2(40, -1872)
     pillar1.rotation_degrees = 90
+    fall_sfx.play()
+    fall_timer.start()
+    
+
+
+func _on_fall_timer_timeout():
+    pillar2.position = Vector2(40, -1872)
     pillar2.rotation_degrees = -90
-    # play sound
+    fall_sfx.play()
+    
