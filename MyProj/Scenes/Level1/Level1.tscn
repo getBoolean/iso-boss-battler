@@ -258,5 +258,4 @@ zoom = Vector2( 0.6, 0.6 )
 script = ExtResource( 5 )
 
 [connection signal="timeout" from="PlayerLayer/Foliage/EntranceBlock/fall_timer" to="." method="_on_fall_timer_timeout"]
-[connection signal="tree_entered" from="PlayerLayer/Enemy_entity" to="PlayerLayer/Enemy_entity" method="_on_Enemy_entity_tree_entered"]
 [connection signal="tree_entered" from="PlayerCamera" to="PlayerCamera" method="_on_PlayerCamera_tree_entered"]

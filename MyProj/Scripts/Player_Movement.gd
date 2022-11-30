@@ -12,7 +12,6 @@ signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
 signal you_won(_difference)
 signal paused()
-signal set_boss_hp_visibility(visibility)
 
 # Load the projectile scene/node
 # Load the magic scene/node
