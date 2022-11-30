@@ -1,0 +1,248 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://Assets/Art/Boss2/Golem_Armor_Full.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy_Entity_Two.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player_detection_zone.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/NeutralState.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Art/Boss2/Golem_Armor_AttackC.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/ActivateState.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/AttackState.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/golemBossStateMachine.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/ChaseAttackState.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/KeepDistanceAttackState.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/KeepDistanceAttackState.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/RetreatAttackState.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Art/Boss2/Golem_Armor_Idle.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/RetreatAttackState.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/ChaseAttackState.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/AttackState.tscn" type="PackedScene" id=16]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 41, 59.25 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 1419.96
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 13 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 13 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 256, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 384, 320, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "PrimaryAttack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "Spawn",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Attack1"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2, 3.6, 4.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Move"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[node name="Enemy_entity_two" type="KinematicBody2D"]
+collision_mask = 7
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 8.25 )
+shape = SubResource( 5 )
+
+[node name="Player_detection_zone" type="Area2D" parent="."]
+position = Vector2( 0, -107 )
+script = ExtResource( 3 )
+
+[node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
+visible = false
+position = Vector2( -8, 136 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 7
+frame = 35
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -108 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1, 116.25 )
+shape = SubResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 3, 3 )
+frames = SubResource( 26 )
+animation = "PrimaryAttack"
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+root_node = NodePath("../..")
+playback_speed = 4.0
+anims/Attack1 = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Move = SubResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="NuetralState" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="ActivateState" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="AttackState" parent="StateMachine" instance=ExtResource( 16 )]
+script = ExtResource( 7 )
+
+[node name="KeepDistanceAttackState" parent="StateMachine" instance=ExtResource( 11 )]
+script = ExtResource( 10 )
+
+[node name="ChaseAttackState" parent="StateMachine" instance=ExtResource( 9 )]
+script = ExtResource( 15 )
+
+[node name="RetreatAttackState" parent="StateMachine" instance=ExtResource( 14 )]
+script = ExtResource( 12 )
+
+[connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
+[connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
+[connection signal="area_entered" from="Area2D" to="StateMachine" method="_on_Area2D_area_entered"]
