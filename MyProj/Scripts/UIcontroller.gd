@@ -22,7 +22,7 @@ func _on_Player_not_enough_mp():
 func _on_Player_hit_boss(new_hp, _old_hp):
     boss_hpbar.set_value(new_hp)    
     
-func _on_NuetralState_show_boss_hp():
+func _on_ActivateState_show_boss_hp():
     whole_bar.visible = true
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.

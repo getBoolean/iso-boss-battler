@@ -13,16 +13,11 @@ var BOSSROOM_ENTRANCE_HEIGHT = -1889
 
 var has_entered_bossroom = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
     if player.position.y <= BOSSROOM_ENTRANCE_HEIGHT && has_entered_bossroom == false:
         trigger_bossroom_trap()
 
+# triggers the pillars falling to trap player in bossroom
 func trigger_bossroom_trap():
     has_entered_bossroom = true
     pillar1.position = Vector2(-33, -1872)
@@ -30,8 +25,7 @@ func trigger_bossroom_trap():
     fall_sfx.play()
     fall_timer.start()
     
-
-
+# a timer to stagger the falling of the two pillars
 func _on_fall_timer_timeout():
     pillar2.position = Vector2(40, -1872)
     pillar2.rotation_degrees = -90
