@@ -1,16 +1,19 @@
 extends Node2D
 
+onready var player = $PlayerLayer/Player
+onready var dooropen   = $BackgroundLayer/boss_room_door/open_door
+onready var doorclosed = $BackgroundLayer/boss_room_door/closed_door
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var BOSSROOM_ENTRANCE_HEIGHT = -347
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+var has_entered_bossroom = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func _process(_delta):
+    if player.position.y <= BOSSROOM_ENTRANCE_HEIGHT && has_entered_bossroom == false:
+        trigger_bossroom_trap()
+
+func trigger_bossroom_trap():
+    has_entered_bossroom = true
+    dooropen.hide()
+    doorclosed.show()
