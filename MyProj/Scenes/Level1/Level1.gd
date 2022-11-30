@@ -5,6 +5,7 @@ onready var pillar1 = $PlayerLayer/Foliage/EntranceBlock/Pillar1
 onready var pillar2 = $PlayerLayer/Foliage/EntranceBlock/Pillar2
 onready var fall_sfx = $PlayerLayer/Foliage/EntranceBlock/fall_sound
 onready var fall_timer = $PlayerLayer/Foliage/EntranceBlock/fall_timer
+onready var cam1 = $PlayerCamera
 
 onready var player = $PlayerLayer/Player
 
@@ -35,4 +36,7 @@ func _on_fall_timer_timeout():
     pillar2.position = Vector2(40, -1872)
     pillar2.rotation_degrees = -90
     fall_sfx.play()
+    cam1.zoom.x = 1.2
+    cam1.zoom.y = 1.2
+    
     
