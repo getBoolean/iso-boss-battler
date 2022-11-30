@@ -1,5 +1,6 @@
 extends Control
 
+onready var whole_bar = get_node("VBoxContainer/TopBar/BossInfo/BossBar")
 onready var boss_hpbar = get_node("VBoxContainer/TopBar/BossInfo/BossBar/Boss_HPbar")
 onready var player_hpbar = get_node("VBoxContainer/BottomBar/PlayerBars/Player_HPbar")
 onready var player_mpbar = get_node("VBoxContainer/BottomBar/PlayerBars/Player_MPbar") 
@@ -21,9 +22,8 @@ func _on_Player_not_enough_mp():
 func _on_Player_hit_boss(new_hp, _old_hp):
     boss_hpbar.set_value(new_hp)    
     
-func _on_Player_set_boss_hp_visibility(visibility):
-    boss_hpbar.visible = visibility
-    pass # Replace with function body.
+func _on_NuetralState_show_boss_hp():
+    whole_bar.visible = true
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -31,6 +31,9 @@ func _process(_delta):
     # Update HP/MP Values every frame
     #set boss_hpbarnode.Value = (bossnode.BOSS_CUR_HP) / bossnode.BOSS_MAX_HP)
     
+
+
+
 
 
 

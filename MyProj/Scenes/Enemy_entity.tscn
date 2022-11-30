@@ -541,7 +541,12 @@ script = ExtResource( 7 )
 
 [node name="RetreatAttackState" parent="StateMachine" instance=ExtResource( 13 )]
 
+[node name="BossVisibilityNotif" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 8, -110 )
+scale = Vector2( 10.4, 3.2 )
+
 [connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
 [connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
 [connection signal="area_entered" from="Area2D" to="StateMachine" method="_on_Area2D_area_entered"]
+[connection signal="screen_entered" from="BossVisibilityNotif" to="StateMachine/NuetralState" method="_on_BossVisibilityNotif_screen_entered"]

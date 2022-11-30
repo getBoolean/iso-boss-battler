@@ -36,7 +36,5 @@ func _on_fall_timer_timeout():
     pillar2.position = Vector2(40, -1872)
     pillar2.rotation_degrees = -90
     fall_sfx.play()
-    cam1.zoom.x = 1.2
-    cam1.zoom.y = 1.2
     
     

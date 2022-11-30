@@ -2,7 +2,17 @@
 class_name NuetralState
 extends EnemyState
 
+signal show_boss_hp()
 
+var boss_is_visible_by_player = false
+
+func _ready():
+    var ui_hpbar = get_node("/root/Level1/PlayerLayer/Player/HUD/GUI")
+    var error = connect("show_boss_hp", ui_hpbar, "_on_NuetralState_show_boss_hp")
+    if error:
+        print("connect err at: NuetralState show boss hp")
+    
+    
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
     pass
@@ -10,9 +20,12 @@ func handle_input(_event: InputEvent) -> void:
 
 # Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-    if enemy.see_player():
+    if enemy.see_player() && boss_is_visible_by_player:
         transition_to("ActivateState")
+        emit_signal("show_boss_hp")
 
+func _on_BossVisibilityNotif_screen_entered():
+    boss_is_visible_by_player = true
 
 # Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
@@ -34,3 +47,9 @@ func enter(_msg := {}) -> void:
 # to clean up the state.
 func exit() -> void:
     pass
+
+
+
+
+
+
