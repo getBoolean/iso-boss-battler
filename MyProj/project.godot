@@ -8,6 +8,82 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "EnemyState",
+"class": "ActivateState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
+}, {
+"base": "EnemyState",
+"class": "AttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/AttackState.gd"
+}, {
+"base": "AttackState",
+"class": "ChaseAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "DeadState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/DeadState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyEntity",
+"language": "GDScript",
+"path": "res://Scripts/Enemy_entity.gd"
+}, {
+"base": "State",
+"class": "EnemyState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/EnemyState.gd"
+}, {
+"base": "AttackState",
+"class": "KeepDistanceAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "NuetralState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd"
+}, {
+"base": "AttackState",
+"class": "RetreatAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/StateMachine.gd"
+}, {
+"base": "EnemyState",
+"class": "TransformState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd"
+} ]
+_global_script_class_icons={
+"ActivateState": "",
+"AttackState": "",
+"ChaseAttackState": "",
+"DeadState": "",
+"EnemyEntity": "",
+"EnemyState": "",
+"KeepDistanceAttackState": "",
+"NuetralState": "",
+"RetreatAttackState": "",
+"State": "",
+"StateMachine": "",
+"TransformState": ""
+}
+
 [application]
 
 config/name="MyProj"
@@ -143,6 +219,11 @@ dash={
 pause_game={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+secondary_fire={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

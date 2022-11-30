@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2()
 var speed = 550
-var projectile_owner = null
+var projectile_owner = "Enemy_entity"
 var is_despawn = false
 var damage: float = 5
 
@@ -16,6 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+    position += transform.x * speed * delta
     var collided = move_and_collide(velocity.normalized() * delta * speed)
     if collided:
         is_despawn = false
@@ -39,6 +40,3 @@ func _on_Node2D_tree_exiting():
     explosion.is_despawn = self.is_despawn
     get_parent().call_deferred("add_child", explosion)
     pass # Replace with function body.
-
-
-

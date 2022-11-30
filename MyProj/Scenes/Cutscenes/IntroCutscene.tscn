@@ -52,7 +52,7 @@ margin_left = 64.0
 margin_top = -192.0
 margin_right = -64.0
 margin_bottom = -64.0
-color = Color( 0, 0, 0, 0.443137 )
+color = Color( 0, 0, 0, 0.509804 )
 
 [node name="ContinueLabel" type="RichTextLabel" parent="TextBoxBackground"]
 anchor_top = 1.0

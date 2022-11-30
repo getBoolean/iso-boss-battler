@@ -114,6 +114,12 @@ anims/Run = ExtResource( 2 )
 [node name="dust_trail" parent="Dash" index="2"]
 position = Vector2( 0, -1 )
 
+[node name="charged_attack_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="mana_regeneration_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="dash_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -4.0

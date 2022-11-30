@@ -1,7 +1,9 @@
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
+onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
+onready var mana_regen_timer = $mana_regeneration_timer
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -13,7 +15,9 @@ signal paused()
 signal set_boss_hp_visibility(visibility)
 
 # Load the projectile scene/node
+# Load the magic scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
+const MAGIC_ATTACK_SCENE = preload("res://Scenes/MagicAttack.tscn")
 
 
 
@@ -30,10 +34,16 @@ export onready var PLAYER_CUR_HP = 100
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
+export var ATTACK_MANA_COST = 25
+export var MAX_CHARGE = 4
+export var BASE_MAGIC_DAMAGE = 5
+export var MANA_REGEN_RATE = 0.1
+export var MANA_REGEN_HIT_COOLDOWN = 2
+export var MAGIC_DAMAGE_NORMALIZER = 15
 
 var is_Alive = true
 # Timer duration
-export var fire_delay_rate = 0.3
+export var fire_delay_rate = 0.05
 
 var is_paused = false
 var has_won = false
@@ -45,6 +55,13 @@ func _ready():
 func _process(_delta: float):
     if not is_Alive:
         return
+    # Check if the regen timer is stopped
+    # If stopped and player mana < 100 then regenrate mana
+    if(mana_regen_timer.get_time_left()<=0 && PLAYER_CUR_MP < PLAYER_MAX_MP):
+        var old_mp = PLAYER_CUR_MP
+        PLAYER_CUR_MP +=MANA_REGEN_RATE
+        emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
+
     if Input.is_action_pressed("ui_left") \
         or Input.is_action_pressed("ui_right") \
         or Input.is_action_pressed("ui_up") \
@@ -87,7 +104,23 @@ func _physics_process(_delta : float) -> void:
 
     if Input.is_action_just_pressed("primary_fire") && timer_node.is_stopped() && !dash.is_dashing():
         shoot()
-        
+    
+    # Start Timer node as soon as player holds down the secondary fire key
+    if Input.is_action_just_pressed("secondary_fire"):
+        charged_timer.start(MAX_CHARGE)
+    
+    # Calculate elapsed time of timer
+    # Max charge can be 25(mana cost per second) * 4(elapsed time) = 100
+    if Input.is_action_just_released("secondary_fire"):
+        var charge = MAX_CHARGE - round(charged_timer.get_time_left())
+        charged_timer.stop()
+        var mana_cost  = ATTACK_MANA_COST * round(charge)
+        if(mana_cost <1):
+            # If player holds the RMB for less than a second
+            # The elapsed time is 0.xxx and manacost becomes 0
+            # To solve this set mana_cost to 25 if elapsed timer time < 1sec
+            mana_cost = ATTACK_MANA_COST
+        magic_attack(mana_cost)
     # FOR TESTING Damage to Player, currently just a keybind.
     # Can change into player collides with boss projectile
     if Input.is_action_just_released("testing_dmg_player"):
@@ -117,8 +150,21 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    projectile.damage = 3
+    projectile.speed = 400
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
+
+func magic_attack(amount):
+    # Check if player has atleast 1% mana left
+    # If mana is already 0 don't fire
+    if(use_player_mp(amount) > 0):
+        var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
+        get_parent().add_child(magic_attack_projectile)
+        magic_attack_projectile.projectile_owner = "Player"
+        magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
+        magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
+        magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
@@ -134,19 +180,28 @@ func damage_player(damage):
         emit_signal("player_health_updated", new_hp, PLAYER_CUR_HP)
         # play damage animation        
         PLAYER_CUR_HP = new_hp
+    # If Player gets hit start the mana regen cooldown timer
+    mana_regen_timer.start(MANA_REGEN_HIT_COOLDOWN)
+        
 
 # use_player_mp(amount): subtracts the specifiec
 # amount of mana from the player, if they have it.
 # if not, sends a signal that they don't
 func use_player_mp(amount):
-    if PLAYER_CUR_MP <= amount:
+    # If player charged a shot for more than the available mana
+    # Use only the remianing mana charge and alter damage accordingly
+    if(PLAYER_CUR_MP - amount < 0):
+        amount = PLAYER_CUR_MP
+    
+    if (PLAYER_CUR_MP == 0):
         # can't do anything, cause not enough mp
         emit_signal("not_enough_mp")
-        pass
+        return 0
     else:
         var new_mp = PLAYER_CUR_MP - amount
         emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
         PLAYER_CUR_MP = new_mp
+        return amount
 
 # kill_player():
 # animates the player's death, calls the end screen
@@ -168,11 +223,12 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 func _on_Area2D_area_entered(area):
      if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
+        var damage = area.get_parent().damage
         area.get_parent().queue_free()
-        damage_player(5)
+        damage_player(damage)
 
 
 func _on_Enemy_entity_boss_died(_difference):
-    has_won = true
-    emit_signal("you_won", _difference)
-    pass # Replace with function body.
+    if is_Alive && not has_won:
+        has_won = true
+        emit_signal("you_won", _difference)
