@@ -50,6 +50,7 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
     projectile.position = global_position
+    projectile.position.y = projectile.position.y - 50
     projectile.velocity = player.global_position - projectile.position
     projectile.scale.x = scale_x
     projectile.scale.y = scale_y
@@ -78,6 +79,7 @@ func spawn_projectile_generator(rot,timer,spawn_num,radius,life):
     generator.init(rot,timer,spawn_num,radius,life)
     add_child(generator)
     generator.global_position = global_position
+    generator.global_position.y = generator.global_position.y - 50
     return generator
  
     
