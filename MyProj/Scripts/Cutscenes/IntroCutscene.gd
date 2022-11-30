@@ -2,6 +2,8 @@ extends Control
 
 export var mainGameScene : PackedScene
 
+var level1 = load("res://Scenes/Level1/Level1.tscn")
+
 enum STATE {
     ONE,
     TWO,
@@ -33,6 +35,6 @@ func _continue():
         $TextBoxBackground/Dialog3.hide()
         $TextBoxBackground/Dialog4.show()
     elif (state == STATE.LAST):
-        var error_code = get_tree().change_scene(mainGameScene.resource_path)
+        var error_code = get_tree().change_scene_to(level1)
         if error_code != Global.SUCCESS_CODE:
             print("[ERROR] Could not change scene to main game: ", error_code)
