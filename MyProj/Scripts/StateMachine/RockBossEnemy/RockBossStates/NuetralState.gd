@@ -17,8 +17,7 @@ func handle_input(_event: InputEvent) -> void:
 
 # Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
-    enemy.anim_player.play("Spawn")
-    enemy.anim_player.stop(false)
+    pass
 
 
 # Called by the state machine upon changing the active state. The `msg` parameter
