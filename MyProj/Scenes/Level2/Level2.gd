@@ -1,10 +1,11 @@
 extends Node2D
 
 onready var player = $PlayerLayer/Player
-onready var dooropen   = $BackgroundLayer/boss_room_door/open_door
-onready var doorclosed = $BackgroundLayer/boss_room_door/closed_door
+onready var dooropen   = $PlayerLayer/Gate/boss_room_door/open_door
+onready var doorclosed = $PlayerLayer/Gate/boss_room_door/closed_door
+onready var collision: CollisionShape2D = $PlayerLayer/Gate/boss_room_door/CollisionShape2D
 
-onready var close_sfx = $BackgroundLayer/boss_room_door/door_shut
+onready var close_sfx = $PlayerLayer/Gate/boss_room_door/door_shut
 
 var BOSSROOM_ENTRANCE_HEIGHT = -347
 
@@ -20,3 +21,4 @@ func trigger_bossroom_trap():
     dooropen.hide()
     doorclosed.show()
     close_sfx.play()
+    collision.disabled = false
