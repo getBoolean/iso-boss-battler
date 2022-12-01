@@ -5,8 +5,9 @@ extends EnemyState
 var rng = RandomNumberGenerator.new()
 
 onready var damage_taken_timer = $DamageTakenTimer
+onready var pattern_cooldown_timer = $PatternCooldownTimer
 
-
+onready var PATTERN_DELAY = 8
 
 var damage_taken_recent = 0
 export var RETREAT_DAMAGE_TRIGGER: float = 30
@@ -34,7 +35,8 @@ func physics_update(delta: float) -> void:
     if enemy.player != null:
         enemy.velocity = get_velocity(delta)
         attack(delta)
-        generate_pattern(delta)
+        generate_pattern()
+        
 
     # Flip sprite
     if enemy.velocity.x > 0:
@@ -93,5 +95,14 @@ func attack(_delta: float) -> void:
     pass
     
 
-func generate_pattern(_delat:float) -> void:
-    pass
+func generate_pattern():
+    if pattern_cooldown_timer.is_stopped():
+        pattern_cooldown_timer.start(PATTERN_DELAY)
+        var pattern_type = enemy.attack_queue.fire_pattern()
+        var _pattern = enemy.spawn_projectile_generator(pattern_type)
+        if enemy.PHASE == 2:
+            if pattern_type == 1:
+                var _pattern2 = enemy.spawn_projectile_generator(2)
+            elif pattern_type == 2 or pattern_type == 3:
+                var _pattern2 = enemy.spawn_projectile_generator(1)
+

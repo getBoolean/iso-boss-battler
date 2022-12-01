@@ -12,6 +12,7 @@ const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spa
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
+onready var attack_queue = $attack_queue
 export var fire_delay_rate = 0.4
 
 #Boss Health Values
@@ -23,7 +24,7 @@ var player = null
 #values for speed of boss
 export var ACCELERATION = 300
 export var FRICTION = 400
-export var MAX_SPEED = 125
+export var MAX_SPEED = 115
 #Object references to boss attributes
 onready var playerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
@@ -82,15 +83,23 @@ func kill(difference: float):
     yield(anim_player,"animation_finished")
     emit_signal("boss_died", difference)
     
-func spawn_projectile_generator(rot,timer,spawn_num,radius,life): 
-    var generator = GENERATOR_SCENE.instance()
-    generator.init(rot,timer,spawn_num,radius,life)
+func spawn_projectile_generator(pattern_type): 
+    var generator = init_generator(pattern_type)
+    #generator.init(rot,timer,spawn_num,radius,life)
     add_child(generator)
     generator.global_position = global_position
     generator.global_position.y = generator.global_position.y - 50
     return generator
  
-    
+func init_generator(pattern_type):
+    var generator = GENERATOR_SCENE.instance()
+    if pattern_type == 1:
+        generator.init(0,4,32,100,4)
+    elif pattern_type == 2:
+        generator.init(100,.2,4,100,4)
+    elif pattern_type == 3:
+        generator.init(50,.1,4,100,4)
+    return generator
 
 
 
