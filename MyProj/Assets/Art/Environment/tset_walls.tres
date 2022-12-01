@@ -54,10 +54,10 @@ points = PoolVector2Array( 32, 32, 24.0818, 32, 24.0818, 0, 32, 0 )
 points = PoolVector2Array( 7.92691, 32, 0, 32, 0, 0, 7.92691, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=22]
-points = PoolVector2Array( 0, 0, 7.9375, 0, 7.9375, 7.9375, 0, 7.9375 )
+points = PoolVector2Array( 0, 0, 7.9375, 0, 8, 7, 0, 7.0625 )
 
 [sub_resource type="ConvexPolygonShape2D" id=23]
-points = PoolVector2Array( 32, 7.97232, 24, 8, 24.004, 0, 32, 0 )
+points = PoolVector2Array( 32, 6.9375, 23.9375, 7, 24.004, 0, 32, 0 )
 
 [resource]
 53/name = "TX Tileset Wall.png 53"
