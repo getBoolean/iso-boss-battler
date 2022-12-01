@@ -10,7 +10,6 @@ func _on_PlayerCamera_tree_entered():
 # set camera position to player position
 func _process(_delta):
     self.position = player_node.position
-    pass
 
 
 
