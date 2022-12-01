@@ -9,4 +9,3 @@ enum AudioTracks { MASTER, MUSIC, SFX }
 
 func update_volume(index, volume):
     AudioServer.set_bus_volume_db(index, volume)
-    

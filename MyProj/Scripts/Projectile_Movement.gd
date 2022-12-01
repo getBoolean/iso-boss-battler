@@ -39,6 +39,3 @@ func _on_Node2D_tree_exiting():
     explosion.is_despawn = self.is_despawn
     get_parent().call_deferred("add_child", explosion)
     pass # Replace with function body.
-
-
-

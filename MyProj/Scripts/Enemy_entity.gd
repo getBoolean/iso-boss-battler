@@ -100,6 +100,3 @@ func init_generator(pattern_type):
     elif pattern_type == 3:
         generator.init(50,.1,4,100,4)
     return generator
-
-
-

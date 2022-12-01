@@ -105,4 +105,3 @@ func generate_pattern():
                 var _pattern2 = enemy.spawn_projectile_generator(2)
             elif pattern_type == 2 or pattern_type == 3:
                 var _pattern2 = enemy.spawn_projectile_generator(1)
-

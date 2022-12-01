@@ -15,4 +15,3 @@ func _physics_process(delta):
     move = move.move_toward(look_vec, delta)
     move = move.normalized() * speed
     position += move
-    

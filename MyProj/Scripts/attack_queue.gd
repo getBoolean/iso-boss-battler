@@ -18,6 +18,3 @@ func fire_pattern():
     rng.randomize()
     queue.append(rng.randi_range(1,3))
     return ret_val
-        
-
-
