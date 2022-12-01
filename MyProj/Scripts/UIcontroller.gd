@@ -30,13 +30,3 @@ func _process(_delta):
     pass
     # Update HP/MP Values every frame
     #set boss_hpbarnode.Value = (bossnode.BOSS_CUR_HP) / bossnode.BOSS_MAX_HP)
-    
-
-
-
-
-
-
-
-
-

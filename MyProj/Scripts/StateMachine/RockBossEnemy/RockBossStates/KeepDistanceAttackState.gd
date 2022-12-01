@@ -4,10 +4,9 @@ extends AttackState
 
 onready var state_timer = $StateTimer
 onready var attack_cooldown_timer = $AttackCooldownTimer
-onready var pattern_cooldown_timer = $PatternCooldownTimer
 
 export var ATTACK_DELAY: float = 0.8
-export var PATTERN_DELAY: float = 4
+
 
 export var MAX_FOLLOW_DISTANCE: float = 150
 export var MIN_FOLLOW_DISTANCE: float = 100
@@ -35,10 +34,14 @@ func attack(_delta: float) -> void:
         attack_cooldown_timer.start(ATTACK_DELAY)
         enemy.fire(550, 5, 1.5, 1.5)
 
-func generate_pattern(_delta: float) -> void:
-    if pattern_cooldown_timer.is_stopped():
-        pattern_cooldown_timer.start(PATTERN_DELAY)
-        var _pattern = enemy.spawn_projectile_generator(100,1,32,200,1)
+#func generate_pattern(_delta: float) -> void:
+#   if pattern_cooldown_timer.is_stopped():
+#        pattern_cooldown_timer.start(PATTERN_DELAY)
+#        var pattern_type = enemy.attack_queue.fire_pattern()
+#        var _pattern = enemy.spawn_projectile_generator(pattern_type)
+        #if enemy.PHASE == 2:
+        #    var pattern_type_2 = enemy.attack_queue.fire_pattern()
+        #    var _pattern2 = enemy.spawn_projectile_generator(pattern_type_2)
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(event: InputEvent) -> void:
