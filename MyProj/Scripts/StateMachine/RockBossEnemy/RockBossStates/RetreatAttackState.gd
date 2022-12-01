@@ -9,10 +9,14 @@ onready var pattern_cooldown_timer = $PatternCooldownTimer
 export var ATTACK_DELAY = 0.8
 export var PATTERN_DELAY = 4
 
+var direction_offset: float = 0
+
 # Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
     var distance: Vector2 =  enemy.player.global_position - enemy.global_position
     var linear_direction: Vector2 =  distance.normalized()
+    linear_direction.x = linear_direction.x - direction_offset
+    linear_direction.y = linear_direction.y + direction_offset
     
     return enemy.velocity.move_toward(linear_direction * -1 * enemy.MAX_SPEED,
         enemy.ACCELERATION * delta)
@@ -55,6 +59,7 @@ func enter(msg := {}) -> void:
     rng.randomize()
     var time = rng.randi_range(3, 5)
     state_timer.start(time)
+    direction_offset = rng.randf_range(-0.25, 0.25)
 
 
 # Called by the state machine before changing the active state. Use this function

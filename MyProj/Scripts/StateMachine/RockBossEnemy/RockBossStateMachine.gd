@@ -20,3 +20,8 @@ func _on_Area2D_area_entered(area: Area2D):
         if state.has_method('damage_boss'):
             state.damage_boss(area.get_parent().damage)
             ouch_sfx.play()
+
+# only lets boss transisition to activate when player can see boss
+func _on_BossVisibilityNotif_screen_entered():
+    if state.name == "NuetralState":
+        transition_to("ActivateState")
