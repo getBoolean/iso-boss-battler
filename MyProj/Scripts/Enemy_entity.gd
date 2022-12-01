@@ -10,6 +10,8 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 # Load Projectile generator scene
 const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spawner.tscn")
 
+onready var attack_queue = $attack_queue
+
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
 export var fire_delay_rate = 0.4
@@ -73,11 +75,21 @@ func kill(difference: float):
     yield(anim_player,"animation_finished")
     emit_signal("boss_died", difference)
     
-func spawn_projectile_generator(rot,timer,spawn_num,radius,life): 
-    var generator = GENERATOR_SCENE.instance()
-    generator.init(rot,timer,spawn_num,radius,life)
+func spawn_projectile_generator(pattern_type): 
+    var generator = init_generator(pattern_type)
+    #generator.init(rot,timer,spawn_num,radius,life)
     add_child(generator)
     generator.global_position = global_position
+    generator.global_position.y = generator.global_position.y - 50
     return generator
  
-    
+func init_generator(pattern_type):
+    var generator = GENERATOR_SCENE.instance()
+    if pattern_type == 1:
+        generator.init(0,4,32,100,4)
+    elif pattern_type == 2:
+        generator.init(100,.2,2,100,4)
+    elif pattern_type == 3:
+        generator.init(50,.1,4,100,4)
+    return generator
+
