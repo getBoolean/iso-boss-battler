@@ -11,5 +11,3 @@ func _process(_delta):
     self.position = player_node.position
 
 
-
-
