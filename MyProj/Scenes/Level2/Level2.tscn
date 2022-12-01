@@ -80,9 +80,6 @@ tile_data = PoolIntArray( -1441725, 2, 0, -982981, 9, 0, -982970, 9, 0 )
 
 [node name="Foliage" type="YSort" parent="PlayerLayer"]
 
-[node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
-scale = Vector2( 0.4, 0.4 )
-
 [node name="Gate" type="YSort" parent="PlayerLayer"]
 
 [node name="wall1" type="Sprite" parent="PlayerLayer/Gate"]
@@ -167,6 +164,8 @@ region_rect = Rect2( 416, 128, 64, 64 )
 
 [node name="lower_wall_collision" type="StaticBody2D" parent="PlayerLayer/Gate"]
 position = Vector2( 0, -230 )
+collision_layer = 3
+collision_mask = 9
 
 [node name="left_side" type="CollisionPolygon2D" parent="PlayerLayer/Gate/lower_wall_collision"]
 position = Vector2( -43, -8 )
@@ -182,15 +181,18 @@ shape = SubResource( 2 )
 one_way_collision = true
 one_way_collision_margin = 5.0
 
+[node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
+scale = Vector2( 0.4, 0.4 )
+
 [node name="ForegroundLayer" type="Node2D" parent="."]
 
 [node name="Crosshair" parent="ForegroundLayer" instance=ExtResource( 2 )]
 
 [node name="wallforeground" type="TileMap" parent="ForegroundLayer"]
+show_behind_parent = true
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 4, 4 )
 cell_tile_origin = 2
-cell_y_sort = true
 show_collision = true
 format = 1
 tile_data = PoolIntArray( -5570752, 0, 0, -5570744, 13, 0, -5570728, 13, 0, -5570712, 13, 0, -5570696, 13, 0, -5570680, 13, 0, -5570664, 13, 0, -5570648, 13, 0, -5570632, 13, 0, -5570616, 13, 0, -5636056, 13, 0, -5636040, 13, 0, -5636024, 13, 0, -5636008, 13, 0, -5635992, 12, 0, -5635976, 13, 0, -5635960, 13, 0, -5635944, 12, 0, -5635928, 13, 0, -5635912, 2, 0, -4653248, 1, 0, -4653240, 13, 0, -4653224, 13, 0, -4653208, 13, 0, -4653192, 13, 0, -4653176, 13, 0, -4653160, 13, 0, -4653144, 13, 0, -4653128, 13, 0, -4653112, 13, 0, -4718552, 13, 0, -4718536, 13, 0, -4718520, 13, 0, -4718504, 13, 0, -4718488, 13, 0, -4718472, 13, 0, -4718456, 13, 0, -4718440, 13, 0, -4718424, 13, 0, -4718408, 1, 0 )
@@ -198,8 +200,6 @@ tile_data = PoolIntArray( -5570752, 0, 0, -5570744, 13, 0, -5570728, 13, 0, -557
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.8, 0.8 )
-smoothing_enabled = true
-smoothing_speed = 10.0
 script = ExtResource( 8 )
 
 [connection signal="tree_entered" from="PlayerCamera" to="PlayerCamera" method="_on_PlayerCamera_tree_entered"]

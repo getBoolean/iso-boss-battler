@@ -255,8 +255,6 @@ position = Vector2( 0, -2556 )
 scale = Vector2( 0.4, 0.4 )
 current = true
 zoom = Vector2( 0.8, 0.8 )
-smoothing_enabled = true
-smoothing_speed = 10.0
 script = ExtResource( 5 )
 
 [connection signal="timeout" from="PlayerLayer/Foliage/EntranceBlock/fall_timer" to="." method="_on_fall_timer_timeout"]
