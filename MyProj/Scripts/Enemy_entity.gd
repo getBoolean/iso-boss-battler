@@ -2,7 +2,9 @@ class_name EnemyEntity
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
-signal boss_died(difference)
+# signal boss_died(difference)
+
+export var nextLevelTransition : PackedScene
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -77,11 +79,14 @@ func update_hp(new_health: float):
     BOSS_CUR_HP = new_health
 
 
-func kill(difference: float):
+func kill(_difference: float):
     MAX_SPEED = 0
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
-    emit_signal("boss_died", difference)
+    var error_code = get_tree().change_scene(nextLevelTransition.resource_path)
+    if error_code != Global.SUCCESS_CODE:
+        print("[ERROR] Could not change scene to main game: ", error_code)
+    # emit_signal("boss_died", difference)
     
 func spawn_projectile_generator(pattern_type): 
     var generator = init_generator(pattern_type)

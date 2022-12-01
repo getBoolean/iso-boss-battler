@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Assets/Art/TestAssets/Character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_entity.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/attack_queue.gd" type="Script" id=14]
 [ext_resource path="res://Assets/SFX/boss/boss_ouch.wav" type="AudioStream" id=15]
+[ext_resource path="res://Scenes/Cutscenes/TransitionCutscene.tscn" type="PackedScene" id=16]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1419.96
@@ -463,6 +464,7 @@ tracks/1/keys = {
 [node name="Enemy_entity" type="KinematicBody2D"]
 collision_mask = 7
 script = ExtResource( 2 )
+nextLevelTransition = ExtResource( 16 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
 visible = false
