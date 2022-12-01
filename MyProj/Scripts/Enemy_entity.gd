@@ -96,7 +96,7 @@ func init_generator(pattern_type):
     if pattern_type == 1:
         generator.init(0,4,32,100,4)
     elif pattern_type == 2:
-        generator.init(100,.2,4,100,4)
+        generator.init(100,.2,2,100,4)
     elif pattern_type == 3:
         generator.init(50,.1,4,100,4)
     return generator
