@@ -3,21 +3,21 @@ class_name NuetralState
 extends EnemyState
 
 
+
+
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
     pass
 
 
 # Corresponds to the `_process()` callback.
-func update(_delta: float) -> void:
-    if enemy.see_player():
-        transition_to("ActivateState")
-
+#func update(_delta: float) -> void:
+#   if enemy.see_player():
+#        transition_to("ActivateState")       
 
 # Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
-    enemy.anim_player.play("Spawn")
-    enemy.anim_player.stop(false)
+    pass
 
 
 # Called by the state machine upon changing the active state. The `msg` parameter

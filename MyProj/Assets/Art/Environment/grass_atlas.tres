@@ -1,0 +1,56 @@
+[gd_resource type="TileSet" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Art/Environment/TX Tileset Grass.png" type="Texture" id=1]
+
+[resource]
+65/name = "TX Tileset Grass.png 65"
+65/texture = ExtResource( 1 )
+65/tex_offset = Vector2( 0, 0 )
+65/modulate = Color( 1, 1, 1, 1 )
+65/region = Rect2( 29, -7, 3, 0 )
+65/tile_mode = 1
+65/autotile/bitmask_mode = 0
+65/autotile/bitmask_flags = [  ]
+65/autotile/icon_coordinate = Vector2( 0, 0 )
+65/autotile/tile_size = Vector2( 32, 32 )
+65/autotile/spacing = 0
+65/autotile/occluder_map = [  ]
+65/autotile/navpoly_map = [  ]
+65/autotile/priority_map = [  ]
+65/autotile/z_index_map = [  ]
+65/occluder_offset = Vector2( 0, 0 )
+65/navigation_offset = Vector2( 0, 0 )
+65/shape_offset = Vector2( 0, 0 )
+65/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+65/shape_one_way = false
+65/shape_one_way_margin = 0.0
+65/shapes = [  ]
+65/z_index = 0
+68/name = "TX Tileset Grass.png 68"
+68/texture = ExtResource( 1 )
+68/tex_offset = Vector2( 0, 0 )
+68/modulate = Color( 1, 1, 1, 1 )
+68/region = Rect2( 29, -7, 0, 0 )
+68/tile_mode = 0
+68/occluder_offset = Vector2( 0, 0 )
+68/navigation_offset = Vector2( 0, 0 )
+68/shape_offset = Vector2( 0, 0 )
+68/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+68/shape_one_way = false
+68/shape_one_way_margin = 0.0
+68/shapes = [  ]
+68/z_index = 0
+69/name = "TX Tileset Grass.png 69"
+69/texture = ExtResource( 1 )
+69/tex_offset = Vector2( 0, 0 )
+69/modulate = Color( 1, 1, 1, 1 )
+69/region = Rect2( 8, 6, 0, 0 )
+69/tile_mode = 0
+69/occluder_offset = Vector2( 0, 0 )
+69/navigation_offset = Vector2( 0, 0 )
+69/shape_offset = Vector2( 0, 0 )
+69/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+69/shape_one_way = false
+69/shape_one_way_margin = 0.0
+69/shapes = [  ]
+69/z_index = 0

@@ -10,6 +10,7 @@ onready var pattern_cooldown_timer = $PatternCooldownTimer
 onready var PATTERN_DELAY = 8
 
 var damage_taken_recent = 0
+export var RETREAT_DAMAGE_TRIGGER: float = 30
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
@@ -35,6 +36,7 @@ func physics_update(delta: float) -> void:
         enemy.velocity = get_velocity(delta)
         attack(delta)
         generate_pattern()
+        
 
     # Flip sprite
     if enemy.velocity.x > 0:
@@ -74,7 +76,7 @@ func damage_boss(damage) -> void:
         # TODO: play damage animation and sound 
         damage_taken_recent = damage_taken_recent + damage
         enemy.update_hp(new_hp)
-        if damage_taken_recent > 15:
+        if damage_taken_recent > RETREAT_DAMAGE_TRIGGER:
             transition_to('RetreatAttackState')
 
 
