@@ -2,9 +2,7 @@ class_name EnemyEntity
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
-# signal boss_died(difference)
-
-export var nextLevelTransition : PackedScene
+signal boss_died(difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -14,7 +12,7 @@ const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spa
 
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
-onready var attack_queue = $attack_queue
+onready var attack_queue: AttackQueue = $attack_queue
 export var fire_delay_rate = 0.4
 
 #Boss Health Values
@@ -32,6 +30,7 @@ onready var playerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
 onready var PHASE = 1
 onready var phase_changed = 0
+onready var is_alive = true
 
 onready var anim_player = $AnimatedSprite/AnimationPlayer
 
@@ -43,8 +42,10 @@ func _on_Enemy_entity_tree_entered():
     var error = connect("boss_health_updated", get_node("../Player"), "_on_Enemy_entity_boss_health_updated")
     if error:
         print("connection boss_health updated in enemy entity: error")
-    else:
-        pass
+    
+    var error2 = connect("boss_died", get_node("../Player"), "_on_Enemy_entity_boss_died")
+    if error:
+        print("connection boss_died updated in enemy entity: error")
         
 
 
@@ -57,6 +58,8 @@ func see_player():
 
         
 func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
+    if not is_alive:
+        return
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
@@ -79,14 +82,12 @@ func update_hp(new_health: float):
     BOSS_CUR_HP = new_health
 
 
-func kill(_difference: float):
+func kill(difference: float):
     MAX_SPEED = 0
+    is_alive = false
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
-    var error_code = get_tree().change_scene(nextLevelTransition.resource_path)
-    if error_code != Global.SUCCESS_CODE:
-        print("[ERROR] Could not change scene to main game: ", error_code)
-    # emit_signal("boss_died", difference)
+    emit_signal("boss_died", difference)
     
 func spawn_projectile_generator(pattern_type): 
     var generator = init_generator(pattern_type)

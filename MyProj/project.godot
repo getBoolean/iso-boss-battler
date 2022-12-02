@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
 }, {
+"base": "Node2D",
+"class": "AttackQueue",
+"language": "GDScript",
+"path": "res://Scripts/attack_queue.gd"
+}, {
 "base": "EnemyState",
 "class": "AttackState",
 "language": "GDScript",
@@ -71,6 +76,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActivateState": "",
+"AttackQueue": "",
 "AttackState": "",
 "ChaseAttackState": "",
 "DeadState": "",

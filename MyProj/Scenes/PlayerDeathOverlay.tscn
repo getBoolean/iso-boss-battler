@@ -5,7 +5,6 @@
 [ext_resource path="res://Scripts/PlayerDeathOverlay.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/bt_exit_to_desktop.gd" type="Script" id=4]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 125
 font_data = ExtResource( 1 )
