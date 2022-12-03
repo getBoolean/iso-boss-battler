@@ -59,11 +59,11 @@ func _on_MusicSlider_drag_started():
 func _on_SFXSlider_drag_started():
     down_sfx.play()
 # Up
-func _on_MasterSlider_drag_ended(value_changed):
+func _on_MasterSlider_drag_ended(_value_changed):
     up_sfx.play()
-func _on_MusicSlider_drag_ended(value_changed):
+func _on_MusicSlider_drag_ended(_value_changed):
     up_sfx.play()
-func _on_SFXSlider_drag_ended(value_changed):
+func _on_SFXSlider_drag_ended(_value_changed):
     up_sfx.play()
 # Hover
 func _on_BackButton_mouse_entered():
