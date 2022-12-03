@@ -163,7 +163,8 @@ func magic_attack(amount):
         magic_attack_projectile.projectile_owner = "Player"
         magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
-        magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
+        #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
+        magic_attack_projectile.look_at(get_global_mouse_position())
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 

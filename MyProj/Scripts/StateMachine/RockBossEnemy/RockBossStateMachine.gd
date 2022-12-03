@@ -16,7 +16,7 @@ func _on_Area2D_area_entered(area: Area2D):
             state.damage_boss(damage)
             ouch_sfx.play()
     if area.name == "magic_area" and area.get_parent().projectile_owner == "Player":
-        area.get_parent().queue_free()
+        #area.get_parent().queue_free()
         if state.has_method('damage_boss'):
             state.damage_boss(area.get_parent().damage)
             ouch_sfx.play()
