@@ -49,13 +49,17 @@ func _on_bt_options_button_up():
 # Menu Button SFX
 # For mouse hovering over button
 func _on_bt_new_game_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_options_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_credits_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_quit_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:        
+        hover_sfx.play()
 # For when button is clicked but not yet released
 func _on_bt_new_game_button_down():
     down_sfx.play()

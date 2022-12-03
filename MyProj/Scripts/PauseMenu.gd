@@ -69,8 +69,11 @@ func _on_bt_exit_to_desktop_button_down():
     down_sfx.play()
 # Hover
 func _on_bt_resume_game_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_quit_main_to_menu_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_exit_to_desktop_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:    
+        hover_sfx.play()

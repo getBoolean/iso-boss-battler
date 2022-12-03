@@ -67,10 +67,14 @@ func _on_SFXSlider_drag_ended(value_changed):
     up_sfx.play()
 # Hover
 func _on_BackButton_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_MasterSlider_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_MusicSlider_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_SFXSlider_mouse_entered():
-    hover_sfx.play()
+    if not down_sfx.playing:
+        hover_sfx.play()
