@@ -2,7 +2,7 @@ extends StateMachine
 
 # If damage of charge attack exceeds this number, play different
 # sound effect for boss taking damage
-var ouch_dmg_threshold = 10
+var ouch_dmg_threshold = 8
 
 onready var ouch_sfx = get_parent().get_node("ouch")
 onready var big_ouch_sfx = get_parent().get_node("big_ouch")
