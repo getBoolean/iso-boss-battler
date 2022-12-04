@@ -10,8 +10,6 @@ const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
 # Load Projectile generator scene
 const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spawner.tscn")
 
-onready var attack_queue = $attack_queue
-
 #time for projectile delay
 onready var timer_node = $fire_delay_timer
 onready var attack_queue: AttackQueue = $attack_queue
