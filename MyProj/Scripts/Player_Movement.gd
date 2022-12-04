@@ -5,6 +5,10 @@ onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
 
+onready var charge_shiney1 = $charge_shine_anchor/shine1
+onready var charge_shiney2 = $charge_shine_anchor/shine2
+onready var charge_anchor = $charge_shine_anchor
+
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
@@ -107,10 +111,14 @@ func _physics_process(_delta : float) -> void:
     # Start Timer node as soon as player holds down the secondary fire key
     if Input.is_action_just_pressed("secondary_fire"):
         charged_timer.start(MAX_CHARGE)
+        charge_shiney2.visible = true
+        charge_shiney2.play()
     
     # Calculate elapsed time of timer
     # Max charge can be 25(mana cost per second) * 4(elapsed time) = 100
     if Input.is_action_just_released("secondary_fire"):
+        charge_shiney2.visible = false
+        charge_shiney2.stop()
         var charge = MAX_CHARGE - round(charged_timer.get_time_left())
         charged_timer.stop()
         var mana_cost  = ATTACK_MANA_COST * round(charge)

@@ -54,7 +54,7 @@ script = ExtResource( 2 )
 [node name="magic_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="magic_area"]
-position = Vector2( 337.5, 5 )
+position = Vector2( 334, -3 )
 scale = Vector2( 0.25, 0.25 )
 shape = SubResource( 11 )
 
@@ -63,13 +63,14 @@ position = Vector2( 9, 4 )
 scale = Vector2( 0.6, 1.05 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 337.5, 5 )
+position = Vector2( 334, -3 )
 shape = SubResource( 2 )
 
 [node name="magic_sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 304, 6 )
+position = Vector2( 300, -2 )
 scale = Vector2( 3.125, 1 )
 frames = SubResource( 10 )
+frame = 2
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="animation_finished" from="magic_sprite" to="." method="_on_magic_sprite_animation_finished"]
