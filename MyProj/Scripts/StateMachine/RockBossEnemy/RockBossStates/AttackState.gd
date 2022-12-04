@@ -29,13 +29,13 @@ func physics_update(delta: float) -> void:
     elif enemy.PHASE == 2:
         enemy.anim_player.play("Idle_Phase_2")
     
-    enemy.player = enemy.playerDetectionZone.player
-    
     # Move towards player and shoot
-    if enemy.player != null:
+    if enemy.see_player():
         enemy.velocity = get_velocity(delta)
         attack(delta)
         generate_pattern()
+    else:
+        enemy.velocity = Vector2.ZERO
         
 
     # Flip sprite
@@ -96,7 +96,7 @@ func attack(_delta: float) -> void:
     
 
 func generate_pattern():
-    if pattern_cooldown_timer.is_stopped():
+    if pattern_cooldown_timer.is_stopped() and enemy.see_player():
         pattern_cooldown_timer.start(PATTERN_DELAY)
         var pattern_type = enemy.attack_queue.fire_pattern()
         var _pattern = enemy.spawn_projectile_generator(pattern_type)
