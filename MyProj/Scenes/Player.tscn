@@ -165,6 +165,7 @@ position = Vector2( 0, -41 )
 script = ExtResource( 19 )
 
 [node name="shine" type="AnimatedSprite" parent="charge_shine_anchor"]
+visible = false
 position = Vector2( 42, -1 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 17 )
