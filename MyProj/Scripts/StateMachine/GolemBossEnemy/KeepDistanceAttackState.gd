@@ -8,16 +8,26 @@ onready var attack_cooldown_timer = $AttackCooldownTimer
 
 export var ATTACK_DELAY = 0.8
 
+export var MAX_FOLLOW_DISTANCE: float = 150
+export var MIN_FOLLOW_DISTANCE: float = 100
+export var MIDDLE_FOLLOW_DISTANCE: float = (MAX_FOLLOW_DISTANCE + MIN_FOLLOW_DISTANCE)/2
+
 
 # Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
     var distance: Vector2 =  enemy.player.global_position - enemy.global_position
     var linear_direction: Vector2 =  distance.normalized()
-    if distance.length() > 175:
+    if distance.length() < MIN_FOLLOW_DISTANCE:
+        return enemy.velocity.move_toward(linear_direction * -1 * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
+    elif distance.length() > MAX_FOLLOW_DISTANCE:
         return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED, enemy.ACCELERATION * delta)
-
-    return enemy.velocity.move_toward(linear_direction * -1 * enemy.MAX_SPEED,
-        enemy.ACCELERATION * delta)
+    else:
+        var distance_to_middle = distance.length() - MIDDLE_FOLLOW_DISTANCE
+        var speed_modifier: float = ease(distance_to_middle/(MIDDLE_FOLLOW_DISTANCE - MIN_FOLLOW_DISTANCE), -2)
+        if distance.length() < MIN_FOLLOW_DISTANCE:
+            return enemy.velocity.move_toward(linear_direction * -1 * enemy.MAX_SPEED * speed_modifier, enemy.ACCELERATION * delta)
+        else:
+            return enemy.velocity.move_toward(linear_direction * enemy.MAX_SPEED * speed_modifier, enemy.ACCELERATION * delta)
 
 
 func attack(_delta: float) -> void:
@@ -41,7 +51,7 @@ func update(delta: float) -> void:
 func physics_update(delta: float) -> void:
     .physics_update(delta)
     if state_timer.is_stopped():
-        transition_to("ChaseAttackStatex")
+        transition_to("ChaseAttackState")
 
 
 # Called by the state machine upon changing the active state. The `msg` parameter

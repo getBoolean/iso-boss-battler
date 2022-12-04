@@ -18,7 +18,7 @@ onready var attack_queue = $attack_queue
 export var BOSS_MAX_HP = 200
 export onready var BOSS_CUR_HP = 200
 
-var player = null
+var player: Player = null
 
 
 # values for speed of boss
@@ -34,15 +34,19 @@ onready var anim_player = $AnimatedSprite/AnimationPlayer
 
 var velocity = Vector2.ZERO
 var direction = 1
+onready var is_alive = true
 
 func see_player():
     if playerDetectionZone.can_see_player():
         player = playerDetectionZone.player
-        if player:
+        if player.is_Alive:
             return true
         return false
 
 func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
+    if not is_alive or not see_player():
+        return
+    
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity_two"
@@ -64,6 +68,7 @@ func update_hp(new_health: float):
         
 func kill(difference: float):
     MAX_SPEED = 0
+    is_alive = false
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
     emit_signal("boss_died", difference)

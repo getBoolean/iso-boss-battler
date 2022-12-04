@@ -237,16 +237,13 @@ script = ExtResource( 7 )
 
 [node name="KeepDistanceAttackState" parent="StateMachine" instance=ExtResource( 11 )]
 script = ExtResource( 10 )
-ATTACK_DELAY = 0.8
 
 [node name="ChaseAttackState" parent="StateMachine" instance=ExtResource( 9 )]
 script = ExtResource( 15 )
-CHASE_ATTACK_DELAY = 0.3
 CHASE_PATTERN_DELAY = 4
 
 [node name="RetreatAttackState" parent="StateMachine" instance=ExtResource( 14 )]
 script = ExtResource( 12 )
-ATTACK_DELAY = 0.8
 
 [node name="attack_queue" type="Node2D" parent="."]
 script = ExtResource( 17 )

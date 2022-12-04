@@ -6,7 +6,7 @@ onready var attack_cooldown_timer = $AttackCooldownTimer
 
 
 export var CHASE_ATTACK_DELAY = 0.3
-export var CHASE_PATTERN_DELAY = 4
+export var CHASE_PATTERN_DELAY = 6
 
 # Determines the movement of the enemy
 func get_velocity(delta: float) -> Vector2:
@@ -21,10 +21,6 @@ func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(CHASE_ATTACK_DELAY)
         enemy.fire(600, 5, 1.2, 1.2)
-        
-
-        
-    
 
 
 # Receives events from the `_unhandled_input()` callback.

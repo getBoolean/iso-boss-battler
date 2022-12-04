@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
     enemy.player = enemy.playerDetectionZone.player
     
     # Move towards player and shoot
-    if enemy.player != null:
+    if enemy.see_player():
         enemy.velocity = get_velocity(delta)
         attack(delta)
         generate_pattern()
@@ -87,8 +87,3 @@ func generate_pattern():
         pattern_cooldown_timer.start(PATTERN_DELAY)
         var pattern_type = enemy.attack_queue.fire_pattern()
         var _pattern = enemy.spawn_projectile_generator(pattern_type)
-        #if enemy.PHASE == 2:
-         #   if pattern_type == 1:
-          #      var _pattern2 = enemy.spawn_projectile_generator(2)
-           # elif pattern_type == 2 or pattern_type == 3:
-            #    var _pattern2 = enemy.spawn_projectile_generator(1)
