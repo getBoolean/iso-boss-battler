@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/OptionsMenu.gd" type="Script" id=3]
+[ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -143,7 +146,34 @@ min_value = -49.0
 max_value = 0.0
 ticks_on_borders = true
 
+[node name="down_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 3.0
+pitch_scale = 0.95
+bus = "SFX"
+
+[node name="up_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 3.0
+bus = "SFX"
+
+[node name="hover_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 3.0
+bus = "SFX"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_button_down"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MasterVolContainer/MasterSlider" to="." method="_on_MasterSlider_drag_ended"]
+[connection signal="drag_started" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MasterVolContainer/MasterSlider" to="." method="_on_MasterSlider_drag_started"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MasterVolContainer/MasterSlider" to="." method="_on_MasterSlider_mouse_entered"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MasterVolContainer/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolContainer/MusicSlider" to="." method="_on_MusicSlider_drag_ended"]
+[connection signal="drag_started" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolContainer/MusicSlider" to="." method="_on_MusicSlider_drag_started"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolContainer/MusicSlider" to="." method="_on_MusicSlider_mouse_entered"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolContainer/SFXSlider" to="." method="_on_SFXSlider_drag_ended"]
+[connection signal="drag_started" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolContainer/SFXSlider" to="." method="_on_SFXSlider_drag_started"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolContainer/SFXSlider" to="." method="_on_SFXSlider_mouse_entered"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolContainer/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
