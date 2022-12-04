@@ -8,6 +8,100 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "EnemyState",
+"class": "ActivateState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
+}, {
+"base": "Node2D",
+"class": "AttackQueue",
+"language": "GDScript",
+"path": "res://Scripts/attack_queue.gd"
+}, {
+"base": "EnemyState",
+"class": "AttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/AttackState.gd"
+}, {
+"base": "AttackState",
+"class": "ChaseAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "DeadState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/DeadState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyEntity",
+"language": "GDScript",
+"path": "res://Scripts/Enemy_entity.gd"
+}, {
+"base": "State",
+"class": "EnemyState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/EnemyState.gd"
+}, {
+"base": "AttackState",
+"class": "KeepDistanceAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.gd"
+}, {
+"base": "EnemyState",
+"class": "NuetralState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player_Movement.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerDetectionZone",
+"language": "GDScript",
+"path": "res://Scripts/Player_detection_zone.gd"
+}, {
+"base": "AttackState",
+"class": "RetreatAttackState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/StateMachine.gd"
+}, {
+"base": "EnemyState",
+"class": "TransformState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd"
+} ]
+_global_script_class_icons={
+"ActivateState": "",
+"AttackQueue": "",
+"AttackState": "",
+"ChaseAttackState": "",
+"DeadState": "",
+"EnemyEntity": "",
+"EnemyState": "",
+"KeepDistanceAttackState": "",
+"NuetralState": "",
+"Player": "",
+"PlayerDetectionZone": "",
+"RetreatAttackState": "",
+"State": "",
+"StateMachine": "",
+"TransformState": ""
+}
+
 [application]
 
 config/name="MyProj"

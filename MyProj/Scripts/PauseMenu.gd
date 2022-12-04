@@ -1,7 +1,7 @@
 extends Control
 var mainMenuScene = load("res://Scenes/StartMenu.tscn")
 onready var root = get_tree().current_scene
-onready var fg_layer = root.get_node("Foreground Layer")
+onready var fg_layer = root.get_node("ForegroundLayer")
 
 func _input(event):
     if event.is_action_pressed("pause_game") && get_tree().paused:

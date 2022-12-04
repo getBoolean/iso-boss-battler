@@ -1,15 +1,26 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Assets/Art/TestAssets/Character_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_entity.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player_detection_zone.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Art/TestAssets/boss_sprites_phase_2/golem_boss_phase2.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/DeadState.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/AttackState.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/attack_queue.gd" type="Script" id=14]
+[ext_resource path="res://Assets/SFX/boss/boss_ouch.wav" type="AudioStream" id=15]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1419.96
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 56, 112 )
+extents = Vector2( 56, 114.5 )
 
 [sub_resource type="RectangleShape2D" id=8]
 
@@ -455,31 +466,28 @@ script = ExtResource( 2 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -108 )
+position = Vector2( 5, -126 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 11
 
 [node name="Player_detection_zone" type="Area2D" parent="."]
-visible = false
-position = Vector2( 0, -107 )
 script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
-position = Vector2( 0, -107 )
+position = Vector2( 0, -108 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 8 )
+position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 4.5 )
+position = Vector2( 0, -10 )
 shape = SubResource( 8 )
 
 [node name="Label" type="Label" parent="."]
@@ -495,7 +503,7 @@ uppercase = true
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -84 )
+position = Vector2( 5, -98 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 45 )
 animation = "Idle"
@@ -509,6 +517,43 @@ anims/Phase_Change = SubResource( 67 )
 anims/RESET = SubResource( 49 )
 anims/Spawn = SubResource( 50 )
 
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="DeadState" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="NuetralState" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="ActivateState" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="TransformState" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="AttackState" parent="StateMachine" instance=ExtResource( 11 )]
+
+[node name="ChaseAttackState" parent="StateMachine" instance=ExtResource( 8 )]
+
+[node name="KeepDistanceAttackState" parent="StateMachine" instance=ExtResource( 10 )]
+
+[node name="RetreatAttackState" parent="StateMachine" instance=ExtResource( 13 )]
+
+[node name="BossVisibilityNotif" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 8, -110 )
+scale = Vector2( 10.4, 3.2 )
+
+[node name="ouch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -12.0
+bus = "SFX"
+
+[node name="attack_queue" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
 [connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Area2D" to="StateMachine" method="_on_Area2D_area_entered"]
+[connection signal="screen_entered" from="BossVisibilityNotif" to="StateMachine" method="_on_BossVisibilityNotif_screen_entered"]

@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
@@ -10,7 +11,7 @@ signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
-signal you_won(_difference)
+signal boss_died(_difference)
 signal paused()
 
 # Load the projectile scene/node
@@ -38,10 +39,11 @@ export var MAX_CHARGE = 4
 export var BASE_MAGIC_DAMAGE = 5
 export var MANA_REGEN_RATE = 0.1
 export var MANA_REGEN_HIT_COOLDOWN = 2
+export var MAGIC_DAMAGE_NORMALIZER = 15
 
 var is_Alive = true
 # Timer duration
-export var fire_delay_rate = 0.3
+export var fire_delay_rate = 0.05
 
 var is_paused = false
 var has_won = false
@@ -108,6 +110,7 @@ func _physics_process(_delta : float) -> void:
         $IdleSprite.hide()
         $DeathSprite.hide()
         dash.start_dash($RunSprite, DASH_DURATION, direction)
+        $dash_sfx.play()
         $RunSprite.hide()
         $IdleSprite.show()
         $DeathSprite.hide()
@@ -164,6 +167,10 @@ func shoot():
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
+    projectile.damage = 3
+    projectile.speed = 400
+    $attack1_sfx.play()
+    projectile.look_at(get_global_mouse_position())
 
 func magic_attack(amount):
     # Check if player has atleast 1% mana left
@@ -179,15 +186,12 @@ func magic_attack(amount):
         var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
         get_parent().add_child(magic_attack_projectile)
         magic_attack_projectile.projectile_owner = "Player"
-        magic_attack_projectile.damageMultiplier = (BASE_MAGIC_DAMAGE * amount)/15
-        print("DAMAGE:",(BASE_MAGIC_DAMAGE * amount)/15)
+        magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
         PLAYER_CUR_MP = PLAYER_CUR_MP - amount
 
     print("CURR MP2:",PLAYER_CUR_MP)
-    
-
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
@@ -203,6 +207,7 @@ func damage_player(damage):
         emit_signal("player_health_updated", new_hp, PLAYER_CUR_HP)
         # play damage animation        
         PLAYER_CUR_HP = new_hp
+    # If Player gets hit start the mana regen cooldown timer
     mana_regen_timer.start(MANA_REGEN_HIT_COOLDOWN)
         
 
@@ -245,11 +250,12 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 func _on_Area2D_area_entered(area):
      if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
+        var damage = area.get_parent().damage
         area.get_parent().queue_free()
-        damage_player(5)
+        damage_player(damage)
 
 
 func _on_Enemy_entity_boss_died(_difference):
-    has_won = true
-    emit_signal("you_won", _difference)
-    pass # Replace with function body.
+    if is_Alive && not has_won:
+        has_won = true
+        emit_signal("boss_died", _difference)

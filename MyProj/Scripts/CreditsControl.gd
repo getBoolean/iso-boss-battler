@@ -86,7 +86,11 @@ func finish():
 
 func add_line():
     var new_line = line.duplicate()
-    new_line.text = section.pop_front()
+    var next_line = section.pop_front()
+    if next_line == null:
+        new_line.text = "\n"
+    else:
+        new_line.text = next_line
     lines.append(new_line)
     if curr_line == 0:
         new_line.add_color_override("font_color", TITLE_COLOR)

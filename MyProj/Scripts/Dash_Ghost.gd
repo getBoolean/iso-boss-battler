@@ -7,5 +7,3 @@ func _ready():
 
 func _on_Tween_tween_completed(_object, _key):
     queue_free()
-    
-    

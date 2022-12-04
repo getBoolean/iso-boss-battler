@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/ProjectileGenerator/projectile_spawner.gd" type="Script" id=2]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Rotator" type="Sprite" parent="."]
+scale = Vector2( 0.276042, 0.270833 )
+z_index = 1
+
+[node name="lifetime" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

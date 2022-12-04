@@ -11,6 +11,9 @@ onready var sfx_slider = $MarginContainer/VBoxContainer/MarginContainer/VBoxCont
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    master_slider.set_value(AudioServer.get_bus_volume_db(Global.AudioTracks.MASTER))
+    music_slider.set_value(AudioServer.get_bus_volume_db(Global.AudioTracks.MUSIC))
+    sfx_slider.set_value(AudioServer.get_bus_volume_db(Global.AudioTracks.SFX))
     pass # Replace with function body.
 
 

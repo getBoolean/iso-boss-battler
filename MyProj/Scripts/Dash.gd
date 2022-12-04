@@ -1,6 +1,6 @@
 extends Node2D
 
-const dash_delay = 0.8
+const dash_delay = 0.5
 onready var duration_timer = $dash_duration
 onready var ghost_timer = $ghost_timer
 onready var dust_trail = $dust_trail
@@ -31,14 +31,14 @@ func instance_ghost():
     get_parent().get_parent().add_child(ghost)
     
     ghost.global_position.x = global_position.x
-    ghost.global_position.y = global_position.y - 30
+    ghost.global_position.y = global_position.y - 38
     ghost.texture = sprite.texture
     ghost.vframes = sprite.vframes
     ghost.hframes = sprite.hframes
     ghost.frame = sprite.frame
     ghost.flip_h = sprite.flip_h
-    ghost.scale.x = sprite.scale.x/2
-    ghost.scale.y = sprite.scale.y/2
+    ghost.scale.x = sprite.scale.x/2.5
+    ghost.scale.y = sprite.scale.y/2.5
     
 func is_dashing():
     return !duration_timer.is_stopped()
