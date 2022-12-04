@@ -229,6 +229,8 @@ func kill_player(_difference):
         _animation_player.play(Global.PLAYER_DEATH)
         yield(_animation_player,"animation_finished")
         emit_signal("player_died", _difference)
+        if get_tree().get_current_scene().name == "Level1":
+            Global.player_died_level1 = true
 
 # passes signal through player to the UI
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):
