@@ -34,6 +34,8 @@ func physics_update(delta: float) -> void:
         enemy.velocity = get_velocity(delta)
         attack(delta)
         generate_pattern()
+    else:
+        enemy.velocity = Vector2.ZERO
         
 
     # Flip sprite
