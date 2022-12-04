@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -16,8 +16,10 @@
 [ext_resource path="res://Assets/SFX/player/35_Miss_Evade_02.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
+[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=17]
 [ext_resource path="res://Assets/Art/Projectiles/Ball of ice.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/charge_shine_anchor.gd" type="Script" id=19]
+[ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=20]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -163,6 +165,16 @@ bus = "SFX"
 [node name="charge_shine_anchor" type="Node2D" parent="."]
 position = Vector2( 0, -41 )
 script = ExtResource( 19 )
+
+[node name="laser_charge" type="AudioStreamPlayer" parent="charge_shine_anchor"]
+stream = ExtResource( 20 )
+volume_db = -16.0
+bus = "SFX"
+
+[node name="laser_fire" type="AudioStreamPlayer" parent="charge_shine_anchor"]
+stream = ExtResource( 17 )
+volume_db = -12.0
+bus = "SFX"
 
 [node name="shine" type="AnimatedSprite" parent="charge_shine_anchor"]
 visible = false

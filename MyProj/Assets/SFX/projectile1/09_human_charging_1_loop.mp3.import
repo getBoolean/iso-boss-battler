@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/09_human_charging_1_loop.mp3-063ce2b934cc1646935f19c7087ca03f.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3"
+dest_files=[ "res://.import/09_human_charging_1_loop.mp3-063ce2b934cc1646935f19c7087ca03f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

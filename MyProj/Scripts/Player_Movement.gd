@@ -7,6 +7,9 @@ onready var mana_regen_timer = $mana_regeneration_timer
 
 onready var charge_shiney = $charge_shine_anchor/shine
 onready var charge_anchor = $charge_shine_anchor
+onready var charge_sfx = $charge_shine_anchor/laser_charge
+onready var second_shot_sfx = $charge_shine_anchor/laser_fire
+
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -112,12 +115,14 @@ func _physics_process(_delta : float) -> void:
         charged_timer.start(MAX_CHARGE)
         charge_shiney.visible = true
         charge_shiney.play()
+        charge_sfx.play()
     
     # Calculate elapsed time of timer
     # Max charge can be 25(mana cost per second) * 4(elapsed time) = 100
     if Input.is_action_just_released("secondary_fire"):
         charge_shiney.visible = false
         charge_shiney.stop()
+        charge_sfx.stop()
         var charge = MAX_CHARGE - round(charged_timer.get_time_left())
         charged_timer.stop()
         var mana_cost  = ATTACK_MANA_COST * round(charge)
@@ -172,6 +177,7 @@ func magic_attack(amount):
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
         magic_attack_projectile.look_at(get_global_mouse_position())
+        second_shot_sfx.play()
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
