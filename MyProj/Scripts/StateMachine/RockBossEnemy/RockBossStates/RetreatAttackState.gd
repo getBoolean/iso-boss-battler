@@ -53,7 +53,7 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var time = rng.randi_range(3, 5)
+    var time = rng.randi_range(2, 3.5)
     state_timer.start(time)
     direction_offset = rng.randf_range(-0.25, 0.25)
 
