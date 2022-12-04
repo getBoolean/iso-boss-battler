@@ -26,7 +26,7 @@ export var ACCELERATION = 300
 export var FRICTION = 400
 export var MAX_SPEED = 115
 #Object references to boss attributes
-onready var playerDetectionZone: PlayerDetectionZone = $Player_detection_zone
+onready var playerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
 onready var PHASE = 1
 onready var phase_changed = 0
