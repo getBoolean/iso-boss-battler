@@ -49,6 +49,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/NuetralState.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player_Movement.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerDetectionZone",
+"language": "GDScript",
+"path": "res://Scripts/Player_detection_zone.gd"
+}, {
 "base": "AttackState",
 "class": "RetreatAttackState",
 "language": "GDScript",
@@ -78,6 +88,8 @@ _global_script_class_icons={
 "EnemyState": "",
 "KeepDistanceAttackState": "",
 "NuetralState": "",
+"Player": "",
+"PlayerDetectionZone": "",
 "RetreatAttackState": "",
 "State": "",
 "StateMachine": "",

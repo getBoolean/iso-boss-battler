@@ -26,7 +26,7 @@ export var ACCELERATION = 300
 export var FRICTION = 400
 export var MAX_SPEED = 115
 #Object references to boss attributes
-onready var playerDetectionZone = $Player_detection_zone
+onready var playerDetectionZone: PlayerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
 onready var PHASE = 1
 onready var phase_changed = 0
@@ -41,33 +41,31 @@ func _on_Enemy_entity_tree_entered():
     var error = connect("boss_health_updated", get_node("../Player"), "_on_Enemy_entity_boss_health_updated")
     if error:
         print("connection boss_health updated in enemy entity: error")
-    else:
-        pass
-        
 
 
 func see_player():
     if playerDetectionZone.can_see_player():
         player = playerDetectionZone.player
-        if player:
+        if player.is_Alive:
             return true
         return false
 
         
 func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
-    var projectile = PROJECTILE_SCENE.instance()
-    get_parent().add_child(projectile)
-    projectile.projectile_owner = "Enemy_entity"
-    projectile.position = global_position
-    projectile.position.y = projectile.position.y - 50
-    projectile.velocity = player.global_position - projectile.position
-    projectile.scale.x = scale_x
-    projectile.scale.y = scale_y
-    if (PHASE == 2):
-        damage = damage * 1.2
-    projectile.damage = damage
-    projectile.speed = speed
-    projectile.look_at(player.global_position)
+    if see_player():
+        var projectile = PROJECTILE_SCENE.instance()
+        get_parent().add_child(projectile)
+        projectile.projectile_owner = "Enemy_entity"
+        projectile.position = global_position
+        projectile.position.y = projectile.position.y - 50
+        projectile.velocity = player.global_position - projectile.position
+        projectile.scale.x = scale_x
+        projectile.scale.y = scale_y
+        if (PHASE == 2):
+            damage = damage * 1.2
+        projectile.damage = damage
+        projectile.speed = speed
+        projectile.look_at(player.global_position)
 
 
 func update_hp(new_health: float):
