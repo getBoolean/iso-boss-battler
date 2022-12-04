@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
@@ -10,7 +11,7 @@ signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
 signal player_died(_difference)
-signal you_won(_difference)
+signal boss_died(_difference)
 signal paused()
 
 # Load the projectile scene/node
@@ -230,4 +231,4 @@ func _on_Area2D_area_entered(area):
 func _on_Enemy_entity_boss_died(_difference):
     if is_Alive && not has_won:
         has_won = true
-        emit_signal("you_won", _difference)
+        emit_signal("boss_died", _difference)
