@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -16,10 +16,7 @@
 [ext_resource path="res://Assets/SFX/player/35_Miss_Evade_02.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
-[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=17]
-[ext_resource path="res://Assets/Art/Projectiles/Ball of ice.png" type="Texture" id=18]
-[ext_resource path="res://Scenes/charge_shine_anchor.gd" type="Script" id=19]
-[ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=20]
+[ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -35,30 +32,6 @@ extents = Vector2( 24, 44.875 )
 [sub_resource type="Animation" id=5]
 length = 0.001
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 128, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 256, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 384, 128, 128 )
-
-[sub_resource type="SpriteFrames" id=17]
-animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 7
 script = ExtResource( 1 )
@@ -72,6 +45,9 @@ fire_delay_rate = 0.5
 visible = false
 
 [node name="WinOverlay" parent="HUD" instance=ExtResource( 5 )]
+visible = false
+
+[node name="TransitionOverlay" parent="HUD" instance=ExtResource( 17 )]
 visible = false
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource( 13 )]
@@ -162,32 +138,12 @@ bus = "SFX"
 stream = ExtResource( 16 )
 bus = "SFX"
 
-[node name="charge_shine_anchor" type="Node2D" parent="."]
-position = Vector2( 0, -41 )
-script = ExtResource( 19 )
-
-[node name="laser_charge" type="AudioStreamPlayer" parent="charge_shine_anchor"]
-stream = ExtResource( 20 )
-volume_db = -16.0
-bus = "SFX"
-
-[node name="laser_fire" type="AudioStreamPlayer" parent="charge_shine_anchor"]
-stream = ExtResource( 17 )
-volume_db = -12.0
-bus = "SFX"
-
-[node name="shine" type="AnimatedSprite" parent="charge_shine_anchor"]
-visible = false
-position = Vector2( 42, -1 )
-scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 17 )
-
+[connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
 [connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
-[connection signal="you_won" from="." to="HUD/WinOverlay" method="_on_Player_you_won"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 [editable path="Dash"]

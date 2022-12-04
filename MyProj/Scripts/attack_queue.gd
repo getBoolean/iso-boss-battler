@@ -1,3 +1,4 @@
+class_name AttackQueue
 extends Node2D
 
 onready var queue = []
