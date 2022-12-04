@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "AttackQueue",
 "language": "GDScript",
 "path": "res://Scripts/attack_queue.gd"
@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player_detection_zone.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Scripts/Projectile_Movement.gd"
+}, {
 "base": "AttackState",
 "class": "RetreatAttackState",
 "language": "GDScript",
@@ -144,6 +149,7 @@ _global_script_class_icons={
 "NuetralState": "",
 "Player": "",
 "PlayerDetectionZone": "",
+"Projectile": "",
 "RetreatAttackState": "",
 "State": "",
 "StateMachine": "",

@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/RetreatAttackState.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/ChaseAttackState.gd" type="Script" id=15]
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/AttackState.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/attack_queue.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/attack_queue.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 41, 59.25 )
@@ -178,7 +178,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[node name="Enemy_entity_two" type="KinematicBody2D"]
+[node name="Enemy_entity" type="KinematicBody2D"]
 collision_mask = 7
 script = ExtResource( 2 )
 

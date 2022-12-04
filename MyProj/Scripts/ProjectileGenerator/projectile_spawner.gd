@@ -1,7 +1,7 @@
 extends Node2D
 
 #loads the projectile scene
-const projectile_scene = preload("res://Scenes/ProjectileGenerator/Enemy_Projectile.tscn")
+onready var projectile_scene: Resource
 #references to child nodes of timer and rotator
 onready var timer = $Timer
 onready var rotator = $Rotator
@@ -15,12 +15,13 @@ onready var r: float
 onready var life_length: float
 
 #initialize using arguments from constructor
-func init(rot, timer_arg, spawn_num, radius, life):
+func init(rot, timer_arg, spawn_num, radius, life, projectile_scn):
     rot_speed = rot
     timer_wait_time = timer_arg
     spawn_point_num = spawn_num
     r = radius
     life_length = life
+    projectile_scene = projectile_scn
 
 func _ready():
     #sets value on circle for spawn points
