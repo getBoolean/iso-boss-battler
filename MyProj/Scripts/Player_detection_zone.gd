@@ -1,7 +1,8 @@
+class_name PlayerDetectionZone
 extends Area2D
 
 
-var player = null
+var player: Player = null
 
 func can_see_player():
     return player

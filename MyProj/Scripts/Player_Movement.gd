@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 onready var timer_node = $fire_delay_timer
