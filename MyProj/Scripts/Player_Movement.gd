@@ -6,10 +6,10 @@ onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
 
-onready var charge_shiney = $charge_shine_anchor/shine
-onready var charge_anchor = $charge_shine_anchor
-onready var charge_sfx = $charge_shine_anchor/laser_charge
-onready var second_shot_sfx = $charge_shine_anchor/laser_fire
+onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
+onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
+onready var charge_sfx = $laser_charge
+onready var second_shot_sfx = $laser_fire
 
 
 signal player_health_updated(new_value, old_value)
@@ -85,7 +85,7 @@ func _process(_delta: float):
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
     if not is_Alive:
-        return
+        return    
         
     var currPos = get_global_position()
     if((get_global_mouse_position().x > currPos.x)):
