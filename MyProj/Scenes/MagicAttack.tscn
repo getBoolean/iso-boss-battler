@@ -51,10 +51,10 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="magic_area" type="Area2D" parent="."]
+[node name="damage_area" type="Area2D" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="magic_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
 position = Vector2( 334, -3 )
 scale = Vector2( 0.25, 0.25 )
 shape = SubResource( 11 )

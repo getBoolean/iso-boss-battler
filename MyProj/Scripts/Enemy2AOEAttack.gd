@@ -1,9 +1,8 @@
 class_name AOEAttack
-extends KinematicBody2D
+extends Attack
 
 onready var sprite: AnimatedSprite = $AnimatedSprite
-onready var hitbox: CollisionPolygon2D = $bullet_area/CollisionShape2D
-onready var collision: CollisionPolygon2D = $CollisionShape2D
+onready var hitbox: CollisionPolygon2D = $damage_area/CollisionShape2D
 onready var lower_delay_timer: Timer = $LowerDelayTimer
 onready var state: int = 0
 

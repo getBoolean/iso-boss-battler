@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Attack",
 "class": "AOEAttack",
 "language": "GDScript",
 "path": "res://Scripts/Enemy2AOEAttack.gd"
@@ -18,6 +18,11 @@ _global_script_classes=[ {
 "class": "ActivateState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://Scripts/Attack.gd"
 }, {
 "base": "Node2D",
 "class": "AttackQueue",
@@ -99,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.gd"
 }, {
+"base": "Attack",
+"class": "MovingAttack",
+"language": "GDScript",
+"path": "res://Scripts/MovingAttack.gd"
+}, {
 "base": "EnemyState",
 "class": "NuetralState",
 "language": "GDScript",
@@ -114,7 +124,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player_detection_zone.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "MovingAttack",
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://Scripts/Projectile_Movement.gd"
@@ -142,6 +152,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AOEAttack": "",
 "ActivateState": "",
+"Attack": "",
 "AttackQueue": "",
 "AttackState": "",
 "ChaseAttackState": "",
@@ -158,6 +169,7 @@ _global_script_class_icons={
 "GolemNeutralState": "",
 "GolemRetreatAttackState": "",
 "KeepDistanceAttackState": "",
+"MovingAttack": "",
 "NuetralState": "",
 "Player": "",
 "PlayerDetectionZone": "",

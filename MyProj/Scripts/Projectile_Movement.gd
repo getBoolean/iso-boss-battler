@@ -1,18 +1,16 @@
 class_name Projectile
-extends KinematicBody2D
-
-var velocity = Vector2()
-var speed = 550
-var projectile_owner = null
-var is_despawn = false
-var damage: float = 5
+extends MovingAttack
 
 const PROJECTILE_EXPLOSION = preload("res://Scenes/projectile1_explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     $projectile_despawn_timer.start()
-    pass
+    velocity = Vector2()
+    speed = 550
+    attack_owner = null
+    is_despawn = false
+    damage = 5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
