@@ -2,8 +2,8 @@
 class_name KeepDistanceAttackState
 extends AttackState
 
-onready var state_timer = $StateTimer
-onready var attack_cooldown_timer = $AttackCooldownTimer
+onready var state_timer: Timer = $StateTimer
+onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 export var ATTACK_DELAY: float = 0.8
 
@@ -34,14 +34,6 @@ func attack(_delta: float) -> void:
         attack_cooldown_timer.start(ATTACK_DELAY)
         enemy.fire(550, 5, 1.5, 1.5)
 
-#func generate_pattern(_delta: float) -> void:
-#   if pattern_cooldown_timer.is_stopped():
-#        pattern_cooldown_timer.start(PATTERN_DELAY)
-#        var pattern_type = enemy.attack_queue.fire_pattern()
-#        var _pattern = enemy.spawn_projectile_generator(pattern_type)
-        #if enemy.PHASE == 2:
-        #    var pattern_type_2 = enemy.attack_queue.fire_pattern()
-        #    var _pattern2 = enemy.spawn_projectile_generator(pattern_type_2)
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(event: InputEvent) -> void:
@@ -66,8 +58,8 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var time = rng.randi_range(10, 15)
-    state_timer.start(time)
+    var state_time = rng.randi_range(10, 15)
+    state_timer.start(state_time)
 
 
 # Called by the state machine before changing the active state. Use this function

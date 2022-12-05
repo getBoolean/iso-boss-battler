@@ -12,6 +12,12 @@ onready var PATTERN_DELAY = 8
 var damage_taken_recent = 0
 export var RETREAT_DAMAGE_TRIGGER: float = 30
 
+# If damage of charge attack exceeds this number, play different
+# sound effect for boss taking damage
+var ouch_dmg_threshold = 8
+onready var ouch_sfx = get_node("../../ouch")
+onready var big_ouch_sfx = get_node("../../big_ouch")
+
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
     pass
@@ -67,6 +73,11 @@ func exit() -> void:
 
 
 func damage_boss(damage) -> void:
+    if damage > ouch_dmg_threshold:
+        big_ouch_sfx.play()
+    else:
+        ouch_sfx.play()
+    
     if enemy.BOSS_CUR_HP <= damage:
         var difference = damage - enemy.BOSS_CUR_HP
         enemy.update_hp(0)

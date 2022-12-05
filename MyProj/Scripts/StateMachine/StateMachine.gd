@@ -8,10 +8,10 @@ extends Node
 signal transitioned(state_name)
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-export var initial_state := NodePath('NuetralState')
+# export var initial_state := NodePath('NuetralState')
 
 # The current active state. At the start of the game, we get the `initial_state`.
-onready var state: State = get_node(initial_state)
+onready var state: State = get_node('NuetralState')
 
 
 func _ready() -> void:
@@ -39,8 +39,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
     # Safety check, you could use an assert() here to report an error if the state name is incorrect.
     # We don't use an assert here to help with code reuse. If you reuse a state in different state machines
     # but you don't want them all, they won't be able to transition to states that aren't in the scene tree.
-    if not has_node(target_state_name):
-        return
+    
+    assert(has_node(target_state_name),"ERROR: Node '%s' Does Not Exist." % target_state_name)
 
     state.exit()
     state = get_node(target_state_name) as State

@@ -1,7 +1,7 @@
 extends Node2D
 
 #loads the projectile scene
-const projectile_scene = preload("res://Scenes/ProjectileGenerator/Enemy_Projectile.tscn")
+onready var projectile_scene: Resource
 #references to child nodes of timer and rotator
 onready var timer = $Timer
 onready var rotator = $Rotator
@@ -15,12 +15,13 @@ onready var r: float
 onready var life_length: float
 
 #initialize using arguments from constructor
-func init(rot, timer_arg, spawn_num, radius, life):
+func init(rot, timer_arg, spawn_num, radius, life, projectile_scn):
     rot_speed = rot
     timer_wait_time = timer_arg
     spawn_point_num = spawn_num
     r = radius
     life_length = life
+    projectile_scene = projectile_scn
 
 func _ready():
     #sets value on circle for spawn points
@@ -51,13 +52,15 @@ func _process(delta):
 
 func _on_Timer_timeout():
     for i in rotator.get_children():
-        var projectile = projectile_scene.instance()
-        get_tree().root.add_child(projectile)
+        var projectile: MovingAttack = projectile_scene.instance()
         projectile.position = i.global_position
         projectile.rotation = i.global_rotation
-        projectile.projectile_owner = "Enemy_entity"
+        projectile.attack_owner = "Enemy_entity"
         projectile.scale.x = 1
         projectile.scale.y = 1
+        var enemy_entity2 = get_parent()
+        var player_layer = enemy_entity2.get_parent()
+        player_layer.add_child(projectile)
 
 
 func _on_lifetime_timeout():

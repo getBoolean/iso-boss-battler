@@ -1,42 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Art/Projectiles/projectile1flying_frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Projectile_Movement.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 57.668, 28.5522 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.3527, 7.02007 )
-
-[node name="Node2D" type="KinematicBody2D"]
+[node name="Projectile" type="KinematicBody2D"]
 position = Vector2( -1.14905, -5.64645 )
 collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="bullet_area" type="Area2D" parent="."]
+[node name="damage_area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_area"]
-position = Vector2( -2.53036, 5.07497 )
-scale = Vector2( 0.25, 0.25 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="damage_area"]
+visible = false
+position = Vector2( 4.94905, 4.44645 )
+scale = Vector2( 1.75, 1.75 )
+polygon = PoolVector2Array( -15.3143, 0.685714, -5.02857, -3.88571, 0.685714, -3.88571, 3.54286, -1.02857, 3.54286, 1.25714, 0.685714, 4.68571, -5.02857, 4.68571 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 5.91631 )
 scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 1 )
-frame = 8
+frame = 3
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
 position = Vector2( -10.8157, 8.44883 )
 scale = Vector2( 0.6, 1.05 )
 rect = Rect2( -10, -10, 47.802, 13.746 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.46606, 5.16336 )
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 4.94905, 4.44645 )
+scale = Vector2( 1.75, 1.75 )
+polygon = PoolVector2Array( -15.3143, 0.685714, -5.02857, -3.31429, 0.685714, -3.31429, 3.54286, -1.02857, 3.54286, 1.82857, 0.685714, 4.11429, -5.02857, 4.11429 )
 
 [node name="projectile_despawn_timer" type="Timer" parent="."]
 wait_time = 2.5
