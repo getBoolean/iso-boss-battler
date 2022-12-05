@@ -8,10 +8,19 @@ onready var fall_timer = $PlayerLayer/Foliage/EntranceBlock/fall_timer
 onready var cam1 = $PlayerCamera
 
 onready var player = $PlayerLayer/Player
+onready var player_respawn_loc = $PlayerLayer/PlayerRespawnPos
 
 var BOSSROOM_ENTRANCE_HEIGHT = -1889
 
 var has_entered_bossroom = false
+
+
+func _on_Level1_ready():
+# if player has died at least once on level1, set the player's
+# location to the respawn location instead of the default start location
+    if Global.player_died_level1 == true:
+        player.position = player_respawn_loc.position
+    
 
 func _process(_delta):
     if player.position.y <= BOSSROOM_ENTRANCE_HEIGHT && has_entered_bossroom == false:
@@ -32,3 +41,6 @@ func _on_fall_timer_timeout():
     fall_sfx.play()
     
     
+
+
+

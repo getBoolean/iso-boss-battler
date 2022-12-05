@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Crosshair.tscn" type="PackedScene" id=2]
@@ -12,12 +12,38 @@
 [ext_resource path="res://Assets/Art/Environment/level2tiles/Props2.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Art/Environment/level2tiles/Wall2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/SFX/environment/06_door_close_1.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scripts/charge_shine_anchor.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Art/Projectiles/Ball of ice.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17, 4.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 768, 3.5 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 17.0
+} ]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 9 )
@@ -204,6 +230,17 @@ one_way_collision_margin = 5.0
 
 [node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
 scale = Vector2( 0.4, 0.4 )
+
+[node name="charge_shine_anchor" type="YSort" parent="PlayerLayer"]
+position = Vector2( 256.978, 286.601 )
+script = ExtResource( 13 )
+
+[node name="shine" type="AnimatedSprite" parent="PlayerLayer/charge_shine_anchor"]
+visible = false
+position = Vector2( 28.0474, -0.456787 )
+scale = Vector2( 0.14, 0.14 )
+frames = SubResource( 10 )
+offset = Vector2( -85, 0 )
 
 [node name="ForegroundLayer" type="Node2D" parent="."]
 

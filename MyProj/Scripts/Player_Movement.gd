@@ -6,6 +6,12 @@ onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
 
+onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
+onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
+onready var charge_sfx = $laser_charge
+onready var second_shot_sfx = $laser_fire
+
+
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
@@ -79,7 +85,7 @@ func _process(_delta: float):
 func _physics_process(_delta : float) -> void:
     # Flip sprite if mouse passes middle of the screen
     if not is_Alive:
-        return
+        return    
         
     var currPos = get_global_position()
     if((get_global_mouse_position().x > currPos.x)):
@@ -108,10 +114,16 @@ func _physics_process(_delta : float) -> void:
     # Start Timer node as soon as player holds down the secondary fire key
     if Input.is_action_just_pressed("secondary_fire"):
         charged_timer.start(MAX_CHARGE)
+        charge_shiney.visible = true
+        charge_shiney.play()
+        charge_sfx.play()
     
     # Calculate elapsed time of timer
     # Max charge can be 25(mana cost per second) * 4(elapsed time) = 100
     if Input.is_action_just_released("secondary_fire"):
+        charge_shiney.visible = false
+        charge_shiney.stop()
+        charge_sfx.stop()
         var charge = MAX_CHARGE - round(charged_timer.get_time_left())
         charged_timer.stop()
         var mana_cost  = ATTACK_MANA_COST * round(charge)
@@ -164,7 +176,9 @@ func magic_attack(amount):
         magic_attack_projectile.projectile_owner = "Player"
         magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
-        magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
+        #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
+        magic_attack_projectile.look_at(get_global_mouse_position())
+        second_shot_sfx.play()
     
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
@@ -215,6 +229,8 @@ func kill_player(_difference):
         _animation_player.play(Global.PLAYER_DEATH)
         yield(_animation_player,"animation_finished")
         emit_signal("player_died", _difference)
+        if get_tree().get_current_scene().name == "Level1":
+            Global.player_died_level1 = true
 
 # passes signal through player to the UI
 func _on_Enemy_entity_boss_health_updated(new_value, old_value):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=19]
+[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=20]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -136,6 +138,15 @@ bus = "SFX"
 
 [node name="foosteps_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+bus = "SFX"
+
+[node name="laser_charge" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -12.0
+bus = "SFX"
+
+[node name="laser_fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 bus = "SFX"
 
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
