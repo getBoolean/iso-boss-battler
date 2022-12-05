@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Art/Background/right12.png" type="Texture" id=10]
+
+[sub_resource type="Theme" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -50,7 +53,15 @@ creditsScene = ExtResource( 5 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 6 )
 color = Color( 0.176471, 0.0666667, 0.45098, 1 )
+
+[node name="Background_img" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -432.0
+margin_right = 68.0
+texture = ExtResource( 10 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
