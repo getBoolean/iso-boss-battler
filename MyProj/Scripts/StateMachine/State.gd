@@ -9,6 +9,8 @@ func transition_to(target_state_name: String, only_if_current: bool = false):
 
 func transition_to_with_msg(target_state_name: String, msg: Dictionary = {}, only_if_current: bool = false):
     var state_machine = get_parent()
+    assert(state_machine,"ERROR: Node Parent Does Not Exist.")
+    
     if state_machine && state_machine.has_method('transition_to') \
         && (not only_if_current || (self == state_machine.state)):
         state_machine.transition_to(target_state_name, msg)

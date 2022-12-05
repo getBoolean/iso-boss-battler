@@ -6,6 +6,7 @@ signal boss_died(difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
+const PROJECTILE_GEND_SCENE = preload("res://Scenes/ProjectileGenerator/Enemy_Projectile.tscn")
 
 # Load Projectile generator scene
 const GENERATOR_SCENE = preload("res://Scenes/ProjectileGenerator/projectile_spawner.tscn")
@@ -26,7 +27,7 @@ export var ACCELERATION = 300
 export var FRICTION = 400
 export var MAX_SPEED = 115
 #Object references to boss attributes
-onready var playerDetectionZone: PlayerDetectionZone = $Player_detection_zone
+onready var playerDetectionZone = $Player_detection_zone
 onready var enemy_sprite = $AnimatedSprite
 onready var PHASE = 1
 onready var phase_changed = 0
@@ -63,7 +64,7 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
 
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
-    projectile.projectile_owner = "Enemy_entity"
+    projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.position.y = projectile.position.y - 50
     projectile.velocity = player.global_position - projectile.position
@@ -101,9 +102,9 @@ func spawn_projectile_generator(pattern_type):
 func init_generator(pattern_type):
     var generator = GENERATOR_SCENE.instance()
     if pattern_type == 1:
-        generator.init(0,4,32,100,4)
+        generator.init(0,4,32,100,4,PROJECTILE_GEND_SCENE)
     elif pattern_type == 2:
-        generator.init(100,.2,2,100,4)
+        generator.init(100,.2,2,100,4,PROJECTILE_GEND_SCENE)
     elif pattern_type == 3:
-        generator.init(50,.1,4,100,4)
+        generator.init(50,.1,4,100,4,PROJECTILE_GEND_SCENE)
     return generator

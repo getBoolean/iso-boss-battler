@@ -25,6 +25,9 @@ func _on_Player_hit_boss(new_hp, _old_hp):
 func _on_ActivateState_show_boss_hp():
     whole_bar.visible = true
     
+func _on_ActivateState_show_boss_hp2():
+    whole_bar.visible = true    
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
     pass

@@ -158,7 +158,7 @@ func shoot():
     var projectile = PROJECTILE_SCENE.instance()
     timer_node.start(fire_delay_rate)
     get_parent().add_child(projectile)
-    projectile.projectile_owner = "Player"
+    projectile.attack_owner = "Player"
     
     projectile.position = $Node2D/ProjectileShootLoc.global_position
     projectile.velocity = get_global_mouse_position() - projectile.position
@@ -171,9 +171,9 @@ func magic_attack(amount):
     # Check if player has atleast 1% mana left
     # If mana is already 0 don't fire
     if(use_player_mp(amount) > 0):
-        var magic_attack_projectile = MAGIC_ATTACK_SCENE.instance()
+        var magic_attack_projectile: MovingAttack = MAGIC_ATTACK_SCENE.instance()
         get_parent().add_child(magic_attack_projectile)
-        magic_attack_projectile.projectile_owner = "Player"
+        magic_attack_projectile.attack_owner = "Player"
         magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
         magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
         #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
@@ -238,7 +238,7 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 
 func _on_Area2D_area_entered(area):
-     if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
+    if area.name == "damage_area" and area.get_parent().attack_owner == "Enemy_entity" and !dash.is_dashing():
         var damage = area.get_parent().damage
         area.get_parent().queue_free()
         damage_player(damage)

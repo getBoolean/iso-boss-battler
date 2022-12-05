@@ -1,16 +1,13 @@
-extends KinematicBody2D
+extends MovingAttack
 
-var velocity = Vector2()
-var speed = 0
-var projectile_owner = null
 var projectile_type = "MAGIC"
-var damage = 5
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    speed = 0
+    velocity = Vector2()
+    damage = 5
     $magic_sprite.play()
-    pass
 
 func _on_magic_sprite_animation_finished():
     queue_free()

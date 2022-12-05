@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Crosshair.tscn" type="PackedScene" id=2]
@@ -14,9 +14,10 @@
 [ext_resource path="res://Assets/SFX/environment/06_door_close_1.wav" type="AudioStream" id=12]
 [ext_resource path="res://Scripts/charge_shine_anchor.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Art/Projectiles/Ball of ice.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Enemy_Entity_Two.tscn" type="PackedScene" id=15]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17, 4.5 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.5, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 768, 3.5 )
@@ -79,10 +80,17 @@ tile_data = PoolIntArray( -1441725, 2, 0, -982981, 9, 0, -982970, 9, 0 )
 
 [node name="Foliage" type="YSort" parent="PlayerLayer"]
 
-[node name="Gate" type="Node2D" parent="PlayerLayer"]
+[node name="Wall" type="YSort" parent="PlayerLayer"]
 
-[node name="wall1" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
+[node name="gate" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( -32, -223 )
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( 0, -65 )
+region_enabled = true
+region_rect = Rect2( 416, 128, 64, 64 )
+
+[node name="wall1" type="Sprite" parent="PlayerLayer/Wall"]
 position = Vector2( -160, -223 )
 texture = ExtResource( 11 )
 centered = false
@@ -90,8 +98,7 @@ offset = Vector2( 0, -65 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall2" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
+[node name="wall2" type="Sprite" parent="PlayerLayer/Wall"]
 position = Vector2( -96, -223 )
 texture = ExtResource( 11 )
 centered = false
@@ -99,8 +106,7 @@ offset = Vector2( 0, -65 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall3" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
+[node name="wall3" type="Sprite" parent="PlayerLayer/Wall"]
 position = Vector2( 32, -223 )
 texture = ExtResource( 11 )
 centered = false
@@ -108,8 +114,7 @@ offset = Vector2( 0, -65 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall4" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
+[node name="wall4" type="Sprite" parent="PlayerLayer/Wall"]
 position = Vector2( 96, -223 )
 texture = ExtResource( 11 )
 centered = false
@@ -117,111 +122,89 @@ offset = Vector2( 0, -65 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall5" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
-position = Vector2( -160, -248 )
+[node name="wall5" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( -160, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall6" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
-position = Vector2( -96, -248 )
+[node name="wall6" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( -96, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall7" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
-position = Vector2( -32, -248 )
+[node name="wall7" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( -32, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall8" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
-position = Vector2( 32, -248 )
+[node name="wall8" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( 32, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wall9" type="Sprite" parent="PlayerLayer/Gate"]
-visible = false
-position = Vector2( 96, -248 )
+[node name="wall9" type="Sprite" parent="PlayerLayer/Wall"]
+position = Vector2( 96, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
-[node name="wallforeground" type="TileMap" parent="PlayerLayer/Gate"]
-show_behind_parent = true
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 4, 4 )
-cell_tile_origin = 2
-show_collision = true
-format = 1
-tile_data = PoolIntArray( -5570752, 0, 0, -5570744, 13, 0, -5570728, 13, 0, -5570712, 13, 0, -5570696, 13, 0, -5570680, 13, 0, -5570664, 13, 0, -5570648, 13, 0, -5570632, 13, 0, -5570616, 13, 0, -5570600, 12, 0, -5570584, 12, 0, -5570568, 12, 0, -5636088, 12, 0, -5636072, 12, 0, -5636056, 13, 0, -5636040, 13, 0, -5636024, 13, 0, -5636008, 13, 0, -5635992, 12, 0, -5635976, 13, 0, -5635960, 13, 0, -5635944, 12, 0, -5635928, 13, 0, -5635912, 2, 0, -4653248, 0, 0, -4653240, 13, 0, -4653224, 13, 0, -4653208, 13, 0, -4653192, 13, 0, -4653176, 13, 0, -4653160, 13, 0, -4653144, 13, 0, -4653128, 13, 0, -4653112, 13, 0, -4653096, 12, 0, -4653080, 12, 0, -4718584, 12, 0, -4718568, 12, 0, -4718552, 13, 0, -4718536, 13, 0, -4718520, 13, 0, -4718504, 13, 0, -4718488, 13, 0, -4718472, 13, 0, -4718456, 13, 0, -4718440, 13, 0, -4718424, 13, 0, -4718408, 2, 0 )
+[node name="Gate" type="YSort" parent="PlayerLayer/Wall"]
 
-[node name="boss_room_door" type="StaticBody2D" parent="PlayerLayer/Gate"]
-position = Vector2( 1, -279 )
-collision_layer = 2
-collision_mask = 9
-
-[node name="open_door" type="Sprite" parent="PlayerLayer/Gate/boss_room_door"]
-position = Vector2( -1, 28 )
+[node name="open_door" type="Sprite" parent="PlayerLayer/Wall/Gate"]
+position = Vector2( 0, -225 )
 texture = ExtResource( 10 )
+offset = Vector2( 0, -27 )
 region_enabled = true
 region_rect = Rect2( 16, 160, 64, 64 )
 
-[node name="closed_door" type="Sprite" parent="PlayerLayer/Gate/boss_room_door"]
+[node name="closed_door" type="Sprite" parent="PlayerLayer/Wall/Gate"]
 visible = false
-position = Vector2( -1, 30 )
+position = Vector2( 0, -224 )
 texture = ExtResource( 10 )
+offset = Vector2( 0, -29.5 )
 region_enabled = true
-region_rect = Rect2( 16, 96, 64, 64 )
+region_rect = Rect2( 16, 96, 64, 57.0908 )
 
-[node name="gate" type="Sprite" parent="PlayerLayer/Gate/boss_room_door"]
-position = Vector2( -33, 56 )
-texture = ExtResource( 3 )
-centered = false
-offset = Vector2( 0, -65 )
-region_enabled = true
-region_rect = Rect2( 416, 128, 64, 64 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerLayer/Gate/boss_room_door"]
-position = Vector2( -1, 50.5 )
-shape = SubResource( 1 )
-disabled = true
-one_way_collision_margin = 10.0
-
-[node name="door_shut" type="AudioStreamPlayer" parent="PlayerLayer/Gate/boss_room_door"]
+[node name="door_shut" type="AudioStreamPlayer" parent="PlayerLayer/Wall/Gate"]
 stream = ExtResource( 12 )
 volume_db = -3.0
 bus = "SFX"
 
-[node name="lower_wall_collision" type="StaticBody2D" parent="PlayerLayer/Gate"]
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayerLayer/Wall/Gate"]
+
+[node name="door" type="CollisionShape2D" parent="PlayerLayer/Wall/Gate/StaticBody2D"]
+position = Vector2( 0.5, -229 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="lower_wall_collision" type="StaticBody2D" parent="PlayerLayer/Wall"]
 position = Vector2( 0, -230 )
 collision_layer = 2
 collision_mask = 9
 
-[node name="left_side" type="CollisionPolygon2D" parent="PlayerLayer/Gate/lower_wall_collision"]
+[node name="left_side" type="CollisionPolygon2D" parent="PlayerLayer/Wall/lower_wall_collision"]
 position = Vector2( -43, -8 )
 polygon = PoolVector2Array( 27, 5, -713, 5, -714, -50, -717, -106, -725, -106, -725, 14, 27, 14 )
 
-[node name="right_side" type="CollisionPolygon2D" parent="PlayerLayer/Gate/lower_wall_collision"]
-position = Vector2( 97, -159 )
-polygon = PoolVector2Array( -81, 155, 660, 154, 660, 102, 663, 45, 671, 45, 671, 165, -81, 165 )
+[node name="right_side" type="CollisionPolygon2D" parent="PlayerLayer/Wall/lower_wall_collision"]
+position = Vector2( 97, -157 )
+polygon = PoolVector2Array( -81, 154, 660, 154, 660, 102, 663, 45, 671, 45, 669, 163, -81, 163 )
 
-[node name="top" type="CollisionShape2D" parent="PlayerLayer/Gate/lower_wall_collision"]
+[node name="top" type="CollisionShape2D" parent="PlayerLayer/Wall/lower_wall_collision"]
 position = Vector2( 0, -110.5 )
 shape = SubResource( 2 )
 disabled = true
@@ -230,6 +213,19 @@ one_way_collision_margin = 5.0
 
 [node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
 scale = Vector2( 0.4, 0.4 )
+
+[node name="RunSprite" parent="PlayerLayer/Player" index="1"]
+visible = false
+
+[node name="DeathSprite" parent="PlayerLayer/Player" index="2"]
+visible = false
+
+[node name="Camera2D" parent="PlayerLayer/Player" index="8"]
+position = Vector2( 80, 101 )
+scale = Vector2( 1, 1 )
+
+[node name="Enemy_entity" parent="PlayerLayer" instance=ExtResource( 15 )]
+position = Vector2( 0, -931 )
 
 [node name="charge_shine_anchor" type="YSort" parent="PlayerLayer"]
 position = Vector2( 256.978, 286.601 )
@@ -244,6 +240,15 @@ offset = Vector2( -85, 0 )
 
 [node name="ForegroundLayer" type="Node2D" parent="."]
 
+[node name="wallforeground" type="TileMap" parent="ForegroundLayer"]
+show_behind_parent = true
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 4, 4 )
+cell_tile_origin = 2
+show_collision = true
+format = 1
+tile_data = PoolIntArray( -5570752, 0, 0, -5570744, 13, 0, -5570728, 13, 0, -5570712, 13, 0, -5570696, 13, 0, -5570680, 13, 0, -5570664, 13, 0, -5570648, 13, 0, -5570632, 13, 0, -5570616, 13, 0, -5636056, 13, 0, -5636040, 13, 0, -5636024, 13, 0, -5636008, 13, 0, -5635992, 12, 0, -5635976, 13, 0, -5635960, 13, 0, -5635944, 12, 0, -5635928, 13, 0, -5635912, 2, 0, -4653248, 0, 0, -4653240, 13, 0, -4653224, 13, 0, -4653208, 13, 0, -4653192, 13, 0, -4653176, 13, 0, -4653160, 13, 0, -4653144, 13, 0, -4653128, 13, 0, -4653112, 13, 0, -4718552, 13, 0, -4718536, 13, 0, -4718520, 13, 0, -4718504, 13, 0, -4718488, 13, 0, -4718472, 13, 0, -4718456, 13, 0, -4718440, 13, 0, -4718424, 13, 0, -4718408, 2, 0 )
+
 [node name="Crosshair" parent="ForegroundLayer" instance=ExtResource( 2 )]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
@@ -252,3 +257,6 @@ zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 8 )
 
 [connection signal="tree_entered" from="PlayerCamera" to="PlayerCamera" method="_on_PlayerCamera_tree_entered"]
+
+[editable path="PlayerLayer/Player"]
+[editable path="PlayerLayer/Player/Dash"]
