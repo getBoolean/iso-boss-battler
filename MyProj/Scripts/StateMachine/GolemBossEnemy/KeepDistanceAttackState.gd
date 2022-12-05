@@ -37,7 +37,6 @@ func attack(_delta: float) -> void:
         attack_cooldown_timer.start(ATTACK_DELAY)
         enemy.fire(550, 5)
     if spike_wave_cooldown_timer.is_stopped():
-        print("attacking")
         enemy.spike_wave(spike_spawn_delay_timer)
         spike_wave_cooldown_timer.start(3)
 

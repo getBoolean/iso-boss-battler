@@ -34,9 +34,3 @@ visible = false
 position = Vector2( -3, 8 )
 scale = Vector2( 3.32812, 3.32812 )
 polygon = PoolVector2Array( -3.60563, -0.30047, 3.30516, -1.50235, 6.30986, -1.50235, 6.9108, -1.20188, 6.9108, 0.600939, 6.30986, 0.901409, 3.30516, 0.901409 )
-
-[node name="LowerDelayTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[connection signal="timeout" from="LowerDelayTimer" to="." method="_on_Timer_timeout"]
