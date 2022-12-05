@@ -3,40 +3,40 @@
 [ext_resource path="res://Assets/Art/Environment/level2tiles/Wall2.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( 0, 0, 32, 0, 32, 64, 0, 64 )
+points = PoolVector2Array( 0, 0.950005, 32, 0.950005, 32, 64, 0, 64 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 32, 7.9375, 24.0625, 7.9375, 24.0625, 0, 32, 0 )
+points = PoolVector2Array( 32, 6.9375, 25.0625, 7.0625, 24.9375, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 0, 0, 7.875, 0, 7.9375, 8, 0, 7.9375 )
+points = PoolVector2Array( 0, 0, 7.0625, 0, 7, 6.9375, 0, 7 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 32, 64, 0, 64, 0, 0, 32, 0 )
+points = PoolVector2Array( 32, 64, 0, 64, 0, 1.04688, 32, 0.984375 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 32, 64, 0, 64, 0, 0, 32, 0 )
+points = PoolVector2Array( 32, 64, 0, 64, 0, 1.13004, 32, 1.04002 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 32, 64, 0, 64, 0, 0, 32, 0 )
+points = PoolVector2Array( 32, 64, 0, 64, 0, 1.04002, 32, 1.13004 )
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 32, 64, 0, 64, 0, 0, 32, 0 )
+points = PoolVector2Array( 32, 64, 0, 64, 0, 0.96875, 32, 0.96875 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 7.9375, 7.9375, 7.9375, 32, 0, 32, 0, 0, 32, 0, 32, 7.9375 )
+points = PoolVector2Array( 7.01856, 6.83594, 6.95606, 32, 0, 32, 0, 0, 32, 0, 32, 6.89844 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 32, 7.9375, 0, 7.9375, 0, 0, 32, 0 )
+points = PoolVector2Array( 32, 6.9375, 0, 7.0625, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 32, 0, 32, 32, 24.0625, 32, 24.0625, 7.9375, 0, 7.9375, 0, 0 )
+points = PoolVector2Array( 32, 0, 32, 32, 25, 32, 24.9375, 6.94531, 0, 7.07031, 0, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 32, 32, 24.05, 32, 24.05, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 7.9375, 32, 0, 32, 0, 0, 7.9375, 0 )
+points = PoolVector2Array( 7.01856, 32, 0, 32, 0, 0, 6.95606, 0 )
 
 [resource]
 0/name = "Wall2.png 0"
