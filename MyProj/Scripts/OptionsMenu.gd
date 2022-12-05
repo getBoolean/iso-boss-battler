@@ -27,12 +27,18 @@ func _ready():
 
 
 func _on_BackButton_button_up():
-    up_sfx.play()
-    yield(up_sfx, "finished")
-    var error_code = get_tree().change_scene_to(main_menu)
-    if error_code != Global.SUCCESS_CODE:
-        print("[ERROR] Could not change scene to main game: ", error_code)
-    pass # Replace with function body.
+    var scene_name = get_tree().current_scene.name
+    if scene_name == "OptionsMenu":
+        up_sfx.play()
+        yield(up_sfx, "finished")
+        var error_code = get_tree().change_scene_to(main_menu)
+        if error_code != Global.SUCCESS_CODE:
+            print("[ERROR] Could not change scene to main game: ", error_code)
+    else:
+        up_sfx.play()
+        yield(up_sfx, "finished")
+        self.hide()
+    
 
 
 func _on_MasterSlider_value_changed(volume):

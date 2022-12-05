@@ -61,33 +61,33 @@ custom_constants/margin_left = 200
 custom_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 200.0
+margin_left = 135.0
 margin_top = 75.0
-margin_right = 1080.0
+margin_right = 1149.0
 margin_bottom = 642.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 147.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_constants/shadow_as_outline = 50
 custom_fonts/font = SubResource( 1 )
-text = "Game Title"
+text = "Varvatos Invasion"
 align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 151.0
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 567.0
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 89.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -95,11 +95,11 @@ custom_constants/margin_right = 50
 custom_constants/margin_left = 50
 
 [node name="bt_new_game" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
-size_flags_horizontal = 3
+size_flags_horizontal = 5
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
@@ -109,7 +109,7 @@ text = "New Game"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 109.0
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -117,8 +117,8 @@ custom_constants/margin_right = 50
 custom_constants/margin_left = 50
 
 [node name="bt_options" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -131,7 +131,7 @@ text = "Options"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 218.0
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 307.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -139,8 +139,8 @@ custom_constants/margin_right = 50
 custom_constants/margin_left = 50
 
 [node name="bt_credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -153,7 +153,7 @@ text = "Credits"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 327.0
-margin_right = 880.0
+margin_right = 1014.0
 margin_bottom = 416.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -161,8 +161,8 @@ custom_constants/margin_right = 50
 custom_constants/margin_left = 50
 
 [node name="bt_quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 3
