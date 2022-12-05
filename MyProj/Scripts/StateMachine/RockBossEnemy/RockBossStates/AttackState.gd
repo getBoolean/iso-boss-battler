@@ -77,7 +77,7 @@ func damage_boss(damage) -> void:
         big_ouch_sfx.play()
     else:
         ouch_sfx.play()
-    print("damage: %f" % damage)
+    
     if enemy.BOSS_CUR_HP <= damage:
         var difference = damage - enemy.BOSS_CUR_HP
         enemy.update_hp(0)
