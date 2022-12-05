@@ -24,3 +24,10 @@ func _process(_delta):
     if Input.is_action_just_released("primary_fire"):
         self.frame = 3
         self.playing = true
+    
+    if Input.is_action_pressed("primary_fire"): 
+        self.playing = false
+        self.frame = 0       
+    if Input.is_action_just_released("secondary_fire"):
+        self.frame = 3
+        self.playing = true
