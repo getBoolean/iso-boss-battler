@@ -62,8 +62,9 @@ func spike_wave(spawn_delay_timer: Timer, degree_size: float = 45, max_distance:
     for spike_number in range(1, spikes_per_line + 1):
         spawn_delay_timer.start()
         var distance = spike_number * spike_separator_distance
-        for line_number in range(1, spike_lines + 1):
+        for line_number in range(spike_lines):
             var line_angle = line_number * degrees_per_spike_line + start_angle
+            print(line_angle)
             var x = distance * cos(line_angle)
             var y = distance * sin(line_angle)
             var position = global_position + Vector2(x, y)
