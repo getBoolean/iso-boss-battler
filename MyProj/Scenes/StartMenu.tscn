@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=9]
-[ext_resource path="res://Assets/Art/Background/right12.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/Background/game_bg4.png" type="Texture" id=10]
 
 [sub_resource type="Theme" id=6]
 
@@ -50,18 +50,24 @@ script = ExtResource( 3 )
 introScene = ExtResource( 4 )
 creditsScene = ExtResource( 5 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = SubResource( 6 )
-color = Color( 0.176471, 0.0666667, 0.45098, 1 )
-
 [node name="Background_img" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -432.0
-margin_right = 68.0
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 369.0
+margin_bottom = 175.0
 texture = ExtResource( 10 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 369.0
+margin_bottom = 175.0
+theme = SubResource( 6 )
+color = Color( 0.0980392, 0.117647, 0.0705882, 0.705882 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0

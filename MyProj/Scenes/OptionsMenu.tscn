@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Art/Background/options_bg.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.490196 )
@@ -59,10 +60,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
 
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -176.0
+margin_right = 320.0
+margin_bottom = 184.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.447059, 0.458824, 0.105882, 1 )
+
+[node name="options_background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.176471, 0.0666667, 0.45098, 1 )
+margin_left = -320.0
+margin_top = -176.0
+margin_right = 320.0
+margin_bottom = 184.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0980392, 0.117647, 0.0705882, 0.705882 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
