@@ -7,6 +7,7 @@ signal boss_died(difference)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Enemy2Projectile.tscn")
+const SPIKE_ATTACK_SCENE = preload("res://Scenes/SpikeAttack/EnemySpikeAttack.tscn")
 const PROJECTILE_GEND_SCENE = preload("res://Scenes/ProjectileGenerator/Enemy2Projectile.tscn")
 
 # Load Projectile generator scene
@@ -44,18 +45,54 @@ func see_player():
             return true
         return false
 
-func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float = 1.5):
+
+func spike_wave(spawn_delay_timer: Timer, degree_size: float = 45, max_distance: float = 300, degrees_per_spike_line: float = 10, spike_separator_distance: float = 40):
+    assert(not degrees_per_spike_line == 0, "degrees_per_spike cannot be 0")
+    if not is_alive or not see_player():
+        return
+    
+    enemy_sprite.play("SpikeAttack")
+    var angle: float = global_position.angle_to(player.global_position)
+    var spike_lines = int(floor(degree_size/degrees_per_spike_line))
+    var spikes_per_line = int(floor(max_distance/spike_separator_distance))
+    
+    var angle_padding = fmod(degree_size, degrees_per_spike_line)/2
+    var start_angle = angle - degree_size/2 + angle_padding
+    
+    for spike_number in range(1, spikes_per_line + 1):
+        spawn_delay_timer.start()
+        var distance = spike_number * spike_separator_distance
+        for line_number in range(1, spike_lines + 1):
+            var line_angle = line_number * degrees_per_spike_line + start_angle
+            var x = distance * cos(line_angle)
+            var y = distance * sin(line_angle)
+            var position = global_position + Vector2(x, y)
+            spawnSpike(position)
+        yield(spawn_delay_timer, "timeout")
+
+
+func spawnSpike(position: Vector2, damage: float = 5.0, scale: Vector2 = Vector2(1, 1)):
+    if not is_alive:
+        return
+    
+    var attack: SpikeAttack = SPIKE_ATTACK_SCENE.instance()
+    attack.position = position
+    attack.damage = damage
+    attack.scale = scale
+    get_parent().add_child(attack)
+
+
+func fire(speed: float, damage: float = 5, scale: Vector2 = Vector2(1.5, 1.5)):
     if not is_alive or not see_player():
         return
     
     var projectile = PROJECTILE_SCENE.instance()
     enemy_sprite.play("PrimaryAttack")
     get_parent().add_child(projectile)
-    projectile.projectile_owner = "Enemy_entity"
+    projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.velocity = player.global_position - projectile.position
-    projectile.scale.x = scale_x
-    projectile.scale.y = scale_y
+    projectile.scale = scale
     projectile.damage = damage
     projectile.speed = speed
     projectile.look_at(player.global_position)

@@ -9,9 +9,9 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="bullet_area" type="Area2D" parent="."]
+[node name="damage_area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="bullet_area"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="damage_area"]
 visible = false
 position = Vector2( 4.94905, 4.44645 )
 scale = Vector2( 1.75, 1.75 )
@@ -21,7 +21,7 @@ polygon = PoolVector2Array( -15.3143, 0.685714, -5.02857, -3.88571, 0.685714, -3
 position = Vector2( 0, 5.91631 )
 scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 1 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

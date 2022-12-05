@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ActivateState.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://Scripts/Attack.gd"
+}, {
 "base": "Node2D",
 "class": "AttackQueue",
 "language": "GDScript",
@@ -94,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/KeepDistanceAttackState.gd"
 }, {
+"base": "Attack",
+"class": "MovingAttack",
+"language": "GDScript",
+"path": "res://Scripts/MovingAttack.gd"
+}, {
 "base": "EnemyState",
 "class": "NuetralState",
 "language": "GDScript",
@@ -109,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player_detection_zone.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "MovingAttack",
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://Scripts/Projectile_Movement.gd"
@@ -118,6 +128,11 @@ _global_script_classes=[ {
 "class": "RetreatAttackState",
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
+}, {
+"base": "Attack",
+"class": "SpikeAttack",
+"language": "GDScript",
+"path": "res://Scripts/SpikeAttack/EnemySpikeAttack.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -136,6 +151,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActivateState": "",
+"Attack": "",
 "AttackQueue": "",
 "AttackState": "",
 "ChaseAttackState": "",
@@ -152,11 +168,13 @@ _global_script_class_icons={
 "GolemNeutralState": "",
 "GolemRetreatAttackState": "",
 "KeepDistanceAttackState": "",
+"MovingAttack": "",
 "NuetralState": "",
 "Player": "",
 "PlayerDetectionZone": "",
 "Projectile": "",
 "RetreatAttackState": "",
+"SpikeAttack": "",
 "State": "",
 "StateMachine": "",
 "TransformState": ""

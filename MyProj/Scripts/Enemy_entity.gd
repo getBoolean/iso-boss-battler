@@ -64,7 +64,7 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
 
     var projectile = PROJECTILE_SCENE.instance()
     get_parent().add_child(projectile)
-    projectile.projectile_owner = "Enemy_entity"
+    projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.position.y = projectile.position.y - 50
     projectile.velocity = player.global_position - projectile.position

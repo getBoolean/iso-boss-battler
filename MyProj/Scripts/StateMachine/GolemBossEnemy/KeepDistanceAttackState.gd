@@ -3,6 +3,8 @@ extends GolemAttackState
 
 onready var state_timer = $StateTimer
 onready var attack_cooldown_timer = $AttackCooldownTimer
+onready var spike_wave_cooldown_timer: Timer = $SpikeWaveCooldownTimer
+onready var spike_spawn_delay_timer: Timer = $SpikeSpawnDelayTimer
 
 
 
@@ -33,8 +35,11 @@ func get_velocity(delta: float) -> Vector2:
 func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(ATTACK_DELAY)
-        enemy.fire(550, 5, 1.5, 1.5)
-
+        enemy.fire(550, 5)
+    if spike_wave_cooldown_timer.is_stopped():
+        print("attacking")
+        enemy.spike_wave(spike_spawn_delay_timer)
+        spike_wave_cooldown_timer.start(3)
 
 
 # Receives events from the `_unhandled_input()` callback.
@@ -60,8 +65,10 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var time = rng.randi_range(10, 15)
-    state_timer.start(time)
+    var state_time = rng.randi_range(10, 15)
+    state_timer.start(state_time)
+    var spike_cooldown_time = rng.randi_range(4, 6)
+    spike_wave_cooldown_timer.start(spike_cooldown_time)
 
 
 # Called by the state machine before changing the active state. Use this function
