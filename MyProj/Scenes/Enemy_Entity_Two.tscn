@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Assets/Art/Boss2/Golem_Armor_Full.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_Entity_Two.gd" type="Script" id=2]
@@ -20,10 +20,13 @@
 [ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/DeadState.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 41, 59.25 )
+extents = Vector2( 8.5, 1.5 )
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 602.894
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 18, 32.5 )
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 1 )
@@ -205,7 +208,7 @@ collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 8.25 )
+position = Vector2( -2.5, 44.5 )
 shape = SubResource( 5 )
 
 [node name="Player_detection_zone" type="Area2D" parent="."]
@@ -213,6 +216,7 @@ position = Vector2( 0, -107 )
 script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
+visible = false
 position = Vector2( -8, 136 )
 shape = SubResource( 4 )
 
@@ -228,8 +232,8 @@ frame = 35
 position = Vector2( 0, -108 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1, 116.25 )
-shape = SubResource( 5 )
+position = Vector2( -1, 122 )
+shape = SubResource( 31 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
@@ -282,8 +286,8 @@ rect_scale = Vector2( 7, 7 )
 uppercase = true
 
 [node name="BossVisibilityNotif" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 8, -110 )
-scale = Vector2( 10.4, 3.2 )
+position = Vector2( -1, -11 )
+scale = Vector2( 3.5, 1.1 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
