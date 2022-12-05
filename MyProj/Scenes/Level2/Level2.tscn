@@ -123,42 +123,42 @@ region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
 [node name="wall5" type="Sprite" parent="PlayerLayer/Wall"]
-position = Vector2( -160, -248 )
+position = Vector2( -160, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
 [node name="wall6" type="Sprite" parent="PlayerLayer/Wall"]
-position = Vector2( -96, -248 )
+position = Vector2( -96, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
 [node name="wall7" type="Sprite" parent="PlayerLayer/Wall"]
-position = Vector2( -32, -248 )
+position = Vector2( -32, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
 [node name="wall8" type="Sprite" parent="PlayerLayer/Wall"]
-position = Vector2( 32, -248 )
+position = Vector2( 32, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
 [node name="wall9" type="Sprite" parent="PlayerLayer/Wall"]
-position = Vector2( 96, -248 )
+position = Vector2( 96, -224 )
 texture = ExtResource( 11 )
 centered = false
-offset = Vector2( 0, -96 )
+offset = Vector2( 0, -120 )
 region_enabled = true
 region_rect = Rect2( 32, 288, 64, 64 )
 
@@ -214,6 +214,16 @@ one_way_collision_margin = 5.0
 [node name="Player" parent="PlayerLayer" instance=ExtResource( 1 )]
 scale = Vector2( 0.4, 0.4 )
 
+[node name="RunSprite" parent="PlayerLayer/Player" index="1"]
+visible = false
+
+[node name="DeathSprite" parent="PlayerLayer/Player" index="2"]
+visible = false
+
+[node name="Camera2D" parent="PlayerLayer/Player" index="8"]
+position = Vector2( 80, 101 )
+scale = Vector2( 1, 1 )
+
 [node name="Enemy_entity" parent="PlayerLayer" instance=ExtResource( 15 )]
 position = Vector2( 0, -931 )
 
@@ -247,3 +257,6 @@ zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 8 )
 
 [connection signal="tree_entered" from="PlayerCamera" to="PlayerCamera" method="_on_PlayerCamera_tree_entered"]
+
+[editable path="PlayerLayer/Player"]
+[editable path="PlayerLayer/Player/Dash"]
