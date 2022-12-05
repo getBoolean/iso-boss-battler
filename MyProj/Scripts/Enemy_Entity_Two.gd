@@ -16,6 +16,8 @@ onready var attack_queue = $attack_queue
 
 
 # Boss Health Values
+export var BOSS_MAX_HP = 200
+export onready var BOSS_CUR_HP = 200
 
 var player: Player = null
 

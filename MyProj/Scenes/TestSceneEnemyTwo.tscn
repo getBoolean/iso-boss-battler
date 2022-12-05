@@ -99,91 +99,91 @@ collision_layer = 4
 format = 1
 tile_data = PoolIntArray( -1048593, 64, 0, -1048592, 65, 0, -1048591, 65, 0, -1048590, 65, 0, -1048589, 65, 0, -1048588, 65, 0, -1048587, 65, 0, -1048586, 65, 0, -1048585, 65, 0, -1048584, 65, 0, -1048583, 65, 0, -1048582, 65, 0, -1048581, 65, 0, -1048580, 65, 0, -1048579, 65, 0, -1048578, 65, 0, -1048577, 65, 0, -1114112, 65, 0, -1114111, 65, 0, -1114110, 65, 0, -1114109, 65, 0, -1114108, 65, 0, -1114107, 65, 0, -1114106, 65, 0, -1114105, 65, 0, -1114104, 65, 0, -1114103, 65, 0, -1114102, 65, 0, -1114101, 65, 0, -1114100, 65, 0, -1114099, 65, 0, -1114098, 65, 0, -1114097, 65, 0, -1114096, 66, 0, -983057, 63, 0, -1048560, 67, 0, -917521, 63, 0, -983024, 67, 0, -851985, 63, 0, -917488, 67, 0, -786449, 63, 0, -851952, 67, 0, -720913, 63, 0, -786416, 67, 0, -655377, 63, 0, -720880, 67, 0, -589841, 63, 0, -589836, 536870978, 0, -589835, 536870977, 0, -589834, 536870977, 0, -589833, 536870977, 0, -589832, 536870977, 0, -589831, 536870977, 0, -589830, 536870977, 0, -589829, 536870976, 0, -655344, 67, 0, -524305, 63, 0, -524300, 536870979, 0, -524293, 536870975, 0, -589808, 67, 0, -458769, 63, 0, -458764, 536870979, 0, -458757, 536870975, 0, -524272, 67, 0, -393233, 63, 0, -393228, 536870979, 0, -393221, 536870975, 0, -458736, 67, 0, -327697, 63, 0, -327692, 536870979, 0, -327685, 536870975, 0, -393200, 67, 0, -262161, 63, 0, -262156, 536870974, 0, -262155, 536870970, 0, -262151, 58, 0, -262149, 536870972, 0, -327664, 67, 0, -196625, 63, 0, -262128, 67, 0, -131089, 63, 0, -196592, 67, 0, -65553, 63, 0, -131056, 67, 0, -17, 63, 0, -65520, 67, 0, 65519, 63, 0, 16, 67, 0, 131055, 63, 0, 65552, 67, 0, 196591, 63, 0, 131088, 67, 0, 262127, 63, 0, 196624, 67, 0, 327663, 63, 0, 262160, 67, 0, 393199, 63, 0, 327696, 67, 0, 458735, 63, 0, 393232, 67, 0, 524271, 63, 0, 458768, 67, 0, 589807, 63, 0, 524304, 67, 0, 655343, 63, 0, 589840, 67, 0, 720879, 63, 0, 655376, 67, 0, 786415, 63, 0, 720912, 67, 0, 851951, 63, 0, 786448, 67, 0, 917487, 63, 0, 851984, 67, 0, 983023, 63, 0, 917520, 67, 0, 1048559, 63, 0, 983056, 67, 0, 1114095, 63, 0, 1048592, 67, 0, 1179631, 60, 0, 1179632, 58, 0, 1179634, 58, 0, 1179636, 58, 0, 1179638, 58, 0, 1179640, 58, 0, 1179642, 58, 0, 1179644, 58, 0, 1179646, 53, 0, 1114113, 53, 0, 1114114, 57, 0, 1114116, 57, 0, 1114118, 57, 0, 1114120, 57, 0, 1114122, 57, 0, 1114124, 57, 0, 1114126, 58, 0, 1114128, 62, 0 )
 
-[node name="Player Layer" type="YSort" parent="."]
+[node name="PlayerLayer" type="YSort" parent="."]
 
-[node name="Foliage" type="YSort" parent="Player Layer"]
+[node name="Foliage" type="YSort" parent="PlayerLayer"]
 
-[node name="Trees" type="YSort" parent="Player Layer/Foliage"]
+[node name="Trees" type="YSort" parent="PlayerLayer/Foliage"]
 
-[node name="Tree1-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
+[node name="Tree1-1" parent="PlayerLayer/Foliage/Trees" instance=ExtResource( 5 )]
 position = Vector2( 368, 348 )
 
-[node name="Tree2-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 5 )]
+[node name="Tree2-1" parent="PlayerLayer/Foliage/Trees" instance=ExtResource( 5 )]
 position = Vector2( 470, 296 )
 
-[node name="Tree3-1" parent="Player Layer/Foliage/Trees" instance=ExtResource( 12 )]
+[node name="Tree3-1" parent="PlayerLayer/Foliage/Trees" instance=ExtResource( 12 )]
 position = Vector2( 425, 363 )
 
-[node name="ProjectileBlockingObstacles" type="YSort" parent="Player Layer/Foliage"]
+[node name="ProjectileBlockingObstacles" type="YSort" parent="PlayerLayer/Foliage"]
 
-[node name="Rock6-1" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
+[node name="Rock6-1" parent="PlayerLayer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -148, 211 )
 
-[node name="Rock6-2" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
+[node name="Rock6-2" parent="PlayerLayer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -115, 339 )
 
-[node name="Rock6-3" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
+[node name="Rock6-3" parent="PlayerLayer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 18 )]
 position = Vector2( -308, 275 )
 
-[node name="RockExtraLarge-1" parent="Player Layer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 22 )]
+[node name="RockExtraLarge-1" parent="PlayerLayer/Foliage/ProjectileBlockingObstacles" instance=ExtResource( 22 )]
 position = Vector2( -260, 110 )
 
-[node name="Bushes" type="YSort" parent="Player Layer/Foliage"]
+[node name="Bushes" type="YSort" parent="PlayerLayer/Foliage"]
 
-[node name="Bush1-1" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 8 )]
+[node name="Bush1-1" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 8 )]
 position = Vector2( 349, -187 )
 
-[node name="Bush1-2" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 8 )]
+[node name="Bush1-2" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 8 )]
 position = Vector2( 221, -155 )
 
-[node name="Bush1-3" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 8 )]
+[node name="Bush1-3" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 8 )]
 position = Vector2( 221, -123 )
 
-[node name="Bush2-1" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 9 )]
+[node name="Bush2-1" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 9 )]
 position = Vector2( 368, -166 )
 
-[node name="Bush2-2" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 9 )]
+[node name="Bush2-2" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 9 )]
 position = Vector2( 336, -134 )
 
-[node name="Bush3-1" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 10 )]
+[node name="Bush3-1" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 10 )]
 position = Vector2( 432, -233 )
 
-[node name="Bush3-2" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 10 )]
+[node name="Bush3-2" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 10 )]
 position = Vector2( 400, -137 )
 
-[node name="Bush3-3" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 10 )]
+[node name="Bush3-3" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 10 )]
 position = Vector2( 400, -105 )
 
-[node name="Bush3-4" parent="Player Layer/Foliage/Bushes" instance=ExtResource( 10 )]
+[node name="Bush3-4" parent="PlayerLayer/Foliage/Bushes" instance=ExtResource( 10 )]
 position = Vector2( 368, -105 )
 
-[node name="GrassTufts" type="YSort" parent="Player Layer/Foliage"]
+[node name="GrassTufts" type="YSort" parent="PlayerLayer/Foliage"]
 
-[node name="grasstuft1-1" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-1" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 400, -238 )
 
-[node name="grasstuft1-2" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-2" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 304, -174 )
 
-[node name="grasstuft1-3" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-3" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 272, 114 )
 
-[node name="grasstuft1-4" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-4" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 432, 146 )
 
-[node name="grasstuft1-5" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-5" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 144, 274 )
 
-[node name="grasstuft1-6" parent="Player Layer/Foliage/GrassTufts" instance=ExtResource( 11 )]
+[node name="grasstuft1-6" parent="PlayerLayer/Foliage/GrassTufts" instance=ExtResource( 11 )]
 position = Vector2( 240, 402 )
 
-[node name="Player" parent="Player Layer" instance=ExtResource( 7 )]
+[node name="Player" parent="PlayerLayer" instance=ExtResource( 7 )]
 scale = Vector2( 0.4, 0.4 )
 
-[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player Layer/Player"]
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="PlayerLayer/Player"]
 remote_path = NodePath("../../../Player Camera")
 
-[node name="Enemy_entity_two" parent="Player Layer" instance=ExtResource( 27 )]
+[node name="Enemy_entity_two" parent="PlayerLayer" instance=ExtResource( 27 )]
 position = Vector2( 237, -6 )
 
 [node name="ForegroundLayer" type="Node2D" parent="."]
@@ -197,5 +197,5 @@ scale = Vector2( 0.4, 0.4 )
 current = true
 zoom = Vector2( 0.6, 0.6 )
 
-[connection signal="boss_died" from="Player Layer/Enemy_entity_two" to="Player Layer/Player" method="_on_Enemy_entity_boss_died"]
-[connection signal="boss_health_updated" from="Player Layer/Enemy_entity_two" to="Player Layer/Player" method="_on_Enemy_entity_boss_health_updated"]
+[connection signal="boss_died" from="PlayerLayer/Enemy_entity_two" to="PlayerLayer/Player" method="_on_Enemy_entity_boss_died"]
+[connection signal="boss_health_updated" from="PlayerLayer/Enemy_entity_two" to="PlayerLayer/Player" method="_on_Enemy_entity_boss_health_updated"]
