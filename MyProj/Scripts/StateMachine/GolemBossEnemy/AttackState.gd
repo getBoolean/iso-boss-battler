@@ -27,10 +27,12 @@ func physics_update(delta: float) -> void:
     enemy.player = enemy.playerDetectionZone.player
     
     # Move towards player and shoot
-    if enemy.see_player():
+    if enemy.see_player() and enemy.is_alive:
         enemy.velocity = get_velocity(delta)
         attack(delta)
         generate_pattern()
+    else:
+        enemy.velocity = Vector2.ZERO
 
     # Flip sprite
     if enemy.velocity.x > 0:
