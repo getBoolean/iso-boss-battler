@@ -53,12 +53,14 @@ func _process(delta):
 func _on_Timer_timeout():
     for i in rotator.get_children():
         var projectile = projectile_scene.instance()
-        get_tree().root.add_child(projectile)
         projectile.position = i.global_position
         projectile.rotation = i.global_rotation
         projectile.projectile_owner = "Enemy_entity"
         projectile.scale.x = 1
         projectile.scale.y = 1
+        var enemy_entity2 = get_parent()
+        var player_layer = enemy_entity2.get_parent()
+        player_layer.add_child(projectile)
 
 
 func _on_lifetime_timeout():
