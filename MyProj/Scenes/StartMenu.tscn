@@ -26,7 +26,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0314837, 0.00545805, 0.00545805, 0.686275 )
+bg_color = Color( 0.0313726, 0.00392157, 0.00392157, 0.686275 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -58,13 +58,13 @@ anchor_bottom = 1.0
 size_flags_horizontal = 4
 custom_constants/margin_right = 200
 custom_constants/margin_top = 75
-custom_constants/margin_left = 200
+custom_constants/margin_left = 135
 custom_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 132.0
+margin_left = 135.0
 margin_top = 75.0
-margin_right = 1146.0
+margin_right = 1149.0
 margin_bottom = 642.0
 size_flags_horizontal = 0
 size_flags_vertical = 6
@@ -91,12 +91,12 @@ margin_right = 1014.0
 margin_bottom = 89.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_new_game" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
-margin_left = 50.0
-margin_right = 964.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 7
@@ -113,12 +113,12 @@ margin_right = 1014.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_options" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
-margin_left = 50.0
-margin_right = 964.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 7
@@ -135,12 +135,12 @@ margin_right = 1014.0
 margin_bottom = 307.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4"]
-margin_left = 50.0
-margin_right = 964.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 7
@@ -157,12 +157,12 @@ margin_right = 1014.0
 margin_bottom = 416.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
-margin_left = 50.0
-margin_right = 964.0
+margin_left = 150.0
+margin_right = 864.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 3
