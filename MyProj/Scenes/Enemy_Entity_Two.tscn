@@ -204,20 +204,22 @@ tracks/0/keys = {
 }
 
 [node name="Enemy_entity" type="KinematicBody2D"]
+position = Vector2( 0, 2 )
 collision_mask = 7
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( -2.5, 44.5 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
 shape = SubResource( 5 )
 
 [node name="Player_detection_zone" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -107 )
 script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
 visible = false
-position = Vector2( -8, 136 )
+position = Vector2( -1, 154 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -232,10 +234,11 @@ frame = 35
 position = Vector2( 0, -108 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -1, 122 )
+position = Vector2( -1, 79 )
 shape = SubResource( 31 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -44 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 26 )
 animation = "Death"
@@ -274,6 +277,7 @@ script = ExtResource( 12 )
 script = ExtResource( 18 )
 
 [node name="attack_queue" type="Node2D" parent="."]
+position = Vector2( 0, -55 )
 script = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="."]
@@ -286,7 +290,7 @@ rect_scale = Vector2( 7, 7 )
 uppercase = true
 
 [node name="BossVisibilityNotif" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -1, -11 )
+position = Vector2( 0, -60 )
 scale = Vector2( 3.5, 1.1 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
