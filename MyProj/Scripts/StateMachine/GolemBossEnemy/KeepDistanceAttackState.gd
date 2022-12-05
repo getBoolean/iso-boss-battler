@@ -9,6 +9,7 @@ onready var spike_spawn_delay_timer: Timer = $SpikeSpawnDelayTimer
 
 
 export var ATTACK_DELAY = 0.8
+export var SPIKE_WAVE_DELAY = 3
 
 export var MAX_FOLLOW_DISTANCE: float = 150
 export var MIN_FOLLOW_DISTANCE: float = 100
@@ -38,7 +39,7 @@ func attack(_delta: float) -> void:
         enemy.fire(550, 5)
     if spike_wave_cooldown_timer.is_stopped():
         enemy.spike_wave(spike_spawn_delay_timer)
-        spike_wave_cooldown_timer.start(3)
+        spike_wave_cooldown_timer.start(SPIKE_WAVE_DELAY)
 
 
 # Receives events from the `_unhandled_input()` callback.
