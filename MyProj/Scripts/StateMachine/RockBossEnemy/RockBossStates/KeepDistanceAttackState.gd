@@ -2,8 +2,8 @@
 class_name KeepDistanceAttackState
 extends AttackState
 
-onready var state_timer = $StateTimer
-onready var attack_cooldown_timer = $AttackCooldownTimer
+onready var state_timer: Timer = $StateTimer
+onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 export var ATTACK_DELAY: float = 0.8
 
@@ -58,8 +58,8 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var time = rng.randi_range(10, 15)
-    state_timer.start(time)
+    var state_time = rng.randi_range(10, 15)
+    state_timer.start(state_time)
 
 
 # Called by the state machine before changing the active state. Use this function

@@ -1,4 +1,4 @@
-class_name AOEAttack
+class_name SpikeAttack
 extends Attack
 
 onready var sprite: AnimatedSprite = $AnimatedSprite
@@ -9,12 +9,15 @@ onready var state: int = 0
 func _ready():
     sprite.play("rising")
     yield(sprite, "animation_finished")
-    lower_delay_timer.start()
-    state = 1
-
-
-func _on_Timer_timeout():
+    #lower_delay_timer.start()
+    #state = 1
     sprite.play("lowering")
     yield(sprite, "animation_finished")
-    hitbox.disabled = true
     queue_free()
+
+
+#func _on_Timer_timeout():
+#    sprite.play("lowering")
+#    yield(sprite, "animation_finished")
+#    hitbox.disabled = true
+#    queue_free()

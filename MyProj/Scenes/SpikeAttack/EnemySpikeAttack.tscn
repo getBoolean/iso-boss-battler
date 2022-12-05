@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Art/Boss2/Golem_Armor_AttackA_FX.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://Scripts/Enemy2AOEAttack.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SpikeAttack/EnemySpikeAttack.gd" type="Script" id=2]
 
 [node name="Enemy2AOEAttack" type="KinematicBody2D"]
 position = Vector2( -4, -6 )
@@ -36,7 +36,7 @@ scale = Vector2( 3.32812, 3.32812 )
 polygon = PoolVector2Array( -3.60563, -0.30047, 3.30516, -1.50235, 6.30986, -1.50235, 6.9108, -1.20188, 6.9108, 0.600939, 6.30986, 0.901409, 3.30516, 0.901409 )
 
 [node name="LowerDelayTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="LowerDelayTimer" to="." method="_on_Timer_timeout"]

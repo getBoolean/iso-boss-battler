@@ -20,7 +20,7 @@ func get_velocity(delta: float) -> Vector2:
 func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(CHASE_ATTACK_DELAY)
-        enemy.fire(600, 5, 1.2, 1.2)
+        enemy.fire(600, 5, Vector2(1.2, 1.2))
 
 
 # Receives events from the `_unhandled_input()` callback.
