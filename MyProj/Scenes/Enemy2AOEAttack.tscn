@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Art/Boss2/Golem_Armor_AttackA_FX.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Scripts/Enemy2AOEAttack.gd" type="Script" id=2]
+
+[node name="Enemy2AOEAttack" type="KinematicBody2D"]
+position = Vector2( -4, -6 )
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="bullet_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="bullet_area"]
+visible = false
+position = Vector2( -3, 8 )
+scale = Vector2( 3.32812, 3.32812 )
+polygon = PoolVector2Array( -3.60563, -0.30047, 3.30516, -1.50235, 6.30986, -1.50235, 6.9108, -1.20188, 6.9108, 0.600939, 6.30986, 0.901409, 3.30516, 0.901409 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.69034, 6.77322 )
+scale = Vector2( 1.77908, 1.77908 )
+frames = ExtResource( 1 )
+animation = "rising"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -8.14187, 9.1785 )
+scale = Vector2( 0.770908, 0.753205 )
+rect = Rect2( -10, -10, 47.802, 13.746 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( -3, 8 )
+scale = Vector2( 3.32812, 3.32812 )
+polygon = PoolVector2Array( -3.60563, -0.30047, 3.30516, -1.50235, 6.30986, -1.50235, 6.9108, -1.20188, 6.9108, 0.600939, 6.30986, 0.901409, 3.30516, 0.901409 )
+
+[node name="LowerDelayTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="LowerDelayTimer" to="." method="_on_Timer_timeout"]

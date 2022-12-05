@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "AOEAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemy2AOEAttack.gd"
+}, {
 "base": "EnemyState",
 "class": "ActivateState",
 "language": "GDScript",
@@ -135,6 +140,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/TransformState.gd"
 } ]
 _global_script_class_icons={
+"AOEAttack": "",
 "ActivateState": "",
 "AttackQueue": "",
 "AttackState": "",
