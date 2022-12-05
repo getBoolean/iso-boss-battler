@@ -16,8 +16,6 @@ onready var attack_queue = $attack_queue
 
 
 # Boss Health Values
-export var BOSS_MAX_HP = 200
-export onready var BOSS_CUR_HP = 200
 
 var player: Player = null
 
@@ -49,6 +47,7 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
         return
     
     var projectile = PROJECTILE_SCENE.instance()
+    enemy_sprite.play("PrimaryAttack")
     get_parent().add_child(projectile)
     projectile.projectile_owner = "Enemy_entity"
     projectile.position = global_position
@@ -70,8 +69,8 @@ func update_hp(new_health: float):
 func kill(difference: float):
     MAX_SPEED = 0
     is_alive = false
-    anim_player.play("Death")
-    yield(anim_player,"animation_finished")
+    enemy_sprite.play("Death")
+    yield(enemy_sprite,"animation_finished")
     emit_signal("boss_died", difference)
             
 func spawn_projectile_generator(pattern_type): 
@@ -92,3 +91,13 @@ func init_generator(pattern_type):
     elif pattern_type == 3:
         generator.init(25,.1,8,100,4,PROJECTILE_GEND_SCENE)
     return generator
+
+
+func _on_Enemy_entity_tree_entered():
+    var error = connect("boss_health_updated", get_node("../Player"), "_on_Enemy_entity_boss_health_updated")
+    if error:
+        print("connection boss_health updated in enemy entity: error")
+
+    var error2 = connect("boss_died", get_node("../Player"), "_on_Enemy_entity_boss_died")
+    if error2:
+        print("connection boss_died updated in enemy entity: error")

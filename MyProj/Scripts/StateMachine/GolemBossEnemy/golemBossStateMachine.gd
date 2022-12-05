@@ -17,3 +17,7 @@ func _on_Area2D_area_entered(area: Area2D):
         area.get_parent().queue_free()
         if state.has_method('damage_boss'):
             state.damage_boss(area.get_parent().damage)
+
+func _on_BossVisibilityNotif_screen_entered():
+    if state.name == "NuetralState":
+        transition_to("ActivateState")

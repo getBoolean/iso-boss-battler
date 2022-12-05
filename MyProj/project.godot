@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/GolemBossEnemy/ChaseAttackState.gd"
 }, {
+"base": "EnemyTwoState",
+"class": "GolemDeadState",
+"language": "GDScript",
+"path": "res://Scripts/StateMachine/GolemBossEnemy/DeadState.gd"
+}, {
 "base": "GolemAttackState",
 "class": "GolemKeepDistanceAttackState",
 "language": "GDScript",
@@ -142,6 +147,7 @@ _global_script_class_icons={
 "GolemActivateState": "",
 "GolemAttackState": "",
 "GolemChaseAttack": "",
+"GolemDeadState": "",
 "GolemKeepDistanceAttackState": "",
 "GolemNeutralState": "",
 "GolemRetreatAttackState": "",

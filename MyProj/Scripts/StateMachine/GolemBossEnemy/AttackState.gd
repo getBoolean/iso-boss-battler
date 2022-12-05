@@ -79,7 +79,7 @@ func get_velocity(_delta: float) -> Vector2:
 
 
 func attack(_delta: float) -> void:
-    pass
+    enemy.anim_player.play("PrimaryAttack")
     
 
 func generate_pattern():
