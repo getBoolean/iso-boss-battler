@@ -5,6 +5,8 @@ onready var timer_node = $fire_delay_timer
 onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
+onready var shield_animator = $AnimatedSprite
+onready var shield_timer = $shield_timer
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -40,6 +42,8 @@ export var BASE_MAGIC_DAMAGE = 5
 export var MANA_REGEN_RATE = 0.1
 export var MANA_REGEN_HIT_COOLDOWN = 2
 export var MAGIC_DAMAGE_NORMALIZER = 15
+export var SHIELD_MANA_COST = 25
+export var SHIELD_TIME = 5
 
 var is_Alive = true
 # Timer duration
@@ -47,6 +51,9 @@ export var fire_delay_rate = 0.05
 
 var is_paused = false
 var has_won = false
+
+# Shield Status
+var isShieldActive = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -141,7 +148,19 @@ func _physics_process(_delta : float) -> void:
     var _movement = move_and_slide(linear_velocity)
     $Node2D.look_at(get_global_mouse_position())
 
-    
+    if Input.is_action_just_released("Activate_Shield") and !isShieldActive:
+        activateShield()
+
+
+func activateShield():
+    if(PLAYER_CUR_MP >= SHIELD_MANA_COST):
+        use_player_mp(SHIELD_MANA_COST)
+        shield_timer.start(SHIELD_TIME)
+        isShieldActive = true
+        shield_animator.show()
+        shield_animator.play("Activate Shield")
+        yield(shield_animator,"animation_finished")
+        
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
     timer_node.start(fire_delay_rate)
@@ -223,7 +242,11 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 func _on_Area2D_area_entered(area):
      if area.name == "bullet_area" and area.get_parent().projectile_owner == "Enemy_entity" and !dash.is_dashing():
-        var damage = area.get_parent().damage
+        var damage
+        if(!isShieldActive):
+            damage = area.get_parent().damage
+        else:
+            damage = 0
         area.get_parent().queue_free()
         damage_player(damage)
 
@@ -232,3 +255,9 @@ func _on_Enemy_entity_boss_died(_difference):
     if is_Alive && not has_won:
         has_won = true
         emit_signal("boss_died", _difference)
+
+# Called when shield timer has expired
+func _on_shield_timer_timeout():
+    isShieldActive = false
+    shield_animator.stop()
+    shield_animator.frame = 0

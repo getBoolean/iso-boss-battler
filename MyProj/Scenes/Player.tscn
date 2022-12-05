@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Art/Shield/192x192/pipo-btleffect207_192.png" type="Texture" id=18]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -31,6 +32,99 @@ extents = Vector2( 24, 44.875 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 576, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ null, SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": false,
+"name": "Activate Shield",
+"speed": 60.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 7
@@ -138,6 +232,17 @@ bus = "SFX"
 stream = ExtResource( 16 )
 bus = "SFX"
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1.13687e-13, -57 )
+scale = Vector2( 1.33333, 1.21094 )
+frames = SubResource( 26 )
+animation = "Activate Shield"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+
+[node name="shield_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
 [connection signal="not_enough_mp" from="." to="HUD/GUI" method="_on_Player_not_enough_mp"]
@@ -145,5 +250,6 @@ bus = "SFX"
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="shield_timer" to="." method="_on_shield_timer_timeout"]
 
 [editable path="Dash"]

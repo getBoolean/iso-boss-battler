@@ -44,7 +44,7 @@ func _on_Enemy_entity_tree_entered():
         print("connection boss_health updated in enemy entity: error")
 
     var error2 = connect("boss_died", get_node("../Player"), "_on_Enemy_entity_boss_died")
-    if error:
+    if error2:
         print("connection boss_died updated in enemy entity: error")
         
 
