@@ -43,7 +43,7 @@ export var MANA_REGEN_RATE = 0.1
 export var MANA_REGEN_HIT_COOLDOWN = 2
 export var MAGIC_DAMAGE_NORMALIZER = 15
 export var SHIELD_MANA_COST = 25
-export var SHIELD_TIME = 5
+export var SHIELD_TIME = 4.65
 
 var is_Alive = true
 # Timer duration
@@ -258,6 +258,9 @@ func _on_Enemy_entity_boss_died(_difference):
 
 # Called when shield timer has expired
 func _on_shield_timer_timeout():
+    # play backwards
+    shield_animator.play("Activate Shield", true)
+    yield(shield_animator,"animation_finished")
     isShieldActive = false
     shield_animator.stop()
     shield_animator.frame = 0
