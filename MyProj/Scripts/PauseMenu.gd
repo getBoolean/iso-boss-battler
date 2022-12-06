@@ -50,6 +50,10 @@ func _on_bt_resume_game_button_up():
     fg_layer.get_node("Crosshair").visible = true
     get_tree().paused = false
 
+func _on_bt_options_button_up():
+    up_sfx.play()
+    yield(up_sfx, "finished")
+    $OptionsMenu.show()
 
 func _on_Player_paused():
     show()
@@ -63,6 +67,8 @@ func _on_Player_paused():
 # SFX Down
 func _on_bt_resume_game_button_down():
     down_sfx.play()
+func _on_bt_options_button_down():
+    down_sfx.play()
 func _on_bt_quit_main_to_menu_button_down():
     down_sfx.play()
 func _on_bt_exit_to_desktop_button_down():
@@ -71,9 +77,18 @@ func _on_bt_exit_to_desktop_button_down():
 func _on_bt_resume_game_mouse_entered():
     if not down_sfx.playing:
         hover_sfx.play()
+func _on_bt_options_mouse_entered():
+    if not down_sfx.playing:
+        hover_sfx.play()
 func _on_bt_quit_main_to_menu_mouse_entered():
     if not down_sfx.playing:
         hover_sfx.play()
 func _on_bt_exit_to_desktop_mouse_entered():
     if not down_sfx.playing:    
         hover_sfx.play()
+
+
+
+
+
+
