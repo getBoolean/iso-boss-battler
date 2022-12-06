@@ -160,6 +160,7 @@ func activateShield():
         shield_animator.show()
         shield_animator.play("Activate Shield")
         yield(shield_animator,"animation_finished")
+        shield_animator.play("Idle")
         
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
@@ -258,9 +259,8 @@ func _on_Enemy_entity_boss_died(_difference):
 
 # Called when shield timer has expired
 func _on_shield_timer_timeout():
-    # play backwards
-    shield_animator.play("Activate Shield", true)
+    shield_animator.stop()
+    shield_animator.play("Deactivate Shield")
     yield(shield_animator,"animation_finished")
     isShieldActive = false
     shield_animator.stop()
-    shield_animator.frame = 0
