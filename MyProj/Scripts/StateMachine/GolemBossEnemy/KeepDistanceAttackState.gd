@@ -10,6 +10,7 @@ onready var spike_spawn_delay_timer: Timer = $SpikeSpawnDelayTimer
 
 export var ATTACK_DELAY = 0.8
 export var SPIKE_WAVE_DELAY = 3
+export var SPIKE_SPAWN_DELAY = 0.1
 
 export var MAX_FOLLOW_DISTANCE: float = 150
 export var MIN_FOLLOW_DISTANCE: float = 100
@@ -38,7 +39,15 @@ func attack(_delta: float) -> void:
         attack_cooldown_timer.start(ATTACK_DELAY)
         enemy.fire(550, 5)
     if spike_wave_cooldown_timer.is_stopped():
-        enemy.spike_wave(spike_spawn_delay_timer)
+        var degree_size: float = rng.randf_range(60, 80)
+        var max_distance: float = rng.randf_range(350, 450)
+        var degrees_per_spike_line: float = rng.randf_range(16, 24)
+        var spike_separator_distance: float = 40
+        var spawn_delay: float = SPIKE_SPAWN_DELAY
+        enemy.spike_wave(spike_spawn_delay_timer, degree_size,
+            max_distance, degrees_per_spike_line,
+            spike_separator_distance,
+            spawn_delay)
         spike_wave_cooldown_timer.start(SPIKE_WAVE_DELAY)
 
 
@@ -65,9 +74,9 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var state_time = rng.randi_range(10, 15)
+    var state_time = rng.randf_range(10, 15)
     state_timer.start(state_time)
-    var spike_cooldown_time = rng.randi_range(4, 6)
+    var spike_cooldown_time = rng.randf_range(4, 6)
     spike_wave_cooldown_timer.start(spike_cooldown_time)
 
 

@@ -46,27 +46,33 @@ func see_player():
         return false
 
 
-func spike_wave(spawn_delay_timer: Timer, degree_size: float = 45, max_distance: float = 300, degrees_per_spike_line: float = 10, spike_separator_distance: float = 40):
+func spike_wave(spawn_delay_timer: Timer, degree_size: float = 80,
+        max_distance: float = 300, degrees_per_spike_line: float = 16,
+        spike_separator_distance: float = 40,
+        spawn_delay: float = 0.1):
     assert(not degrees_per_spike_line == 0, "degrees_per_spike cannot be 0")
     if not is_alive or not see_player():
         return
     
     enemy_sprite.play("SpikeAttack")
-    var angle: float = global_position.angle_to(player.global_position)
+    var starting_position = Vector2(global_position.x, global_position.y)
+    starting_position.y = starting_position.y - 65
+    var boss_to_player_direction = (player.hitbox.global_position - starting_position).normalized()
+    starting_position = starting_position + boss_to_player_direction * 70
+    boss_to_player_direction = (player.hitbox.global_position - starting_position).normalized()
+    
     var spike_lines = int(floor(degree_size/degrees_per_spike_line))
     var spikes_per_line = int(floor(max_distance/spike_separator_distance))
     
     var angle_padding = fmod(degree_size, degrees_per_spike_line)/2
-    var start_angle = angle - degree_size/2 + angle_padding
-    
+    var start_direction = boss_to_player_direction.rotated(deg2rad(-degree_size/2 + angle_padding))
+
     for spike_number in range(1, spikes_per_line + 1):
-        spawn_delay_timer.start()
+        spawn_delay_timer.start(spawn_delay)
         var distance = spike_number * spike_separator_distance
         for line_number in range(spike_lines):
-            var line_angle = line_number * degrees_per_spike_line + start_angle
-            var x = distance * cos(line_angle)
-            var y = distance * sin(line_angle)
-            var position = global_position + Vector2(x, y)
+            var line_direction = start_direction.rotated(deg2rad(line_number * degrees_per_spike_line))
+            var position = starting_position + line_direction * distance
             spawnSpike(position)
         yield(spawn_delay_timer, "timeout")
 
@@ -76,6 +82,7 @@ func spawnSpike(position: Vector2, damage: float = 5.0, scale: Vector2 = Vector2
         return
     
     var attack: SpikeAttack = SPIKE_ATTACK_SCENE.instance()
+    attack.attack_owner = "Enemy_entity"
     attack.position = position
     attack.damage = damage
     attack.scale = scale
@@ -85,17 +92,18 @@ func spawnSpike(position: Vector2, damage: float = 5.0, scale: Vector2 = Vector2
 func fire(speed: float, damage: float = 5, scale: Vector2 = Vector2(1.5, 1.5)):
     if not is_alive or not see_player():
         return
-    
+
     var projectile = PROJECTILE_SCENE.instance()
     enemy_sprite.play("PrimaryAttack")
     get_parent().add_child(projectile)
     projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
-    projectile.velocity = player.global_position - projectile.position
+    projectile.position.y = projectile.position.y - 35
+    projectile.velocity = player.hitbox.global_position - projectile.position
     projectile.scale = scale
     projectile.damage = damage
     projectile.speed = speed
-    projectile.look_at(player.global_position)
+    projectile.look_at(player.hitbox.global_position)
         
         
 func update_hp(new_health: float):

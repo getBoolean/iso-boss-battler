@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/StateMachine/RockBossEnemy/RockBossStates/ChaseAttackState.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/ChaseAttackState.gd" type="Script" id=1]
 
 [node name="ChaseAttackState" type="Node"]
 script = ExtResource( 1 )
@@ -14,4 +14,11 @@ one_shot = true
 [node name="DamageTakenTimer" type="Timer" parent="."]
 
 [node name="PatternCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpikeWaveCooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpikeSpawnDelayTimer" type="Timer" parent="."]
 one_shot = true

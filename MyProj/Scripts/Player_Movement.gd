@@ -5,6 +5,7 @@ onready var timer_node = $fire_delay_timer
 onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
+onready var hitbox = $Area2D/CollisionShape2D
 
 onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
 onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
@@ -36,14 +37,14 @@ export var DASH_DURATION = .15
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
-export onready var PLAYER_CUR_HP = 100
+export onready var PLAYER_CUR_HP = 1000000000000
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
 export var ATTACK_MANA_COST = 25
 export var MAX_CHARGE = 4
 export var BASE_MAGIC_DAMAGE = 5
-export var MANA_REGEN_RATE = 0.1
+export var MANA_REGEN_RATE = 0.05
 export var MANA_REGEN_HIT_COOLDOWN = 2
 export var MAGIC_DAMAGE_NORMALIZER = 15
 
@@ -238,10 +239,20 @@ func _on_Enemy_entity_boss_health_updated(new_value, old_value):
 
 
 func _on_Area2D_area_entered(area):
-    if area.name == "damage_area" and area.get_parent().attack_owner == "Enemy_entity" and !dash.is_dashing():
-        var damage = area.get_parent().damage
-        area.get_parent().queue_free()
-        damage_player(damage)
+    # area is an attack node
+    if area.name != "damage_area" or not (area.get_parent() is Attack):
+        return
+        
+    var attack: Attack = area.get_parent()
+    # attack is from enemy and player is vulnerable
+    if attack.attack_owner != "Enemy_entity" or dash.is_dashing():
+        return
+    
+    # remove only moving attacks
+    if attack is MovingAttack:
+        attack.queue_free()
+    
+    damage_player(attack.damage)
 
 
 func _on_Enemy_entity_boss_died(_difference):
