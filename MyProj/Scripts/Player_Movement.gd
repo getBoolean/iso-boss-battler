@@ -5,6 +5,7 @@ onready var timer_node = $fire_delay_timer
 onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
+onready var hitbox = $Area2D/CollisionShape2D
 
 onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
 onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
@@ -36,7 +37,7 @@ export var DASH_DURATION = .15
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
-export onready var PLAYER_CUR_HP = 100
+export onready var PLAYER_CUR_HP = 1000000000000
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100

@@ -2,7 +2,7 @@
 class_name AttackState
 extends EnemyState
 
-var rng = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 onready var damage_taken_timer = $DamageTakenTimer
 onready var pattern_cooldown_timer = $PatternCooldownTimer

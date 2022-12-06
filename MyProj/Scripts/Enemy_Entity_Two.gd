@@ -56,8 +56,11 @@ func spike_wave(spawn_delay_timer: Timer, degree_size: float = 80,
     
     enemy_sprite.play("SpikeAttack")
     var starting_position = Vector2(global_position.x, global_position.y)
-    var boss_to_player_direction = (player.global_position - starting_position).normalized()
-
+    starting_position.y = starting_position.y - 65
+    var boss_to_player_direction = (player.hitbox.global_position - starting_position).normalized()
+    starting_position = starting_position + boss_to_player_direction * 70
+    boss_to_player_direction = (player.hitbox.global_position - starting_position).normalized()
+    
     var spike_lines = int(floor(degree_size/degrees_per_spike_line))
     var spikes_per_line = int(floor(max_distance/spike_separator_distance))
     
@@ -95,11 +98,12 @@ func fire(speed: float, damage: float = 5, scale: Vector2 = Vector2(1.5, 1.5)):
     get_parent().add_child(projectile)
     projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
-    projectile.velocity = player.global_position - projectile.position
+    projectile.position.y = projectile.position.y - 35
+    projectile.velocity = player.hitbox.global_position - projectile.position
     projectile.scale = scale
     projectile.damage = damage
     projectile.speed = speed
-    projectile.look_at(player.global_position)
+    projectile.look_at(player.hitbox.global_position)
         
         
 func update_hp(new_health: float):

@@ -67,14 +67,14 @@ func fire(speed: float, damage: float = 5, scale_x: float = 1.5, scale_y: float 
     projectile.attack_owner = "Enemy_entity"
     projectile.position = global_position
     projectile.position.y = projectile.position.y - 50
-    projectile.velocity = player.global_position - projectile.position
+    projectile.velocity = player.hitbox.global_position - projectile.position
     projectile.scale.x = scale_x
     projectile.scale.y = scale_y
     if (PHASE == 2):
         damage = damage * 1.2
     projectile.damage = damage
     projectile.speed = speed
-    projectile.look_at(player.global_position)
+    projectile.look_at(player.hitbox.global_position)
 
 
 func update_hp(new_health: float):
