@@ -17,6 +17,7 @@ onready var big_ouch_sfx = get_node("../../ouch_sfx2")
 
 
 var damage_taken_recent = 0
+var current_spawner: WeakRef = null
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
@@ -61,6 +62,8 @@ func enter(_msg := {}) -> void:
 func exit() -> void:
     damage_taken_timer.stop()
     damage_taken_recent = 0
+    if current_spawner and current_spawner.get_ref():
+        current_spawner.get_ref().stop()
 
 func damage_boss(damage) -> void:
     if damage > ouch_dmg_threshold:
@@ -96,7 +99,9 @@ func attack(_delta: float) -> void:
     
 
 func generate_pattern():
-    if pattern_cooldown_timer.is_stopped():
-        pattern_cooldown_timer.start(PATTERN_DELAY)
-        var pattern_type = enemy.attack_queue.fire_pattern()
-        var _pattern = enemy.spawn_projectile_generator(pattern_type)
+    if not pattern_cooldown_timer.is_stopped():
+        return
+    
+    pattern_cooldown_timer.start(PATTERN_DELAY)
+    var pattern_type = enemy.attack_queue.fire_pattern()
+    current_spawner = weakref(enemy.spawn_projectile_generator(pattern_type))

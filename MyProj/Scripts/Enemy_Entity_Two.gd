@@ -2,7 +2,7 @@ class_name EnemyEntityTwo
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
-signal boss_died(difference)
+signal boss_died(difference, is_last_boss)
 
 
 # Load the projectile scene/node
@@ -119,9 +119,9 @@ func kill(difference: float):
     enemy_sprite.play("Death")
     $death_sfx.play()
     yield(enemy_sprite,"animation_finished")
-    emit_signal("boss_died", difference)
+    emit_signal("boss_died", difference, true)
             
-func spawn_projectile_generator(pattern_type): 
+func spawn_projectile_generator(pattern_type) -> Spawner: 
     var generator = init_generator(pattern_type)
     #generator.init(rot,timer,spawn_num,radius,life)
     add_child(generator)
@@ -129,7 +129,7 @@ func spawn_projectile_generator(pattern_type):
     generator.global_position.y = generator.global_position.y - 50
     return generator
  
-func init_generator(pattern_type):
+func init_generator(pattern_type) -> Spawner:
     var generator = GENERATOR_SCENE.instance()
     
     if pattern_type == 1:
