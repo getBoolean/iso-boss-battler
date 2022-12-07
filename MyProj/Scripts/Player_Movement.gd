@@ -23,8 +23,9 @@ signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
 signal not_enough_mp()
 signal hit_boss(new_hp, old_hp)
-signal player_died(_difference)
-signal boss_died(_difference)
+signal player_died(difference)
+signal player_won(difference)
+signal boss_died(difference)
 signal paused()
 
 # Load the projectile scene/node
@@ -303,10 +304,17 @@ func _on_Area2D_area_entered(area):
     
 
 
-func _on_Enemy_entity_boss_died(_difference):
-    if is_Alive && not has_won:
-        has_won = true
-        emit_signal("boss_died", _difference)
+func _on_Enemy_entity_boss_died(difference: float, is_last_boss: bool) -> void:
+    if not is_Alive || has_won:
+        return
+    
+    has_won = true
+    if is_last_boss:
+        emit_signal("player_won", difference)
+        return
+        
+    emit_signal("boss_died", difference)
+
 
 # Called when shield timer has expired
 func _on_shield_timer_timeout():

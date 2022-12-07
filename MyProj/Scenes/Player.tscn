@@ -380,6 +380,7 @@ one_shot = true
 [connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
+[connection signal="player_won" from="." to="HUD/WinOverlay" method="_on_Player_player_won"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="shield_timer" to="." method="_on_shield_timer_timeout"]
 [connection signal="timeout" from="immunity/immunity_timer" to="immunity" method="_on_immunity_timer_timeout"]
