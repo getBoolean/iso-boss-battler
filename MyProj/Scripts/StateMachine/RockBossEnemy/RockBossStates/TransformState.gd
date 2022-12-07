@@ -27,6 +27,7 @@ func enter(_msg := {}) -> void:
     yield(enemy.anim_player,"animation_finished")
     enemy.MAX_SPEED = 125
     enemy.PHASE = 2
+    enemy.update_hp(enemy.BOSS_MAX_HP * 0.75)
     transition_to("ChaseAttackState")
 
 

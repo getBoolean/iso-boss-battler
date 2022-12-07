@@ -5,6 +5,8 @@ onready var timer_node = $fire_delay_timer
 onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
+onready var shield_animator = $ShieldAnimatedSprite
+onready var shield_timer = $shield_timer
 onready var hitbox = $Area2D/CollisionShape2D
 
 onready var immunity = $immunity
@@ -42,7 +44,7 @@ export var IMMUNE_DURATION = .25
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
-export onready var PLAYER_CUR_HP = 1000000000000
+export onready var PLAYER_CUR_HP = 100
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100
@@ -52,6 +54,8 @@ export var BASE_MAGIC_DAMAGE = 5
 export var MANA_REGEN_RATE = 0.05
 export var MANA_REGEN_HIT_COOLDOWN = 2
 export var MAGIC_DAMAGE_NORMALIZER = 15
+export var SHIELD_MANA_COST = 25
+export var SHIELD_TIME = 4.65
 
 var is_Alive = true
 # Timer duration
@@ -60,6 +64,9 @@ export var fire_delay_rate = 0.05
 var is_paused = false
 var has_won = false
 
+# Shield Status
+var is_shield_active = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
@@ -67,12 +74,10 @@ func _ready():
 func _process(_delta: float):
     if not is_Alive:
         return
-    # Check if the regen timer is stopped
+    
+    # Check if the regen timer is stopped and shield is not active
     # If stopped and player mana < 100 then regenrate mana
-    if(mana_regen_timer.get_time_left()<=0 && PLAYER_CUR_MP < PLAYER_MAX_MP):
-        var old_mp = PLAYER_CUR_MP
-        PLAYER_CUR_MP +=MANA_REGEN_RATE
-        emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
+    _mana_regen()
 
     if Input.is_action_pressed("ui_left") \
         or Input.is_action_pressed("ui_right") \
@@ -159,7 +164,35 @@ func _physics_process(_delta : float) -> void:
     var _movement = move_and_slide(linear_velocity)
     $Node2D.look_at(get_global_mouse_position())
 
+    if Input.is_action_just_released("Activate_Shield") and !is_shield_active:
+        activate_shield()
+
+
+# Check if the regen timer is stopped and shield is not active
+# If stopped and player mana < 100 then regenrate mana
+func _mana_regen():
+    if is_shield_active \
+        || mana_regen_timer.get_time_left() > 0 \
+        || PLAYER_CUR_MP >= PLAYER_MAX_MP:
+        return
     
+    var old_mp = PLAYER_CUR_MP
+    PLAYER_CUR_MP +=MANA_REGEN_RATE
+    if PLAYER_CUR_MP > PLAYER_MAX_MP:
+        PLAYER_CUR_MP = PLAYER_MAX_MP
+    emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
+
+
+func activate_shield():
+    if PLAYER_CUR_MP >= SHIELD_MANA_COST:
+        use_player_mp(SHIELD_MANA_COST)
+        shield_timer.start(SHIELD_TIME)
+        is_shield_active = true
+        shield_animator.show()
+        shield_animator.play("Activate Shield")
+        yield(shield_animator,"animation_finished")
+        shield_animator.play("Idle")
+        
 func shoot():
     var projectile = PROJECTILE_SCENE.instance()
     timer_node.start(fire_delay_rate)
@@ -173,19 +206,21 @@ func shoot():
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
 
-func magic_attack(amount):
+func magic_attack(mana_cost):
     # Check if player has atleast 1% mana left
     # If mana is already 0 don't fire
-    if(use_player_mp(amount) > 0):
-        var magic_attack_projectile: MovingAttack = MAGIC_ATTACK_SCENE.instance()
-        get_parent().add_child(magic_attack_projectile)
-        magic_attack_projectile.attack_owner = "Player"
-        magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
-        magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
-        #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
-        magic_attack_projectile.look_at(get_global_mouse_position())
-        second_shot_sfx.play()
+    var used_mana = use_player_mp(mana_cost)
+    if used_mana <= 0:
+        return
     
+    var magic_attack_projectile: MovingAttack = MAGIC_ATTACK_SCENE.instance()
+    get_parent().add_child(magic_attack_projectile)
+    magic_attack_projectile.attack_owner = "Player"
+    magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * used_mana)/MAGIC_DAMAGE_NORMALIZER
+    magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
+    magic_attack_projectile.look_at(get_global_mouse_position())
+    second_shot_sfx.play()
+
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
@@ -221,11 +256,11 @@ func use_player_mp(amount):
         # can't do anything, cause not enough mp
         emit_signal("not_enough_mp")
         return 0
-    else:
-        var new_mp = PLAYER_CUR_MP - amount
-        emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
-        PLAYER_CUR_MP = new_mp
-        return amount
+    
+    var new_mp = PLAYER_CUR_MP - amount
+    emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
+    PLAYER_CUR_MP = new_mp
+    return amount
 
 # kill_player():
 # animates the player's death, calls the end screen
@@ -261,6 +296,9 @@ func _on_Area2D_area_entered(area):
     if attack is MovingAttack:
         attack.queue_free()
     
+    if is_shield_active:
+        return
+    
     damage_player(attack.damage)
     
 
@@ -269,3 +307,11 @@ func _on_Enemy_entity_boss_died(_difference):
     if is_Alive && not has_won:
         has_won = true
         emit_signal("boss_died", _difference)
+
+# Called when shield timer has expired
+func _on_shield_timer_timeout():
+    shield_animator.stop()
+    shield_animator.play("Deactivate Shield")
+    yield(shield_animator,"animation_finished")
+    is_shield_active = false
+    shield_animator.stop()

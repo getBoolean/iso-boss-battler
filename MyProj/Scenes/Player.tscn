@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -17,9 +17,10 @@
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
-[ext_resource path="res://immunity.gd" type="Script" id=18]
-[ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=19]
-[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/Art/Shield/192x192/pipo-btleffect207_192.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Art/Shield/192x192/pipo-btleffect206h_192.png" type="Texture" id=19]
+[ext_resource path="res://immunity.gd" type="Script" id=22]
+[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=24]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -34,6 +35,209 @@ extents = Vector2( 24, 44.875 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 18 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 18 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 18 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 19 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 19 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 19 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 19 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 19 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 19 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 19 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 19 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 19 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 19 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 19 )
+region = Rect2( 576, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 19 )
+region = Rect2( 768, 384, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": false,
+"name": "Activate Shield",
+"speed": 24.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 24 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 20 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ), SubResource( 16 ), SubResource( 15 ), SubResource( 14 ), SubResource( 13 ), SubResource( 12 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), SubResource( 8 ), SubResource( 7 ), SubResource( 6 ), null ],
+"loop": false,
+"name": "Deactivate Shield",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 15.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 7
@@ -144,17 +348,28 @@ bus = "SFX"
 stream = ExtResource( 16 )
 bus = "SFX"
 
+[node name="ShieldAnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.470588 )
+position = Vector2( 1.13687e-13, -57 )
+scale = Vector2( 1.33333, 1.21094 )
+frames = SubResource( 26 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldAnimatedSprite"]
+
+[node name="shield_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="laser_charge" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
+stream = ExtResource( 24 )
 volume_db = -12.0
 bus = "SFX"
 
 [node name="laser_fire" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
+stream = ExtResource( 24 )
 bus = "SFX"
 
 [node name="immunity" type="Node2D" parent="."]
-script = ExtResource( 18 )
+script = ExtResource( 22 )
 
 [node name="immunity_timer" type="Timer" parent="immunity"]
 one_shot = true
@@ -166,6 +381,7 @@ one_shot = true
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="shield_timer" to="." method="_on_shield_timer_timeout"]
 [connection signal="timeout" from="immunity/immunity_timer" to="immunity" method="_on_immunity_timer_timeout"]
 
 [editable path="Dash"]
