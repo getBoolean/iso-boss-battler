@@ -18,3 +18,7 @@ func is_immune():
     return !immunity_timer.is_stopped()
 
 
+
+
+func _on_immunity_timer_timeout():
+    pass # Replace with function body.
