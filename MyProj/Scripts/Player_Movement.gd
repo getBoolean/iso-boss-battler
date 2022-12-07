@@ -12,6 +12,9 @@ onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
 onready var charge_sfx = $laser_charge
 onready var second_shot_sfx = $laser_fire
 
+onready var oof1 = $ouch_sfx/ouch1
+onready var oof2 = $ouch_sfx/ouch2
+onready var oof3 = $ouch_sfx/ouch3
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -185,6 +188,16 @@ func magic_attack(amount):
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
 func damage_player(damage):
+    var sfx_num = (randi() % 3) + 1
+    print(sfx_num)
+    match sfx_num:
+        1:
+            oof1.play()
+        2:
+            oof2.play()
+        3:
+            oof3.play()
+    
     if PLAYER_CUR_HP <= damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)

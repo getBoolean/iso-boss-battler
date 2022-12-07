@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -17,8 +17,11 @@
 [ext_resource path="res://Assets/SFX/projectile1/56_Attack_03.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/SFX/player/sfx_player_footsteps.mp3" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/SFX/player/poof2.wav" type="AudioStream" id=18]
 [ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=19]
 [ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=20]
+[ext_resource path="res://Assets/SFX/player/poof3.wav" type="AudioStream" id=21]
+[ext_resource path="res://Assets/SFX/player/poof1.wav" type="AudioStream" id=22]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -147,6 +150,26 @@ bus = "SFX"
 
 [node name="laser_fire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+bus = "SFX"
+
+[node name="ouch_sfx" type="Node" parent="."]
+
+[node name="ouch1" type="AudioStreamPlayer" parent="ouch_sfx"]
+stream = ExtResource( 22 )
+volume_db = -18.0
+pitch_scale = 0.9
+bus = "SFX"
+
+[node name="ouch2" type="AudioStreamPlayer" parent="ouch_sfx"]
+stream = ExtResource( 18 )
+volume_db = -19.0
+pitch_scale = 0.9
+bus = "SFX"
+
+[node name="ouch3" type="AudioStreamPlayer" parent="ouch_sfx"]
+stream = ExtResource( 21 )
+volume_db = -10.0
+pitch_scale = 0.9
 bus = "SFX"
 
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
