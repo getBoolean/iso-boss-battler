@@ -3,7 +3,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/ProjectileGenerator/pattern_projectile.gd" type="Script" id=2]
 
-
 [node name="pattern_projectile" type="Node2D"]
 script = ExtResource( 2 )
 

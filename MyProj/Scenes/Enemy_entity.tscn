@@ -83,22 +83,18 @@ atlas = ExtResource( 5 )
 region = Rect2( 300, 800, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 100, 0, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 200, 0, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 0, 100, 100 )
 
@@ -119,42 +115,34 @@ atlas = ExtResource( 5 )
 region = Rect2( 300, 0, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=51]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=52]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 100, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=53]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 200, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=54]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=55]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 400, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=56]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 500, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=57]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 600, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=58]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 700, 300, 100, 100 )
 
@@ -191,72 +179,58 @@ atlas = ExtResource( 5 )
 region = Rect2( 0, 300, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=31]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 800, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=32]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 200, 800, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=33]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 100, 800, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=34]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 800, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=35]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 900, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=36]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 800, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=37]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 700, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=38]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 600, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=39]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 500, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=40]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 400, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=41]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 300, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=42]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 200, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=43]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 100, 700, 100, 100 )
 
 [sub_resource type="AtlasTexture" id=44]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 700, 100, 100 )
 
@@ -551,18 +525,19 @@ stream = ExtResource( 15 )
 volume_db = -12.0
 bus = "SFX"
 
-[node name="death_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 17 )
-volume_db = -4.0
-bus = "SFX"
-
 [node name="big_ouch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -6.0
+volume_db = -12.0
 bus = "SFX"
 
 [node name="attack_queue" type="Node2D" parent="."]
 script = ExtResource( 14 )
+
+[node name="death_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -4.0
+pitch_scale = 1.2
+bus = "SFX"
 
 [connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
