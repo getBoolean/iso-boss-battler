@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/GolemBossEnemy/EnemyTwoState.gd"
 }, {
+"base": "Node2D",
+"class": "Generator",
+"language": "GDScript",
+"path": "res://Scripts/ProjectileGenerator/generator_creator.gd"
+}, {
 "base": "EnemyTwoState",
 "class": "GolemActivateState",
 "language": "GDScript",
@@ -129,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
 }, {
+"base": "Node2D",
+"class": "Spawner",
+"language": "GDScript",
+"path": "res://Scripts/ProjectileGenerator/projectile_spawner.gd"
+}, {
 "base": "Attack",
 "class": "SpikeAttack",
 "language": "GDScript",
@@ -160,6 +170,7 @@ _global_script_class_icons={
 "EnemyEntityTwo": "",
 "EnemyState": "",
 "EnemyTwoState": "",
+"Generator": "",
 "GolemActivateState": "",
 "GolemAttackState": "",
 "GolemChaseAttack": "",
@@ -174,6 +185,7 @@ _global_script_class_icons={
 "PlayerDetectionZone": "",
 "Projectile": "",
 "RetreatAttackState": "",
+"Spawner": "",
 "SpikeAttack": "",
 "State": "",
 "StateMachine": "",

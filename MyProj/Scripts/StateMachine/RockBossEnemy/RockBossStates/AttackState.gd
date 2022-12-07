@@ -11,6 +11,8 @@ onready var PATTERN_DELAY = 8
 
 var damage_taken_recent = 0
 export var RETREAT_DAMAGE_TRIGGER: float = 30
+var current_spawner_1: WeakRef = null
+var current_spawner_2: WeakRef = null
 
 # If damage of charge attack exceeds this number, play different
 # sound effect for boss taking damage
@@ -70,6 +72,10 @@ func enter(_msg := {}) -> void:
 func exit() -> void:
     damage_taken_timer.stop()
     damage_taken_recent = 0
+    if current_spawner_1 and current_spawner_1.get_ref():
+        current_spawner_1.get_ref().stop()
+    if current_spawner_2 and current_spawner_2.get_ref():
+        current_spawner_2.get_ref().stop()
 
 
 func damage_boss(damage) -> void:
@@ -107,12 +113,14 @@ func attack(_delta: float) -> void:
     
 
 func generate_pattern():
-    if pattern_cooldown_timer.is_stopped() and enemy.see_player():
-        pattern_cooldown_timer.start(PATTERN_DELAY)
-        var pattern_type = enemy.attack_queue.fire_pattern()
-        var _pattern = enemy.spawn_projectile_generator(pattern_type)
-        if enemy.PHASE == 2:
-            if pattern_type == 1:
-                var _pattern2 = enemy.spawn_projectile_generator(2)
-            elif pattern_type == 2 or pattern_type == 3:
-                var _pattern2 = enemy.spawn_projectile_generator(1)
+    if not pattern_cooldown_timer.is_stopped() or not enemy.see_player():
+        return
+        
+    pattern_cooldown_timer.start(PATTERN_DELAY)
+    var pattern_type = enemy.attack_queue.fire_pattern()
+    current_spawner_1 = weakref(enemy.spawn_projectile_generator(pattern_type))
+    if enemy.PHASE == 2:
+        if pattern_type == 1:
+            current_spawner_2 = weakref(enemy.spawn_projectile_generator(2))
+        elif pattern_type == 2 or pattern_type == 3:
+            current_spawner_2 = weakref(enemy.spawn_projectile_generator(1))
