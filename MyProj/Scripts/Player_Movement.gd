@@ -41,7 +41,7 @@ export var MOVE_SPEED = 175
 #player dash variables
 export var DASH_SPEED = 675
 export var DASH_DURATION = .15
-export var IMMUNE_DURATION = .25
+export var IMMUNE_DURATION = .35
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100

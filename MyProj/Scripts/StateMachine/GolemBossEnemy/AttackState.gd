@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 onready var damage_taken_timer = $DamageTakenTimer
 onready var pattern_cooldown_timer = $PatternCooldownTimer
 
-onready var PATTERN_DELAY = 6
+onready var PATTERN_DELAY = 10
 
 
 var damage_taken_recent = 0

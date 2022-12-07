@@ -22,7 +22,7 @@ func fire_pattern():
 func prioritize():
     var high_threat_count = 0
     for i in queue:
-        if queue[i] == 4 or queue[i] == 5:
+        if i == 4 or i == 5:
             high_threat_count += 1
     
     if high_threat_count == 0 :
