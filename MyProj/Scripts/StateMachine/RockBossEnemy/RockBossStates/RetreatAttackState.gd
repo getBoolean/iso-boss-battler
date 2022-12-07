@@ -8,8 +8,6 @@ onready var attack_cooldown_timer = $AttackCooldownTimer
 
 export var ATTACK_DELAY = 0.8
 
-
-
 var direction_offset: float = 0
 
 # Determines the movement of the enemy
@@ -27,15 +25,6 @@ func attack(_delta: float) -> void:
     if attack_cooldown_timer.is_stopped():
         attack_cooldown_timer.start(ATTACK_DELAY)
         enemy.fire(550, 5, 1.5, 1.5)
-
-#func generate_pattern(_delta: float) -> void:
- #   if pattern_cooldown_timer.is_stopped():
- #       pattern_cooldown_timer.start(PATTERN_DELAY)
-  #      var pattern_type = enemy.attack_queue.fire_pattern()
-  #      var _pattern = enemy.spawn_projectile_generator(pattern_type)
-        #if enemy.PHASE == 2:
-        #    var pattern_type_2 = enemy.attack_queue.fire_pattern()
-        #    var _pattern2 = enemy.spawn_projectile_generator(pattern_type_2)
 
 # Receives events from the `_unhandled_input()` callback.
 func handle_input(event: InputEvent) -> void:
@@ -62,7 +51,7 @@ func enter(msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     .enter(msg)
     rng.randomize()
-    var time = rng.randi_range(2, 3.5)
+    var time = rng.randf_range(2, 3.5)
     state_timer.start(time)
     direction_offset = rng.randf_range(-0.25, 0.25)
 

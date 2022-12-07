@@ -1,11 +1,11 @@
 extends Node2D
 
 onready var player = $PlayerLayer/Player
-onready var dooropen   = $PlayerLayer/Gate/boss_room_door/open_door
-onready var doorclosed = $PlayerLayer/Gate/boss_room_door/closed_door
-onready var collision: CollisionShape2D = $PlayerLayer/Gate/boss_room_door/CollisionShape2D
+onready var dooropen   = $PlayerLayer/Wall/Gate/open_door
+onready var doorclosed = $PlayerLayer/Wall/Gate/closed_door
+onready var collision: CollisionShape2D = $PlayerLayer/Wall/Gate/StaticBody2D/door
 
-onready var close_sfx = $PlayerLayer/Gate/boss_room_door/door_shut
+onready var close_sfx = $PlayerLayer/Wall/Gate/door_shut
 
 var BOSSROOM_ENTRANCE_HEIGHT = -347
 

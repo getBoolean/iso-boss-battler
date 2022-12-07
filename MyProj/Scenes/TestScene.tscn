@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/Art/Environment/tset_structures.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Art/Environment/tset_props.tres" type="TileSet" id=2]
@@ -26,6 +26,32 @@
 [ext_resource path="res://Scenes/Crosshair.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Assets/Art/Environment/PropActors/Well.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scripts/TestScene.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/charge_shine_anchor.gd" type="Script" id=27]
+[ext_resource path="res://Assets/Art/Projectiles/Ball of ice.png" type="Texture" id=28]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 28 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 28 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 28 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 28 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 17.0
+} ]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource( 26 )
@@ -186,6 +212,17 @@ remote_path = NodePath("../../../PlayerCamera")
 [node name="Enemy_entity" parent="PlayerLayer" instance=ExtResource( 23 )]
 position = Vector2( 387, 30 )
 scale = Vector2( 0.4, 0.4 )
+
+[node name="charge_shine_anchor" type="YSort" parent="PlayerLayer"]
+position = Vector2( 256.978, 286.601 )
+script = ExtResource( 27 )
+
+[node name="shine" type="AnimatedSprite" parent="PlayerLayer/charge_shine_anchor"]
+visible = false
+position = Vector2( 28.0474, -0.456787 )
+scale = Vector2( 0.14, 0.14 )
+frames = SubResource( 10 )
+offset = Vector2( -85, 0 )
 
 [node name="ForegroundLayer" type="Node2D" parent="."]
 modulate = Color( 0.0313726, 0, 0, 1 )

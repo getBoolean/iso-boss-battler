@@ -1,13 +1,49 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/MagicAttack.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Art/Projectiles/projetilNew.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22.5, 25 )
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 1338, 44 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6, 10.5 )
+extents = Vector2( 334.5, 11 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 128, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 256, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 320, 256, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 384, 256, 64 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "default",
+"speed": 30.0
+} ]
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 0, -6 )
@@ -15,25 +51,27 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="magic_area" type="Area2D" parent="."]
-visible = false
+[node name="damage_area" type="Area2D" parent="."]
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="magic_area"]
-position = Vector2( 0, -4.375 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+position = Vector2( 334, -3 )
 scale = Vector2( 0.25, 0.25 )
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.200001, -4.3 )
-scale = Vector2( 0.19375, 0.334375 )
-texture = ExtResource( 1 )
+shape = SubResource( 11 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -4.76837e-07, -4.5 )
+position = Vector2( 9, 4 )
 scale = Vector2( 0.6, 1.05 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -4.5 )
+position = Vector2( 334, -3 )
 shape = SubResource( 2 )
 
+[node name="magic_sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 300, -2 )
+scale = Vector2( 3.125, 1 )
+frames = SubResource( 10 )
+frame = 2
+
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="animation_finished" from="magic_sprite" to="." method="_on_magic_sprite_animation_finished"]

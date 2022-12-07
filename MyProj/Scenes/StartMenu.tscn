@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://Scenes/Cutscenes/IntroCutscene.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/bt_quit.gd" type="Script" id=6]
+[ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Art/Background/game_bg4.png" type="Texture" id=10]
+
+[sub_resource type="Theme" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -23,7 +29,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0314837, 0.00545805, 0.00545805, 0.686275 )
+bg_color = Color( 0.0313726, 0.00392157, 0.00392157, 0.686275 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -44,59 +50,72 @@ script = ExtResource( 3 )
 introScene = ExtResource( 4 )
 creditsScene = ExtResource( 5 )
 
+[node name="Background_img" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 369.0
+margin_bottom = 175.0
+texture = ExtResource( 10 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.176471, 0.0666667, 0.45098, 1 )
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 369.0
+margin_bottom = 175.0
+theme = SubResource( 6 )
+color = Color( 0.0980392, 0.117647, 0.0705882, 0.705882 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 200
+size_flags_horizontal = 3
 custom_constants/margin_top = 75
-custom_constants/margin_left = 200
 custom_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 200.0
+margin_left = 131.0
 margin_top = 75.0
-margin_right = 1080.0
+margin_right = 1149.0
 margin_bottom = 642.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
+alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 147.0
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 7
 custom_constants/shadow_as_outline = 50
 custom_fonts/font = SubResource( 1 )
-text = "Game Title"
-align = 1
+text = "Varvaros Invasion"
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 151.0
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 567.0
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 89.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_new_game" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 868.0
 margin_bottom = 89.0
 focus_mode = 0
-size_flags_horizontal = 3
+size_flags_horizontal = 7
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
@@ -106,19 +125,19 @@ text = "New Game"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 109.0
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 198.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_options" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 868.0
 margin_bottom = 89.0
 focus_mode = 0
-size_flags_horizontal = 3
+size_flags_horizontal = 7
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
@@ -128,19 +147,19 @@ text = "Options"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 218.0
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 307.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 868.0
 margin_bottom = 89.0
 focus_mode = 0
-size_flags_horizontal = 3
+size_flags_horizontal = 7
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
 custom_styles/hover = SubResource( 3 )
@@ -150,16 +169,16 @@ text = "Credits"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 327.0
-margin_right = 880.0
+margin_right = 1018.0
 margin_bottom = 416.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
+custom_constants/margin_right = 150
+custom_constants/margin_left = 150
 
 [node name="bt_quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
-margin_left = 50.0
-margin_right = 830.0
+margin_left = 150.0
+margin_right = 868.0
 margin_bottom = 89.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -171,7 +190,31 @@ custom_styles/normal = SubResource( 5 )
 text = "Quit"
 script = ExtResource( 6 )
 
+[node name="hover_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 3.0
+bus = "SFX"
+
+[node name="down_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = 3.0
+pitch_scale = 0.95
+bus = "SFX"
+
+[node name="up_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 3.0
+bus = "SFX"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_button_down"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/bt_new_game" to="." method="_on_bt_new_game_mouse_entered"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/bt_options" to="." method="_on_bt_options_button_down"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/bt_options" to="." method="_on_bt_options_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/bt_options" to="." method="_on_bt_options_mouse_entered"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_button_down"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer4/bt_credits" to="." method="_on_bt_credits_mouse_entered"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_button_down"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/bt_quit" to="." method="_on_bt_quit_mouse_entered"]
