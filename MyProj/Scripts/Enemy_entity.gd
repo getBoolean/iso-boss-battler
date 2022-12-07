@@ -104,7 +104,10 @@ func init_generator(pattern_type):
     if pattern_type == 1:
         generator.init(0,4,32,100,4,PROJECTILE_GEND_SCENE)
     elif pattern_type == 2:
-        generator.init(100,.2,2,100,4,PROJECTILE_GEND_SCENE)
+        generator.init(0,.25,4,100,4,PROJECTILE_GEND_SCENE)
     elif pattern_type == 3:
-        generator.init(50,.1,4,100,4,PROJECTILE_GEND_SCENE)
+        generator.init(20,.1,2,100,8,PROJECTILE_GEND_SCENE)
+    elif pattern_type == 4:
+        generator.init(0,1.25,64,100,4,PROJECTILE_GEND_SCENE)
+        
     return generator
