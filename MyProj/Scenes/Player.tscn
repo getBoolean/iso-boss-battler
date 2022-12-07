@@ -157,7 +157,6 @@ bus = "SFX"
 [connection signal="player_died" from="." to="HUD/DeathOverlay" method="_on_Player_player_died"]
 [connection signal="player_health_updated" from="." to="HUD/GUI" method="_on_Player_player_health_updated"]
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
-[connection signal="player_won" from="." to="HUD/WinOverlay" method="_on_Player_player_won"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 [editable path="Dash"]
