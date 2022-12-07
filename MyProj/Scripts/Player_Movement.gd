@@ -228,7 +228,6 @@ func magic_attack(mana_cost):
 # the player if too much damage has been taken
 func damage_player(damage):
     var sfx_choice = (randi() % 3) + 1
-    print(sfx_choice)
     match sfx_choice:
         1: oof1.play()
         2: oof2.play()
