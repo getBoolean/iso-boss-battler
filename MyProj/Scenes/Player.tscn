@@ -221,17 +221,17 @@ animations = [ {
 "frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": false,
 "name": "Activate Shield",
-"speed": 60.0
+"speed": 15.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 24 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 20 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ), SubResource( 16 ), SubResource( 15 ), SubResource( 14 ), SubResource( 13 ), SubResource( 12 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), SubResource( 8 ), SubResource( 7 ), SubResource( 6 ), null ],
 "loop": false,
 "name": "Deactivate Shield",
-"speed": 60.0
+"speed": 15.0
 }, {
 "frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 30.0
+"speed": 15.0
 }, {
 "frames": [  ],
 "loop": true,
@@ -345,13 +345,13 @@ bus = "SFX"
 stream = ExtResource( 16 )
 bus = "SFX"
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="ShieldAnimatedSprite" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 1, 1, 0.470588 )
 position = Vector2( 1.13687e-13, -57 )
 scale = Vector2( 1.33333, 1.21094 )
 frames = SubResource( 26 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShieldAnimatedSprite"]
 
 [node name="shield_timer" type="Timer" parent="."]
 one_shot = true

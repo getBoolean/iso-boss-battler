@@ -5,7 +5,7 @@ onready var timer_node = $fire_delay_timer
 onready var charged_timer = $charged_attack_timer
 onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
-onready var shield_animator = $AnimatedSprite
+onready var shield_animator = $ShieldAnimatedSprite
 onready var shield_timer = $shield_timer
 onready var hitbox = $Area2D/CollisionShape2D
 
