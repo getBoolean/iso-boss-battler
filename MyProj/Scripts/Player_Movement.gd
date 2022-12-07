@@ -201,19 +201,21 @@ func shoot():
     $attack1_sfx.play()
     projectile.look_at(get_global_mouse_position())
 
-func magic_attack(amount):
+func magic_attack(mana_cost):
     # Check if player has atleast 1% mana left
     # If mana is already 0 don't fire
-    if(use_player_mp(amount) > 0):
-        var magic_attack_projectile: MovingAttack = MAGIC_ATTACK_SCENE.instance()
-        get_parent().add_child(magic_attack_projectile)
-        magic_attack_projectile.attack_owner = "Player"
-        magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * amount)/MAGIC_DAMAGE_NORMALIZER
-        magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
-        #magic_attack_projectile.velocity = get_global_mouse_position() - magic_attack_projectile.position
-        magic_attack_projectile.look_at(get_global_mouse_position())
-        second_shot_sfx.play()
+    var used_mana = use_player_mp(mana_cost)
+    if used_mana <= 0:
+        return
     
+    var magic_attack_projectile: MovingAttack = MAGIC_ATTACK_SCENE.instance()
+    get_parent().add_child(magic_attack_projectile)
+    magic_attack_projectile.attack_owner = "Player"
+    magic_attack_projectile.damage = (BASE_MAGIC_DAMAGE * used_mana)/MAGIC_DAMAGE_NORMALIZER
+    magic_attack_projectile.position = $Node2D/ProjectileShootLoc.global_position
+    magic_attack_projectile.look_at(get_global_mouse_position())
+    second_shot_sfx.play()
+
 # damage_player(damage): applies damage to the player's 
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
@@ -245,11 +247,11 @@ func use_player_mp(amount):
         # can't do anything, cause not enough mp
         emit_signal("not_enough_mp")
         return 0
-    else:
-        var new_mp = PLAYER_CUR_MP - amount
-        emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
-        PLAYER_CUR_MP = new_mp
-        return amount
+    
+    var new_mp = PLAYER_CUR_MP - amount
+    emit_signal("player_mp_updated", new_mp, PLAYER_CUR_MP)
+    PLAYER_CUR_MP = new_mp
+    return amount
 
 # kill_player():
 # animates the player's death, calls the end screen
