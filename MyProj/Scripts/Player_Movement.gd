@@ -7,10 +7,14 @@ onready var _animation_player = $AnimationPlayer
 onready var mana_regen_timer = $mana_regeneration_timer
 onready var hitbox = $Area2D/CollisionShape2D
 
+onready var immunity = $immunity
+
 onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
 onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
 onready var charge_sfx = $laser_charge
 onready var second_shot_sfx = $laser_fire
+
+
 
 
 signal player_health_updated(new_value, old_value)
@@ -34,6 +38,7 @@ export var MOVE_SPEED = 175
 #player dash variables
 export var DASH_SPEED = 675
 export var DASH_DURATION = .15
+export var IMMUNE_DURATION = .5
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
@@ -195,6 +200,8 @@ func damage_player(damage):
         emit_signal("player_health_updated", new_hp, PLAYER_CUR_HP)
         # play damage animation        
         PLAYER_CUR_HP = new_hp
+        immunity.start_immunity(IMMUNE_DURATION)
+        
     # If Player gets hit start the mana regen cooldown timer
     mana_regen_timer.start(MANA_REGEN_HIT_COOLDOWN)
         
@@ -245,7 +252,7 @@ func _on_Area2D_area_entered(area):
         
     var attack: Attack = area.get_parent()
     # attack is from enemy and player is vulnerable
-    if attack.attack_owner != "Enemy_entity" or dash.is_dashing():
+    if attack.attack_owner != "Enemy_entity" or dash.is_dashing() or immunity.is_immune():
         return
     
     # remove only moving attacks
@@ -253,6 +260,7 @@ func _on_Area2D_area_entered(area):
         attack.queue_free()
     
     damage_player(attack.damage)
+    print("damage dealt")
 
 
 func _on_Enemy_entity_boss_died(_difference):
