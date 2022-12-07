@@ -1,11 +1,12 @@
+class_name Spawner
 extends Node2D
 
 #loads the projectile scene
 onready var projectile_scene: Resource
 #references to child nodes of timer and rotator
-onready var timer = $Timer
-onready var rotator = $Rotator
-onready var lifetime = $lifetime
+onready var timer: Timer = $Timer
+onready var rotator: Sprite = $Rotator
+onready var lifetime: Timer = $lifetime
 
 #variables for the spawner
 onready var rot_speed: float
@@ -22,6 +23,10 @@ func init(rot, timer_arg, spawn_num, radius, life, projectile_scn):
     r = radius
     life_length = life
     projectile_scene = projectile_scn
+
+
+func stop():
+    queue_free()
 
 func _ready():
     #sets value on circle for spawn points
