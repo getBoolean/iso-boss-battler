@@ -2,7 +2,7 @@ class_name EnemyEntity
 extends KinematicBody2D
 
 signal boss_health_updated(new_value, old_value)
-signal boss_died(difference)
+signal boss_died(difference, is_last_boss)
 
 # Load the projectile scene/node
 const PROJECTILE_SCENE = preload("res://Scenes/Projectile.tscn")
@@ -89,7 +89,7 @@ func kill(difference: float):
     is_alive = false
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
-    emit_signal("boss_died", difference)
+    emit_signal("boss_died", difference, false)
     
 func spawn_projectile_generator(pattern_type): 
     var generator = init_generator(pattern_type)

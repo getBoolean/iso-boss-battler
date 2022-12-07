@@ -29,8 +29,10 @@ func _on_bt_exit_to_desktop_button_up():
     get_tree().quit()
 
 
-func _on_Player_player_died(_difference):
+func _on_Player_player_won(_difference: float):
     var root = get_tree().current_scene
     var fg_layer = root.get_node("ForegroundLayer")
-    fg_layer.get_node("Crosshair").queue_free()
+    var crosshair = fg_layer.get_node("Crosshair")
+    if crosshair:
+        crosshair.queue_free()
     show()
