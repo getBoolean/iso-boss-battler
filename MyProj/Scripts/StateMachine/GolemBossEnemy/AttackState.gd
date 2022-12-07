@@ -18,6 +18,7 @@ onready var big_ouch_sfx = get_node("../../big_ouch")
 
 
 var damage_taken_recent = 0
+export var RETREAT_DAMAGE_TRIGGER: float = 30
 var current_spawner: WeakRef = null
 
 # Receives events from the `_unhandled_input()` callback.
@@ -81,7 +82,7 @@ func damage_boss(damage) -> void:
         # TODO: play damage animation and sound 
         damage_taken_recent = damage_taken_recent + damage
         enemy.update_hp(new_hp)
-        if damage_taken_recent > 15:
+        if damage_taken_recent > RETREAT_DAMAGE_TRIGGER:
             transition_to('RetreatAttackState')
 
 # animates the boss's death, calls the win screen
