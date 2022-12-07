@@ -60,7 +60,7 @@ var is_paused = false
 var has_won = false
 
 # Shield Status
-var isShieldActive = false
+var is_shield_active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,12 +69,10 @@ func _ready():
 func _process(_delta: float):
     if not is_Alive:
         return
-    # Check if the regen timer is stopped
+    
+    # Check if the regen timer is stopped and shield is not active
     # If stopped and player mana < 100 then regenrate mana
-    if(mana_regen_timer.get_time_left()<=0 && PLAYER_CUR_MP < PLAYER_MAX_MP):
-        var old_mp = PLAYER_CUR_MP
-        PLAYER_CUR_MP +=MANA_REGEN_RATE
-        emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
+    _mana_regen()
 
     if Input.is_action_pressed("ui_left") \
         or Input.is_action_pressed("ui_right") \
@@ -161,15 +159,30 @@ func _physics_process(_delta : float) -> void:
     var _movement = move_and_slide(linear_velocity)
     $Node2D.look_at(get_global_mouse_position())
 
-    if Input.is_action_just_released("Activate_Shield") and !isShieldActive:
-        activateShield()
+    if Input.is_action_just_released("Activate_Shield") and !is_shield_active:
+        activate_shield()
 
 
-func activateShield():
-    if(PLAYER_CUR_MP >= SHIELD_MANA_COST):
+# Check if the regen timer is stopped and shield is not active
+# If stopped and player mana < 100 then regenrate mana
+func _mana_regen():
+    if is_shield_active \
+        || mana_regen_timer.get_time_left() > 0 \
+        || PLAYER_CUR_MP >= PLAYER_MAX_MP:
+        return
+    
+    var old_mp = PLAYER_CUR_MP
+    PLAYER_CUR_MP +=MANA_REGEN_RATE
+    if PLAYER_CUR_MP > PLAYER_MAX_MP:
+        PLAYER_CUR_MP = PLAYER_MAX_MP
+    emit_signal("player_mp_updated", PLAYER_CUR_MP, old_mp)
+
+
+func activate_shield():
+    if PLAYER_CUR_MP >= SHIELD_MANA_COST:
         use_player_mp(SHIELD_MANA_COST)
         shield_timer.start(SHIELD_TIME)
-        isShieldActive = true
+        is_shield_active = true
         shield_animator.show()
         shield_animator.play("Activate Shield")
         yield(shield_animator,"animation_finished")
@@ -272,7 +285,7 @@ func _on_Area2D_area_entered(area):
     if attack is MovingAttack:
         attack.queue_free()
     
-    if isShieldActive:
+    if is_shield_active:
         return
     
     damage_player(attack.damage)
@@ -288,5 +301,5 @@ func _on_shield_timer_timeout():
     shield_animator.stop()
     shield_animator.play("Deactivate Shield")
     yield(shield_animator,"animation_finished")
-    isShieldActive = false
+    is_shield_active = false
     shield_animator.stop()
