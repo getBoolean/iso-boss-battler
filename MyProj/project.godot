@@ -129,11 +129,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/StateMachine/RockBossEnemy/RockBossStates/RetreatAttackState.gd"
 }, {
-"base": "Node2D",
-"class": "Spawner",
-"language": "GDScript",
-"path": "res://Scripts/ProjectileGenerator/projectile_spawner.gd"
-}, {
 "base": "Attack",
 "class": "SpikeAttack",
 "language": "GDScript",
@@ -179,7 +174,6 @@ _global_script_class_icons={
 "PlayerDetectionZone": "",
 "Projectile": "",
 "RetreatAttackState": "",
-"Spawner": "",
 "SpikeAttack": "",
 "State": "",
 "StateMachine": "",
