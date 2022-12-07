@@ -188,7 +188,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="MyProj"
+config/name="Varvaros Invasion"
 run/main_scene="res://Scenes/StartMenu.tscn"
 config/icon="res://icon.png"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Assets/Art/Boss2/Golem_Armor_Full.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy_Entity_Two.gd" type="Script" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/NeutralState.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Art/Boss2/Golem_Armor_AttackC.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/ActivateState.gd" type="Script" id=6]
+[ext_resource path="res://Assets/SFX/boss/boss_death.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scripts/StateMachine/GolemBossEnemy/golemBossStateMachine.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/ChaseAttackState.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/SFX/boss/boss_ouch.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/KeepDistanceAttackState.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/SFX/boss/boss_big_ouch.wav" type="AudioStream" id=12]
 [ext_resource path="res://Assets/Art/Boss2/Golem_Armor_Idle.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/RetreatAttackState.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/StateMachine/GolemBossEnemy/GolemBossStates/AttackState.tscn" type="PackedScene" id=16]
@@ -283,6 +286,7 @@ position = Vector2( 0, -44 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 26 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
@@ -329,6 +333,24 @@ uppercase = true
 [node name="BossVisibilityNotif" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0, -60 )
 scale = Vector2( 3.5, 1.1 )
+
+[node name="ouch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -12.0
+pitch_scale = 1.2
+bus = "SFX"
+
+[node name="big_ouch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -6.0
+pitch_scale = 1.2
+bus = "SFX"
+
+[node name="death_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -4.0
+pitch_scale = 1.2
+bus = "SFX"
 
 [connection signal="tree_entered" from="." to="." method="_on_Enemy_entity_tree_entered"]
 [connection signal="body_entered" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_entered"]
