@@ -12,8 +12,9 @@ onready var PATTERN_DELAY = 6
 # If damage of charge attack exceeds this number, play different
 # sound effect for boss taking damage
 var ouch_dmg_threshold = 8
-onready var ouch_sfx = get_node("../../ouch_sfx1")
-onready var big_ouch_sfx = get_node("../../ouch_sfx2")
+onready var ouch_sfx = get_node("../../ouch")
+onready var big_ouch_sfx = get_node("../../big_ouch")
+
 
 
 var damage_taken_recent = 0
