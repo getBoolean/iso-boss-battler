@@ -11,3 +11,8 @@ func _ready():
     sprite.play("lowering")
     yield(sprite, "animation_finished")
     queue_free()
+
+
+func _on_collision_area_area_entered(area):
+    if area.name == "SpikeBlocker":
+        queue_free()

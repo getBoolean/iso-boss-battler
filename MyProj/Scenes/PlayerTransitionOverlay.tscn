@@ -132,15 +132,18 @@ script = ExtResource( 4 )
 [node name="up_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = 3.0
+bus = "SFX"
 
 [node name="down_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = 3.0
 pitch_scale = 0.95
+bus = "SFX"
 
 [node name="hover_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = 3.0
+bus = "SFX"
 
 [connection signal="button_down" from="VBoxContainer/ButtonVBoxContainer/bt_continue" to="." method="_on_bt_continue_button_down"]
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_continue" to="." method="_on_bt_continue_button_up"]

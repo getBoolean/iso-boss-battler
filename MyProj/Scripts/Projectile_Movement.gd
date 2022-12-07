@@ -36,5 +36,6 @@ func _on_Node2D_tree_exiting():
     explosion.position.y = self.position.y
     explosion.rotation_degrees = current_rotation
     explosion.is_despawn = self.is_despawn
+    explosion.attack_owner = self.attack_owner
     get_parent().call_deferred("add_child", explosion)
     pass # Replace with function body.

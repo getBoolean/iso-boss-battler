@@ -15,9 +15,10 @@ onready var charge_shiney = get_parent().get_node("charge_shine_anchor/shine")
 onready var charge_anchor = get_parent().get_node("charge_shine_anchor")
 onready var charge_sfx = $laser_charge
 onready var second_shot_sfx = $laser_fire
-
-
-
+onready var oof1 = $player_ouches/ouch1
+onready var oof2 = $player_ouches/ouch2
+onready var oof3 = $player_ouches/ouch3
+onready var proj_hit = $player_ouches/projectile_hit
 
 signal player_health_updated(new_value, old_value)
 signal player_mp_updated(new_value, old_value)
@@ -226,6 +227,11 @@ func magic_attack(mana_cost):
 # HP based on the given amount of damage, kills 
 # the player if too much damage has been taken
 func damage_player(damage):
+    var sfx_choice = (randi() % 3) + 1
+    match sfx_choice:
+        1: oof1.play()
+        2: oof2.play()
+        3: oof3.play()
     if PLAYER_CUR_HP <= damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)
@@ -296,6 +302,7 @@ func _on_Area2D_area_entered(area):
     # remove only moving attacks
     if attack is MovingAttack:
         attack.queue_free()
+        proj_hit.play()
     
     if is_shield_active:
         return
