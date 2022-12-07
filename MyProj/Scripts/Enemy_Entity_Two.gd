@@ -22,6 +22,7 @@ export onready var BOSS_CUR_HP = 200
 
 var player: Player = null
 
+onready var death_sfx = $death_sfx
 
 # values for speed of boss
 export var ACCELERATION = 300
@@ -117,6 +118,7 @@ func kill(difference: float):
     MAX_SPEED = 0
     is_alive = false
     enemy_sprite.play("Death")
+    death_sfx.play()
     yield(enemy_sprite,"animation_finished")
     emit_signal("boss_died", difference, true)
             
