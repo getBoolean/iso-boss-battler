@@ -21,7 +21,6 @@ polygon = PoolVector2Array( -3.60563, -0.30047, 3.30516, -1.50235, 6.30986, -1.5
 position = Vector2( 2.69034, 6.77322 )
 scale = Vector2( 1.77908, 1.77908 )
 frames = ExtResource( 1 )
-frame = 1
 playing = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

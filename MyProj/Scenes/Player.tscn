@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Player/Run/RunAnimation.tres" type="Animation" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=20]
 [ext_resource path="res://Assets/SFX/player/poof3.wav" type="AudioStream" id=21]
 [ext_resource path="res://Assets/SFX/player/poof1.wav" type="AudioStream" id=22]
+[ext_resource path="res://Assets/SFX/projectile1/15_Impact_flesh_02.wav" type="AudioStream" id=23]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -171,6 +172,11 @@ bus = "SFX"
 stream = ExtResource( 21 )
 volume_db = -15.0
 pitch_scale = 0.7
+bus = "SFX"
+
+[node name="hit_sfx" type="AudioStreamPlayer" parent="ouch_sfx"]
+stream = ExtResource( 23 )
+volume_db = -15.0
 bus = "SFX"
 
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]

@@ -286,7 +286,7 @@ position = Vector2( 0, -44 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 26 )
 animation = "Idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
