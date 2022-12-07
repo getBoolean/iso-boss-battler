@@ -19,8 +19,8 @@
 [ext_resource path="res://Scenes/PlayerTransitionOverlay.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Art/Shield/192x192/pipo-btleffect207_192.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Art/Shield/192x192/pipo-btleffect206h_192.png" type="Texture" id=19]
-[ext_resource path="res://Assets/SFX/projectile1/09_human_charging_1_loop.mp3" type="AudioStream" id=20]
-[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=21]
+[ext_resource path="res://immunity.gd" type="Script" id=22]
+[ext_resource path="res://Assets/SFX/projectile1/Lazer MasterMix (5).wav" type="AudioStream" id=24]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 7 )
@@ -286,6 +286,9 @@ position = Vector2( 0, -48 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
 hframes = 4
+__meta__ = {
+"_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpwbGF5ZXJ8PQpzb3VyY2V8PQpsYXllcnw9Cm9wX2V4cHw9RmFsc2UKb19mb2xkZXJ8PQpvX25hbWV8PQpvbmx5X3Zpc2libGV8PUZhbHNlCm9fZXhfcHw9Cg=="
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -4.75 )
@@ -357,13 +360,19 @@ frames = SubResource( 26 )
 one_shot = true
 
 [node name="laser_charge" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
+stream = ExtResource( 24 )
 volume_db = -12.0
 bus = "SFX"
 
 [node name="laser_fire" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
+stream = ExtResource( 24 )
 bus = "SFX"
+
+[node name="immunity" type="Node2D" parent="."]
+script = ExtResource( 22 )
+
+[node name="immunity_timer" type="Timer" parent="immunity"]
+one_shot = true
 
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
 [connection signal="hit_boss" from="." to="HUD/GUI" method="_on_Player_hit_boss"]
@@ -373,5 +382,6 @@ bus = "SFX"
 [connection signal="player_mp_updated" from="." to="HUD/GUI" method="_on_Player_player_mp_updated"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="shield_timer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="immunity/immunity_timer" to="immunity" method="_on_immunity_timer_timeout"]
 
 [editable path="Dash"]
