@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Art/Fonts/Roboto/Roboto-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/PlayerDeathOverlay.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/bt_exit_to_desktop.gd" type="Script" id=4]
+[ext_resource path="res://Assets/SFX/menu/up_02.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/SFX/menu/down_02.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/SFX/menu/hover_02.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -115,6 +118,28 @@ custom_styles/normal = SubResource( 5 )
 text = "EXIT TO DESKTOP"
 script = ExtResource( 4 )
 
+[node name="up_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 3.0
+bus = "SFX"
+
+[node name="down_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 3.0
+pitch_scale = 0.95
+bus = "SFX"
+
+[node name="hover_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 3.0
+bus = "SFX"
+
+[connection signal="button_down" from="VBoxContainer/ButtonVBoxContainer/bt_respawn" to="." method="_on_bt_respawn_button_down"]
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_respawn" to="." method="_on_bt_respawn_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/ButtonVBoxContainer/bt_respawn" to="." method="_on_bt_respawn_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/ButtonVBoxContainer/bt_leave_game" to="." method="_on_bt_leave_game_button_down"]
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_leave_game" to="." method="_on_bt_leave_game_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/ButtonVBoxContainer/bt_leave_game" to="." method="_on_bt_leave_game_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/ButtonVBoxContainer/bt_exit_to_desktop" to="." method="_on_bt_exit_to_desktop_button_down"]
 [connection signal="button_up" from="VBoxContainer/ButtonVBoxContainer/bt_exit_to_desktop" to="." method="_on_bt_exit_to_desktop_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/ButtonVBoxContainer/bt_exit_to_desktop" to="." method="_on_bt_exit_to_desktop_mouse_entered"]

@@ -2,6 +2,9 @@ extends Control
 
 var mainMenuScene = load("res://Scenes/StartMenu.tscn")
 
+onready var hover_sfx = $hover_sound
+onready var down_sfx = $down_sound
+onready var up_sfx = $up_sound
 
 func _ready():
     var os = OS.get_name()
@@ -10,6 +13,8 @@ func _ready():
 
 
 func _on_bt_leave_game_button_up():
+    up_sfx.play()
+    yield(up_sfx, "finished")
     hide()
     var error_code = get_tree().change_scene_to(mainMenuScene)
     if error_code != Global.SUCCESS_CODE:
@@ -17,6 +22,8 @@ func _on_bt_leave_game_button_up():
 
 
 func _on_bt_exit_to_desktop_button_up():
+    up_sfx.play()
+    yield(up_sfx, "finished")
     print("Quitting game...")
     get_tree().quit()
 
@@ -28,3 +35,17 @@ func _on_Player_player_won(_difference: float):
     if crosshair:
         crosshair.queue_free()
     show()
+
+# SFX
+# Hover
+func _on_bt_main_menu_mouse_entered():
+    if not down_sfx.playing:
+        hover_sfx.play()
+func _on_bt_exit_to_desktop_mouse_entered():
+    if not down_sfx.playing:
+        hover_sfx.play()
+# Down
+func _on_bt_main_menu_button_down():
+    down_sfx.play()
+func _on_bt_exit_to_desktop_button_down():
+    down_sfx.play()
