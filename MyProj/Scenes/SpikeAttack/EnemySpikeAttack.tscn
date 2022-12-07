@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/SpikeAttack/EnemySpikeAttack.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22.5, 17 )
+extents = Vector2( 22.5, 1.5 )
 
 [node name="EnemySpikeAttack" type="KinematicBody2D"]
 position = Vector2( -4, -6 )
@@ -13,9 +13,16 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="damage_area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
 position = Vector2( 3.5, 18 )
+shape = SubResource( 1 )
+
+[node name="collision_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_area"]
+position = Vector2( 3.5, 33.5 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -35,3 +42,5 @@ visible = false
 position = Vector2( 3, 14.5 )
 shape = SubResource( 1 )
 disabled = true
+
+[connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_area_entered"]
