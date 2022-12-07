@@ -159,19 +159,17 @@ bus = "SFX"
 [node name="ouch1" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 22 )
 volume_db = -20.0
-pitch_scale = 0.7
 bus = "SFX"
 
 [node name="ouch2" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 18 )
-volume_db = -22.0
-pitch_scale = 0.7
+volume_db = -15.0
+pitch_scale = 0.95
 bus = "SFX"
 
 [node name="ouch3" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 21 )
 volume_db = -15.0
-pitch_scale = 0.7
 bus = "SFX"
 
 [node name="hit_sfx" type="AudioStreamPlayer" parent="ouch_sfx"]
