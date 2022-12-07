@@ -9,6 +9,12 @@ onready var pattern_cooldown_timer = $PatternCooldownTimer
 
 onready var PATTERN_DELAY = 6
 
+# If damage of charge attack exceeds this number, play different
+# sound effect for boss taking damage
+var ouch_dmg_threshold = 8
+onready var ouch_sfx = get_node("../../ouch_sfx1")
+onready var big_ouch_sfx = get_node("../../ouch_sfx2")
+
 
 var damage_taken_recent = 0
 
@@ -57,6 +63,11 @@ func exit() -> void:
     damage_taken_recent = 0
 
 func damage_boss(damage) -> void:
+    if damage > ouch_dmg_threshold:
+        big_ouch_sfx.play()
+    else:
+        ouch_sfx.play()
+    
     if enemy.BOSS_CUR_HP <= damage:
         var difference = damage - enemy.BOSS_CUR_HP
         enemy.update_hp(0)

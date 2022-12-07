@@ -145,11 +145,12 @@ bus = "SFX"
 
 [node name="laser_charge" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
-volume_db = -12.0
+volume_db = -16.0
 bus = "SFX"
 
 [node name="laser_fire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+volume_db = -8.0
 bus = "SFX"
 
 [node name="ouch_sfx" type="Node" parent="."]

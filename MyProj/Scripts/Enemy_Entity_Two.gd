@@ -117,6 +117,7 @@ func kill(difference: float):
     MAX_SPEED = 0
     is_alive = false
     enemy_sprite.play("Death")
+    $death_sfx.play()
     yield(enemy_sprite,"animation_finished")
     emit_signal("boss_died", difference)
             
