@@ -156,20 +156,20 @@ bus = "SFX"
 
 [node name="ouch1" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 22 )
-volume_db = -18.0
-pitch_scale = 0.9
+volume_db = -20.0
+pitch_scale = 0.7
 bus = "SFX"
 
 [node name="ouch2" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 18 )
-volume_db = -19.0
-pitch_scale = 0.9
+volume_db = -22.0
+pitch_scale = 0.7
 bus = "SFX"
 
 [node name="ouch3" type="AudioStreamPlayer" parent="ouch_sfx"]
 stream = ExtResource( 21 )
-volume_db = -10.0
-pitch_scale = 0.9
+volume_db = -15.0
+pitch_scale = 0.7
 bus = "SFX"
 
 [connection signal="boss_died" from="." to="HUD/TransitionOverlay" method="_on_Player_boss_died"]
