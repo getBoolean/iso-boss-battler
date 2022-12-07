@@ -38,7 +38,7 @@ export var MOVE_SPEED = 175
 #player dash variables
 export var DASH_SPEED = 675
 export var DASH_DURATION = .15
-export var IMMUNE_DURATION = .5
+export var IMMUNE_DURATION = .25
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
@@ -200,7 +200,9 @@ func damage_player(damage):
         emit_signal("player_health_updated", new_hp, PLAYER_CUR_HP)
         # play damage animation        
         PLAYER_CUR_HP = new_hp
-        immunity.start_immunity(IMMUNE_DURATION)
+        immunity.start_immunity($RunSprite, $IdleSprite, IMMUNE_DURATION)
+        
+        
         
     # If Player gets hit start the mana regen cooldown timer
     mana_regen_timer.start(MANA_REGEN_HIT_COOLDOWN)
@@ -260,7 +262,7 @@ func _on_Area2D_area_entered(area):
         attack.queue_free()
     
     damage_player(attack.damage)
-    print("damage dealt")
+    
 
 
 func _on_Enemy_entity_boss_died(_difference):
