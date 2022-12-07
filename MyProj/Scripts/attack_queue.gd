@@ -8,14 +8,26 @@ onready var queue_timer_delay = 1
 onready var rng = RandomNumberGenerator.new()
 
 func _ready():
-    for _i in range(12):
+    for _i in range(5):
         rng.randomize()
-        var value = rng.randi_range(1,4)
+        var value = rng.randi_range(1,3)
         queue.append(value)
     
 
 func fire_pattern():
     var ret_val = queue.pop_front()
-    rng.randomize()
-    queue.append(rng.randi_range(1,3))
+    prioritize()
     return ret_val
+
+func prioritize():
+    var high_threat_count = 0
+    for i in queue:
+        if queue[i] == 4 or queue[i] == 5:
+            high_threat_count += 1
+    
+    if high_threat_count == 0 :
+        rng.randomize()
+        queue.append(rng.randi_range(4,5))
+    else:
+        rng.randomize()
+        queue.append(rng.randi_range(1,3))

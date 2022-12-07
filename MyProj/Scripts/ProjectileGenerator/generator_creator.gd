@@ -5,7 +5,7 @@ const proj_scene = preload("res://Scenes/ProjectileGenerator/Enemy_Projectile.ts
 #loads projectile spawner
 func _ready():
     #rotation speed, rate of fire, spawn point number, radius from center, lifetime
-    var gen1 = spawn_projectile_generator(20,.50,64,200,8,proj_scene)
+    var gen1 = spawn_projectile_generator(75,.1,3,200,2,proj_scene)
     #var gen2 = spawn_projectile_generator(100,.1,4,200,5)
     
     
