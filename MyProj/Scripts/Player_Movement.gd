@@ -59,12 +59,12 @@ export var MAGIC_DAMAGE_NORMALIZER = 15
 export var SHIELD_MANA_COST = 25
 export var SHIELD_TIME = 4.65
 
-var is_Alive = true
+export var is_Alive = true
 # Timer duration
 export var fire_delay_rate = 0.05
 
-var is_paused = false
-var has_won = false
+export var is_paused = false
+export var has_won = false
 
 # Shield Status
 var is_shield_active = false

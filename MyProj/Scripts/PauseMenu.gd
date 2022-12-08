@@ -8,16 +8,30 @@ onready var down_sfx = $down_sound
 onready var up_sfx = $up_sound
 
 func _input(event):
+    var root = get_tree().current_scene
+    if not root:
+        return
+    var player = root.get_node("PlayerLayer/Player")
+    if not player:
+        return
+    player = player as Player
+    if player.has_won || not player.is_Alive:
+        return
+        
     if event.is_action_pressed("pause_game") && get_tree().paused:
         hide()
         Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-        fg_layer.get_node("Crosshair").visible = true
+        var crosshair = fg_layer.get_node("Crosshair")
+        if crosshair:
+            crosshair.visible = true
         get_tree().paused = false
     
     elif(event.is_action_pressed("pause_game") && !get_tree().paused):
         show()
         # Enabble custom mouse pointer and enable system pointer
-        fg_layer.get_node("Crosshair").visible = false
+        var crosshair = fg_layer.get_node("Crosshair")
+        if crosshair:
+            crosshair.visible = false
         Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
         # unpause the game tree
