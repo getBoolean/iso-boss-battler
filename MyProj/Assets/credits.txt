@@ -1,4 +1,7 @@
 
+Varvaros Invasion
+
+
 A Game By Team
 
 Barracuda
@@ -6,52 +9,123 @@ Barracuda
 
 Programmers
 
-Daniel
+Daniel Newville
 
-Rohan
+Rohan Tipnis
 
-Jonathan
+Jonathan Medina
 
-Garrett
+Garrett Shimek
 
 
 Art Director
 
-Jonathan
+Jonathan Medina
 
 
 Lead Writer
 
-Daniel
+Daniel Newville
 
 
-Resources
+Sound Design
 
-Wizard Sprite by Anokolisa
-
-Includes Art Designed by Freepik Author @upklyak
+Garrett Shimek
 
 
+-Resources-
 
-Main Projectile Sprite & Laser Beam Sprite
+
+Wizard Sprite 
+
+by Anokolisa
+
+
+
+Cutscenes
+
+Include Art Designed by 
+
+Freepik Author @upklyak
+
+
+
+Boss 1
+
+Mecha-Stone Golem
+
+Kronovi
+
+darkpixel-kronovi.itch.io
+
+
+
+Boss 2
+
+Armored Golem
+
+Admurin
+
+admurin.itch.io
+
+
+
+Player Projectile Sprite 
 
 Pimen
 
-https://pimen.itch.io/
+pimen.itch.io
 
 
 
-Sound Effects
+Laser Beam Sprite
 
-Projectile Shoot, Hit, & Dash SFX
+Pimen
 
-Leohpaz: RPG-essentials-sfx-free
+pimen.itch.io
 
 
 
-Secondary Attack Charging SFX
+Player Shield
 
-Leohpaz & Krishna Palacio: Minifantasy-dungeon-sfx-pack
+Pipoya
+
+pipoya.itch.io
+
+
+
+Tileset
+
+Cainos
+
+cainos.itch.io
+
+
+
+-Sound Effects-
+
+
+Projectile Shoot & Hit SFX
+
+Leohpaz
+
+leohpaz.itch.io
+
+
+
+Dash SFX
+
+Leohpaz
+
+leohpaz.itch.io
+
+
+
+Laser Charging SFX
+
+Leohpaz & Krishna Palacio
+
+leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
 
 
@@ -59,7 +133,7 @@ Laser Beam Shoot SFX
 
 Shane Sealey
 
-https://twitter.com/MrShaneSealey
+twitter.com/MrShaneSealey
 
 
 
@@ -67,17 +141,44 @@ Menu Buttons SFX
 
 Petter Lamata Thowsen - Pelatho
 
-https://thowsenmedia.itch.io/ui-sounds
+thowsenmedia.itch.io/ui-sounds
 
 
 
-Music
+Player & Boss Ouch SFX
+
+Garrett Shimek
+
+
+
+Pillar Fall SFX
+
+Garrett Shimek's Desk
+
+
+
+Door Slam SFX
+
+Leohpaz & Krishna Palacio
+
+leohpaz.itch.io/minifantasy-dungeon-sfx-pack
+
+
+
+-Music-
+
 
 Main Menu Music
 
-Music: "Forest Walk" by Alexander Nakarada (www.serpentsoundstudios.com)
+"Forest Walk" 
 
-Licensed under Creative Commons BY Attribution 4.0 License
+by Alexander Nakarada 
+
+(www.serpentsoundstudios.com)
+
+Licensed under Creative Commons 
+
+BY Attribution 4.0 License
 
 http://creativecommons.org/licenses/by/4.0/
 
@@ -85,14 +186,114 @@ http://creativecommons.org/licenses/by/4.0/
 
 Level 1 Music
 
-"Age of Mythology" by David Robson
+"Age of Mythology"
 
-Royalty free music from https://www.FesliyanStudios.com
+by David Robson
+
+www.FesliyanStudios.com
 
 
 
 Level 2 Music
 
-"Cloak And Dagger" by David Robson
+"Cloak And Dagger"
 
-Royalty free music from https://www.FesliyanStudios.com
+by David Robson
+
+www.FesliyanStudios.com
+
+
+
+-Tools-
+
+
+Scrolling Credits
+
+Ben Bishop
+
+github.com/benbishopnz/godot-credits
+
+
+
+Godot Export Tool
+
+Barichello
+
+github.com/abarichello/godot-ci
+
+
+
+Aseprite Wizard
+
+Vinicius Gerevini
+
+github.com/viniciusgerevini/godot-aseprite-wizard
+
+
+
+Finite State Machine
+
+Nathan Lovato
+
+GDQuest
+
+
+
+Navigation 2D Reference
+
+Shaun - sjharb
+
+github.com/sjharb
+
+
+
+Game Engine
+
+This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur. Copyright (c) 
+
+2014-2022 Godot Engine contributors.
+
+
+
+Permission is hereby granted, free of charge, to any person obtaining
+
+a copy of this software and associated documentation files (the "Software"),
+
+to deal in the Software without restriction, including without limitation the
+
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+
+copies of the Software, and to permit persons to whom the Software is furnished to
+
+do so, subject to the following conditions:
+
+
+
+The above copyright notice and this permission notice shall be included
+
+in all copies or substantial portions of the Software.
+
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
+
+OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+
+Thanks for Playing!
