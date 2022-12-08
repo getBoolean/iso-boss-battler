@@ -45,6 +45,7 @@ func _on_bt_exit_to_desktop_button_up():
     get_tree().quit()
 
 func _on_Player_boss_died(_difference):
+    Global.player_died_level1 = false
     var root = get_tree().current_scene
     var fg_layer = root.get_node("ForegroundLayer")
     var crosshair = fg_layer.get_node("Crosshair")

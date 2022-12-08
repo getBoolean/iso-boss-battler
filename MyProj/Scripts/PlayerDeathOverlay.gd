@@ -26,6 +26,7 @@ func _on_bt_leave_game_button_up():
     up_sfx.play()
     yield(up_sfx, "finished")
     hide()
+    Global.player_died_level1 = false
     var error_code = get_tree().change_scene_to(mainMenuScene)
     if error_code != Global.SUCCESS_CODE:
         print("[ERROR] Could not change scene to main menu: ", error_code)

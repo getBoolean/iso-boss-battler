@@ -31,6 +31,7 @@ func _on_bt_exit_to_desktop_button_up():
 
 
 func _on_bt_quit_main_to_menu_button_up():
+    Global.player_died_level1 = false
     up_sfx.play()
     yield(up_sfx, "finished")
     hide()
