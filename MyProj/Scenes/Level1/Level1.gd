@@ -34,7 +34,8 @@ func trigger_bossroom_trap():
     fall_sfx.play()
     if Mainmenumusic.is_playing():
         Mainmenumusic.stop()
-    FightMusic.play()
+    if not FightMusic.is_playing():
+        FightMusic.play()
     fall_timer.start()
     
 # a timer to stagger the falling of the two pillars
