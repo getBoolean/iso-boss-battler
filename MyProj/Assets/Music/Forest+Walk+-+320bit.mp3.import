@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Forest+Walk+-+320bit.mp3-0c41d030cd714545f8fbc880f958199c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Forest+Walk+-+320bit.mp3"
+dest_files=[ "res://.import/Forest+Walk+-+320bit.mp3-0c41d030cd714545f8fbc880f958199c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

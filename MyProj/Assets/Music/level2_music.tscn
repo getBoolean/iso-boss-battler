@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Music/2022-02-24_-_Cloak_And_Dagger_-_www.FesliyanStudios.com.mp3" type="AudioStream" id=1]
+
+[node name="level2_music" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -19.0
+bus = "Music"

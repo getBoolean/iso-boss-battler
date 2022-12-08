@@ -120,6 +120,9 @@ func kill(difference: float):
     enemy_sprite.play("Death")
     death_sfx.play()
     yield(enemy_sprite,"animation_finished")
+    if Level2Music.is_playing():
+        Level2Music.stop()
+    Mainmenumusic.play()
     emit_signal("boss_died", difference, true)
             
 func spawn_projectile_generator(pattern_type): 
