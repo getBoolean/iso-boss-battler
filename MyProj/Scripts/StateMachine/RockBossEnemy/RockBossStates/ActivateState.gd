@@ -2,8 +2,9 @@
 class_name ActivateState
 extends EnemyState
 
-signal show_boss_hp()
+signal show_boss_hp(MAX_HP)
 
+onready var boss = self.get_parent().get_parent()
 
 func _ready():
     var lvl1_hpbar = get_node("/root/Level1/PlayerLayer/Player/HUD/GUI")
@@ -30,7 +31,7 @@ func enter(_msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     enemy.anim_player.play("Spawn")
     yield(enemy.anim_player, "animation_finished")
-    emit_signal("show_boss_hp")
+    emit_signal("show_boss_hp", boss.BOSS_MAX_HP)
     transition_to("KeepDistanceAttackState")
 
 

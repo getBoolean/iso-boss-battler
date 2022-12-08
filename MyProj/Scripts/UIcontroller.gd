@@ -22,11 +22,15 @@ func _on_Player_not_enough_mp():
 func _on_Player_hit_boss(new_hp, _old_hp):
     boss_hpbar.set_value(new_hp)    
     
-func _on_ActivateState_show_boss_hp():
+func _on_ActivateState_show_boss_hp(MAX_HP):
     whole_bar.visible = true
+    boss_hpbar.set_max(MAX_HP)
+    boss_hpbar.set_value(MAX_HP)    
     
-func _on_ActivateState_show_boss_hp2():
+func _on_ActivateState_show_boss_hp2(MAX_HP):
     whole_bar.visible = true    
+    boss_hpbar.set_max(MAX_HP)
+    boss_hpbar.set_value(MAX_HP)
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

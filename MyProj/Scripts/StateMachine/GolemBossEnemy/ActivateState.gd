@@ -2,8 +2,10 @@
 class_name GolemActivateState
 extends EnemyTwoState
 
-signal show_boss_hp2()
+signal show_boss_hp2(MAX_HP)
 var boss2_hpbar
+
+onready var boss = self.get_parent().get_parent()
 
 func _ready():
     if get_tree().current_scene.name == "Level2":
@@ -35,7 +37,7 @@ func enter(_msg := {}) -> void:
     # We must declare all the properties we access through `enemy` in the `EnemyEntity.gd` script.
     enemy.enemy_sprite.play("Spawn")
     yield(enemy.enemy_sprite, "animation_finished")
-    emit_signal("show_boss_hp2")
+    emit_signal("show_boss_hp2", boss.BOSS_MAX_HP)
     transition_to("KeepDistanceAttackState")
 
 
