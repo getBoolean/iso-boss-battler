@@ -19,3 +19,8 @@ func _on_Area2D_area_entered(area: Area2D):
 func _on_BossVisibilityNotif_screen_entered():
     if state.name == "NuetralState":
         transition_to("ActivateState")
+
+
+func _on_BossVisibilityNotif_screen_exited():
+    if state.name == "RetreatAttackState":
+        transition_to("ChaseAttackState")

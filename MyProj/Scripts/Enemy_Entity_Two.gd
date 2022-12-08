@@ -78,7 +78,7 @@ func spike_wave(spawn_delay_timer: Timer, degree_size: float = 80,
         yield(spawn_delay_timer, "timeout")
 
 
-func spawnSpike(position: Vector2, damage: float = 5.0, scale: Vector2 = Vector2(1, 1)):
+func spawnSpike(position: Vector2, damage: float = 10.0, scale: Vector2 = Vector2(1, 1)):
     if not is_alive:
         return
     
@@ -120,6 +120,9 @@ func kill(difference: float):
     enemy_sprite.play("Death")
     death_sfx.play()
     yield(enemy_sprite,"animation_finished")
+    if Level2Music.is_playing():
+        Level2Music.stop()
+    Mainmenumusic.play()
     emit_signal("boss_died", difference, true)
             
 func spawn_projectile_generator(pattern_type): 

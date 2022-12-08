@@ -189,8 +189,9 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
-Mainmenumusic="*res://Assets/Music/mainmenumusic.tscn"
 FightMusic="*res://Assets/Music/FightMusic.tscn"
+Mainmenumusic="*res://Assets/Music/mainmenumusic.tscn"
+Level2Music="*res://Assets/Music/level2_music.tscn"
 
 [display]
 

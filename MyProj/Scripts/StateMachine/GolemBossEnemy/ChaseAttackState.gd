@@ -27,8 +27,8 @@ func attack(_delta: float) -> void:
         enemy.fire(600, 5, Vector2(1.2, 1.2))
     if spike_wave_cooldown_timer.is_stopped():
         var degree_size: float = rng.randf_range(120, 180)
-        var max_distance: float = rng.randf_range(225, 350)
-        var degrees_per_spike_line: float = rng.randf_range(20, 25)
+        var max_distance: float = rng.randf_range(600, 700)
+        var degrees_per_spike_line: float = rng.randf_range(18, 20)
         var spike_separator_distance: float = 40
         var spawn_delay: float = SPIKE_SPAWN_DELAY
         enemy.spike_wave(spike_spawn_delay_timer, degree_size,

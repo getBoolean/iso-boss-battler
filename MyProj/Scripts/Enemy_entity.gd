@@ -92,6 +92,9 @@ func kill(difference: float):
     death_sfx.play()
     anim_player.play("Death")
     yield(anim_player,"animation_finished")
+    if FightMusic.is_playing():
+        FightMusic.stop()
+    Mainmenumusic.play()
     emit_signal("boss_died", difference, false)
     
 func spawn_projectile_generator(pattern_type): 

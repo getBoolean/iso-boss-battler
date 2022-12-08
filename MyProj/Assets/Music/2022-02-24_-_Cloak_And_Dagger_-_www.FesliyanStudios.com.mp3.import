@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2022-02-24_-_Cloak_And_Dagger_-_www.FesliyanStudios.com.mp3-dbd2a3ba20538dd063773da1d4832bf6.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/2022-02-24_-_Cloak_And_Dagger_-_www.FesliyanStudios.com.mp3"
+dest_files=[ "res://.import/2022-02-24_-_Cloak_And_Dagger_-_www.FesliyanStudios.com.mp3-dbd2a3ba20538dd063773da1d4832bf6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

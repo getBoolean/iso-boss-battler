@@ -11,6 +11,11 @@ var BOSSROOM_ENTRANCE_HEIGHT = -347
 
 var has_entered_bossroom = false
 
+func _ready():
+    if Mainmenumusic.is_playing():
+        Mainmenumusic.stop()
+    if not Level2Music.is_playing():
+        Level2Music.play()
 
 func _process(_delta):
     if player.position.y <= BOSSROOM_ENTRANCE_HEIGHT && has_entered_bossroom == false:

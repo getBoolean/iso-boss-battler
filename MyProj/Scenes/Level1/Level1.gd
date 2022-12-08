@@ -32,6 +32,10 @@ func trigger_bossroom_trap():
     pillar1.position = Vector2(-33, -1872)
     pillar1.rotation_degrees = 90
     fall_sfx.play()
+    if Mainmenumusic.is_playing():
+        Mainmenumusic.stop()
+    if not FightMusic.is_playing():
+        FightMusic.play()
     fall_timer.start()
     
 # a timer to stagger the falling of the two pillars
