@@ -228,10 +228,11 @@ func magic_attack(mana_cost):
 # the player if too much damage has been taken
 func damage_player(damage):
     var sfx_choice = (randi() % 3) + 1
-    match sfx_choice:
-        1: oof1.play()
-        2: oof2.play()
-        3: oof3.play()
+    if is_Alive:
+        match sfx_choice:
+            1: oof1.play()
+            2: oof2.play()
+            3: oof3.play()
     if PLAYER_CUR_HP <= damage:
         var difference = damage - PLAYER_CUR_HP
         emit_signal("player_health_updated", 0, PLAYER_CUR_HP)
