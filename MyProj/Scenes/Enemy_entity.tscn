@@ -544,3 +544,4 @@ bus = "SFX"
 [connection signal="body_exited" from="Player_detection_zone" to="Player_detection_zone" method="_on_Player_detection_zone_body_exited"]
 [connection signal="area_entered" from="Area2D" to="StateMachine" method="_on_Area2D_area_entered"]
 [connection signal="screen_entered" from="BossVisibilityNotif" to="StateMachine" method="_on_BossVisibilityNotif_screen_entered"]
+[connection signal="screen_exited" from="BossVisibilityNotif" to="StateMachine" method="_on_BossVisibilityNotif_screen_exited"]
