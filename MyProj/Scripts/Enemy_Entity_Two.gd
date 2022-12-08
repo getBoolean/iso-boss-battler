@@ -17,8 +17,8 @@ onready var attack_queue = $attack_queue
 
 
 # Boss Health Values
-export var BOSS_MAX_HP = 200
-export onready var BOSS_CUR_HP = 200
+export var BOSS_MAX_HP = 225
+export onready var BOSS_CUR_HP = 225
 
 var player: Player = null
 
@@ -145,7 +145,7 @@ func init_generator(pattern_type):
     elif pattern_type == 4:
         generator.init(0,2,100,100,8,PROJECTILE_GEND_SCENE)
     elif pattern_type == 5:
-        generator.init(0,2,100,100,6,PROJECTILE_GEND_SCENE)
+        generator.init(20,.1,8,100,6,PROJECTILE_GEND_SCENE)
     return generator
 
 
