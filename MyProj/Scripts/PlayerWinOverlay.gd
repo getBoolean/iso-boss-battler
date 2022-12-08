@@ -11,6 +11,21 @@ func _ready():
     if (os == "Android" or os == "iOS" or os == "HTML5"):
         hide()
 
+func _process(_delta: float):
+    var root = get_tree().current_scene
+    if not root:
+        return
+    var player = root.get_node("PlayerLayer/Player")
+    if not player:
+        return
+    player = player as Player
+    if Input.is_action_pressed("ui_cancel") and player.has_won:
+        up_sfx.play()
+        yield(up_sfx, "finished")
+        hide()
+        var error_code = get_tree().change_scene_to(mainMenuScene)
+        if error_code != Global.SUCCESS_CODE:
+            print("[ERROR] Could not change scene to main menu: ", error_code)
 
 func _on_bt_leave_game_button_up():
     up_sfx.play()
