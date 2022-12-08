@@ -19,7 +19,7 @@
 [ext_resource path="res://Assets/SFX/boss/boss_death.wav" type="AudioStream" id=17]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 1419.96
+radius = 2393.15
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 56, 114.5 )
@@ -478,7 +478,6 @@ vframes = 11
 script = ExtResource( 3 )
 
 [node name="detection_collision" type="CollisionShape2D" parent="Player_detection_zone"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
