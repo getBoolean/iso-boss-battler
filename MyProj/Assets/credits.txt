@@ -30,3 +30,69 @@ Resources
 Wizard Sprite by Anokolisa
 
 Includes Art Designed by Freepik Author @upklyak
+
+
+
+Main Projectile Sprite & Laser Beam Sprite
+
+Pimen
+
+https://pimen.itch.io/
+
+
+
+Sound Effects
+
+Projectile Shoot, Hit, & Dash SFX
+
+Leohpaz: RPG-essentials-sfx-free
+
+
+
+Secondary Attack Charging SFX
+
+Leohpaz & Krishna Palacio: Minifantasy-dungeon-sfx-pack
+
+
+
+Laser Beam Shoot SFX
+
+Shane Sealey
+
+https://twitter.com/MrShaneSealey
+
+
+
+Menu Buttons SFX
+
+Petter Lamata Thowsen - Pelatho
+
+https://thowsenmedia.itch.io/ui-sounds
+
+
+
+Music
+
+Main Menu Music
+
+Music: "Forest Walk" by Alexander Nakarada (www.serpentsoundstudios.com)
+
+Licensed under Creative Commons BY Attribution 4.0 License
+
+http://creativecommons.org/licenses/by/4.0/
+
+
+
+Level 1 Music
+
+"Age of Mythology" by David Robson
+
+Royalty free music from https://www.FesliyanStudios.com
+
+
+
+Level 2 Music
+
+"Cloak And Dagger" by David Robson
+
+Royalty free music from https://www.FesliyanStudios.com
