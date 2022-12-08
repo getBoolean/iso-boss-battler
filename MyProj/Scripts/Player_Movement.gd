@@ -46,7 +46,7 @@ export var IMMUNE_DURATION = .35
 onready var dash = $Dash
 
 export var PLAYER_MAX_HP = 100
-export onready var PLAYER_CUR_HP = 100
+export onready var PLAYER_CUR_HP = 100000000
 
 export var PLAYER_MAX_MP = 100
 export onready var PLAYER_CUR_MP = 100

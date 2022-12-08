@@ -15,6 +15,8 @@ func _ready():
         Mainmenumusic.play()
     if FightMusic.is_playing():
         FightMusic.stop()
+    if Level2Music.is_playing():
+        Level2Music.stop()
     pass
 
 func _on_bt_new_game_button_up():
