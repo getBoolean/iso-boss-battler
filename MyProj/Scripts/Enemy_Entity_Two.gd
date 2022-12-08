@@ -78,7 +78,7 @@ func spike_wave(spawn_delay_timer: Timer, degree_size: float = 80,
         yield(spawn_delay_timer, "timeout")
 
 
-func spawnSpike(position: Vector2, damage: float = 5.0, scale: Vector2 = Vector2(1, 1)):
+func spawnSpike(position: Vector2, damage: float = 10.0, scale: Vector2 = Vector2(1, 1)):
     if not is_alive:
         return
     
