@@ -8,3 +8,4 @@ data_*/
 
 # OS-specific ignores
 *.DS_Store
+.out/
