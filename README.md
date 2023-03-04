@@ -1,5 +1,7 @@
 # IsoBossBattler
 
+The game can be previewed at https://getboolean.github.io/iso-boss-battler/main/
+
 ## FAQ
 
 ### Nintendo Controller Support
