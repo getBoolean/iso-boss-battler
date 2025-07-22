@@ -1,6 +1,6 @@
 # IsoBossBattler
 
-The game can be previewed at https://getboolean.github.io/iso-boss-battler/main/
+The game can be previewed at <https://getboolean.github.io/iso-boss-battler/archive/hard-difficulty>
 
 ## FAQ
 
