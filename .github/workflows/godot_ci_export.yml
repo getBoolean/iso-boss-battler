@@ -88,7 +88,7 @@ jobs:
           path: build/web
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v7.0.7
+        uses: tj-actions/branch-names@v9.0.0
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
