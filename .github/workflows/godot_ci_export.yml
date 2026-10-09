@@ -86,13 +86,18 @@ jobs:
         with:
           name: web
           path: build/web
+      # Dependabot workflows get a read-only GITHUB_TOKEN, so this push
+      # fails with git exit 128. The HTML5 export above still runs.
       - name: Get branch name
         id: branch-name
+        if: github.actor != 'dependabot[bot]'
         uses: tj-actions/branch-names@v7.0.7
       - name: Install rsync 📚
+        if: github.actor != 'dependabot[bot]'
         run: |
           apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
+        if: github.actor != 'dependabot[bot]'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # The branch the action should deploy to.
