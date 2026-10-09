@@ -91,7 +91,7 @@ jobs:
       - name: Get branch name
         id: branch-name
         if: github.actor != 'dependabot[bot]'
-        uses: tj-actions/branch-names@v7.0.7
+        uses: tj-actions/branch-names@v9.0.0
       - name: Install rsync 📚
         if: github.actor != 'dependabot[bot]'
         run: |
